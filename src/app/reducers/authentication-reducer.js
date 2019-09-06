@@ -1,16 +1,18 @@
 
 const initialState = {
-    email:'',
+    email: '',
     password: '',
     user: {},
     error: ''
 }
 
-export default(state = initialState , action)=> {
-    switch(action.type) {
+export default (state = initialState, action) => {
+    switch (action.type) {
+        case 'AUTH_INPUT_CHANGE':
+            return { ...state, [action.payload.field]: action.payload.value };
         case 'LOGIN_SUCCESS':
             console.log('Connect!')
-            return {...state, user: action.payload}
+            return { ...state, user: action.payload };
         default:
             return state
     }
