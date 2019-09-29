@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux'
 import reducers from './src/app/reducers'
+import Route from './Route';
 import Login from './src/app/views/Login';
 import thunk from 'redux-thunk';
 export default class App extends Component {
@@ -10,9 +11,7 @@ export default class App extends Component {
     const store = createStore(reducers, {}, applyMiddleware(thunk));
     return (
       <Provider store={store}>
-        <View>
-          <Login />
-        </View>
+        <Route />
       </Provider>
     );
   }

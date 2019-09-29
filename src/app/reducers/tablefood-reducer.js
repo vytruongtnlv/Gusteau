@@ -9,9 +9,6 @@ export default (state = initialState, action) => {
       return {
         ...state, tableList: action.payload
       }
-    // case 'LOGIN_SUCCESS':
-    //     console.log('Connect! ', action.payload)
-    //     return { ...state, user: action.payload };
     default:
       return state
   }

@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
-import { Input } from 'react-native-elements'
+import { Input, Button } from 'react-native-elements'
 import firebase from 'firebase'
 import config from '../config';
 import { connect } from 'react-redux'
 import { login, authInputChange } from '../actions';
-import TableListView from './TableListView';
+import Home from './Home';
 class Login extends Component {
     componentDidMount() {
         firebase.initializeApp(config);
+        this.login()
     }
     login() {
-        const { email, password } = this.props
+        // const { email, password } = this.props
+        const email = "qtvien@gus.com"
+        const password = "123456"
         this.props.login({ email, password })
     }
     render() {
-        if (JSON.stringify(this.props.user) !== "{}") {
-            return (
-                <TableListView />
-                // <Text>Hello</Text>
-            )
+        if (Object.keys(this.props.user).length !== 0) {
+            this.props.navigation.navigate('Home')
         }
-        else return (
+        return (
             <View>
                 <Input
                     placeholder="email"
@@ -30,11 +30,7 @@ class Login extends Component {
                     placeholder="password"
                     onChangeText={text => this.props.authInputChange({ field: 'password', value: text })}
                     secureTextEntry={true} />
-                <TouchableWithoutFeedback
-                    onPress={this.login.bind(this)}>
-                    <Text> Login </Text>
-                </TouchableWithoutFeedback>
-
+                <Button title='Login' onPress={this.login.bind(this)} />
             </View>
         );
     }
