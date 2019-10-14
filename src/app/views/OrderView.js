@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux'
-import { retrieveFoodList, retrievePriceList } from '../actions';
+import { retrieveFoodList, retrievePriceList, retrieveBillList } from '../actions';
 import FoodCardComponent from '../components/FoodCardComponent';
 import { getFoodPriceByIdFood } from '../logics';
 import { appStyle, styles } from '../style';
@@ -27,6 +27,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { retrieveFoodList, retrievePriceList })(OrderView)
+export default connect(mapStateToProps, { retrieveFoodList, retrievePriceList, retrieveBillList })(OrderView)
 
 

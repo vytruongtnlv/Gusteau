@@ -2,7 +2,8 @@ const initialState = {
   idFood: '',
   idPrice: '',
   quantity: 1,
-  orders: {} //idFood, quantity, idPrice, idBill, orderStatus
+  orders: {}, //idFood, quantity, idPrice, idBill, orderStatus
+  bill: {}
 }
 
 
@@ -21,8 +22,11 @@ export default (state = initialState, action) => {
         }
       }
     }
-    case 'RETRIEVE_ORDER_LIST':
-      return { ...state, foodList: action.payload };
+    case 'RETRIEVE_BILL_LIST':
+      return {
+        ...state,
+        bill: action.payload
+      };
     default:
       return state
   }

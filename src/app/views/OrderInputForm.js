@@ -20,7 +20,8 @@ class OrderInputForm extends Component {
     let newOrder = {
       [this.props.idFood]: {
         quantity: this.props.quantity,
-        idPrice: this.props.idPrice
+        idPrice: this.props.idPrice,
+        price: this.props.foodList[this.props.idFood].price
       }
     }
     this.props.createOrder(newOrder)
@@ -49,11 +50,11 @@ class OrderInputForm extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    orders: state.order.orders,
+    orders: state.orders.orders,
     foodList: state.foodList.foodList,
-    idFood: state.order.idFood,
-    quantity: state.order.quantity,
-    idPrice: state.order.idPrice,
+    idFood: state.orders.idFood,
+    quantity: state.orders.quantity,
+    idPrice: state.orders.idPrice,
   }
 }
 export default connect(mapStateToProps, { orderInputChange, createOrder })(OrderInputForm)

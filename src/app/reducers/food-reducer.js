@@ -1,4 +1,5 @@
-import { deepmerge } from deepmerge;
+import deepmerge from 'deepmerge';
+
 const initialState = {
   name: '',
   img: '',
@@ -14,7 +15,10 @@ export default (state = initialState, action) => {
     case 'FOOD_INPUT_CHANGE':
       return { ...state, [action.payload.field]: action.payload.value };
     case 'RETRIEVE_FOOD_LIST':
-      return { ...state, foodList: deepmerge(...state.foodList, action.payload) };
+      return {
+        ...state,
+        foodList: deepmerge(state.foodList, action.payload)
+      };
     case 'RETRIEVE_PRICE_LIST':
       return { ...state, priceList: action.payload };
     default:

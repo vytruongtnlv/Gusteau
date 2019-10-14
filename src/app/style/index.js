@@ -28,6 +28,8 @@ export const styles = {
     position: 'absolute',
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     left: appStyle.defaultStyle.padding,
     top: appStyle.defaultStyle.padding,
   },
@@ -39,8 +41,8 @@ export const styles = {
     top: appStyle.defaultStyle.padding,
   },
   tableStyle: {
-    width: 75,
-    height: 75,
+    width: 140,
+    height: 140,
     marginHorizontal: 5,
     marginVertical: 5,
 

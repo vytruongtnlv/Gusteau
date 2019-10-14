@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
-import tableEmpty from '../../img/table.png'
+import tableEmpty from '../../img/tablex128.png'
 import { styles } from '../style';
-export default class TableFoodComponent extends Component {
+import { connect } from 'react-redux'
+import { currentTable } from '../actions';
+class TableFoodComponent extends Component {
+
+  orderHandle() {
+    this.props.currentTable(this.props.idTable)
+    // this.props.navigation.navigate('OrderView')
+  }
   render() {
     const table = this.props.table
     return (
-
-      <View style={styles.tableStyle}>
+      <TouchableOpacity style={styles.tableStyle} onPress={this.orderHandle.bind(this)}>
         <Image
           source={tableEmpty} />
         <Text>{table["tableName"]}</Text>
-      </View>
+      </TouchableOpacity>
+
 
     );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, { currentTable })(TableFoodComponent)

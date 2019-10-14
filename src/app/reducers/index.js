@@ -7,5 +7,5 @@ export default combineReducers({
     auth: authenticationReducer,
     tableDB: tablefoodReducer,
     foodList: foodReducer,
-    order: orderReducer,
+    orders: orderReducer,
 })

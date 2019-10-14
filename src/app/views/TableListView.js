@@ -20,25 +20,15 @@ class TableListView extends Component {
     this.props.retrieveTableList()
   }
 
-  orderHandle() {
-    this.props.navigation.navigate('OrderView')
-    // this.setState({
-    //   view: 'LoadOrder'
-    // })
-  }
+
 
   renderList() {
     const tableList = this.props.tableList
-    // if (this.state.view === 'LoadTable')
     return Object.keys(tableList).map(key => {
       return (
-        <TouchableOpacity onPress={this.orderHandle.bind(this)}>
-          <TableFoodComponent key={key} table={tableList[key]} navigation={this.props.navigation} />
-        </TouchableOpacity>
+        <TableFoodComponent key={key} idTable={key} table={tableList[key]} navigation={this.props.navigation} />
       )
     })
-    // else if (this.state.view === 'LoadOrder')
-    //   return <OrderView />
   }
 
   render() {

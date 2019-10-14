@@ -11,23 +11,21 @@ class FoodCardComponent extends Component {
   }
 
   _orderInputChange(idFood, idPrice) {
-    // console.log(this.props)
     const food = { field: 'idFood', value: idFood }
     const price = { field: 'idPrice', value: idPrice }
     this.props.orderInputChange(food)
     this.props.orderInputChange(price)
-    console.log(price)
   }
 
   render() {
-    const { id, food, priceObj } = this.props
+    const { id, food } = this.props
     return (
-      <TouchableOpacity onPress={() => this._orderInputChange(id, priceObj.idPrice)}>
+      <TouchableOpacity onPress={() => this._orderInputChange(id, food.idPrice)}>
         <View style={styles.foodStyle}>
           <Image
             style={{ width: 100, height: 100 }}
             source={{ uri: food["foodImg"] }} />
-          <Text>{food["foodName"]} ${priceObj.price}</Text>
+          <Text>{food["foodName"]} ${food.price}</Text>
         </View>
       </TouchableOpacity>
     );

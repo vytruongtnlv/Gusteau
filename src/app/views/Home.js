@@ -10,7 +10,7 @@ export default class Home extends Component {
     return (
       <View style={styles.mainContainer}>
         <TableListView style={[styles.leftContainer, appStyle.containerStyle]} navigation={this.props.navigation} />
-        <TableStatusView style={[styles.rightContainer, appStyle.containerStyle]} />
+        <TableStatusView style={[styles.rightContainer, appStyle.containerStyle]} navigation={this.props.navigation} />
       </View>
     );
   }

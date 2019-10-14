@@ -7,17 +7,22 @@ import { getFoodPriceByIdFood } from '../logics';
 import { styles, appStyle } from '../style';
 class FoodListView extends Component {
 
-  componentDidMount() {
+  componentDidMount = async () => {
     this.props.retrieveFoodList()
     this.props.retrievePriceList()
+    // console.log('------****', priceObj)
+    // this.props.storeFoodList(priceObj)
   }
 
+  // componentWillReceiveProps(nextProps) {
+  //   if (JSON.stringify(this.props) != JSON.stringify(nextProps))
+  //     // getFoodPriceByIdFood()
+  // }
 
   renderList() {
     if (Object.keys(this.props.foodList).length > 0)
       return Object.keys(this.props.foodList).map(id => {
-        let priceObj = getFoodPriceByIdFood(this.props.priceList, id)
-        return <FoodCardComponent id={id} food={this.props.foodList[id]} priceObj={priceObj} />
+        return <FoodCardComponent id={id} food={this.props.foodList[id]} />
       })
     else return null;
   }
