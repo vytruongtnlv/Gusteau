@@ -22,15 +22,16 @@ class TableStatusView extends Component {
 
   displayOrders() {
     const idBill = getBillByIdTable(this.props.currentTable)
-    console.log(this.props.bill[idBill])
-    const billinfo = this.props.bill[idBill]["billInfo"]
-    return Object.keys(billinfo).map(id => {
-      return <OrderDetail item={billinfo[id]} id={id} key={id} />
-    })
+    if (idBill) {
+      const billinfo = this.props.bill[idBill]["billInfo"]
+      return Object.keys(billinfo).map(id => {
+        return <OrderDetail item={billinfo[id]} id={id} key={id} />
+      })
+    }
+
   }
 
   render() {
-    console.log('res ', this.props.currentTable)
     return (
       <View style={this.props.style}>
         <View>
@@ -42,7 +43,7 @@ class TableStatusView extends Component {
           justifyContent: 'space-between', flexDirection: 'row',
           position: 'absolute', bottom: 10, width: "100%"
         }}>
-          <TouchableOpacity style={{ left: 20 }}>
+          <TouchableOpacity style={{ left: 20 }} onPress={() => this.props.navigation.navigate('OrderView')}>
             <Text>Order</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{ right: 20 }}>

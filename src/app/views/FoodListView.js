@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { connect } from 'react-redux'
 import { retrieveFoodList, retrievePriceList } from '../actions';
 import FoodCardComponent from '../components/FoodCardComponent';
@@ -9,21 +9,15 @@ class FoodListView extends Component {
 
   componentDidMount = async () => {
     this.props.retrieveFoodList()
-    this.props.retrievePriceList()
-    // console.log('------****', priceObj)
-    // this.props.storeFoodList(priceObj)
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (JSON.stringify(this.props) != JSON.stringify(nextProps))
-  //     // getFoodPriceByIdFood()
-  // }
-
   renderList() {
-    if (Object.keys(this.props.foodList).length > 0)
+    console.log(this.props.foodList)
+    if (Object.keys(this.props.foodList).length > 0) {
       return Object.keys(this.props.foodList).map(id => {
-        return <FoodCardComponent id={id} food={this.props.foodList[id]} />
+        return <FoodCardComponent food={this.props.foodList[id]} id={id} key={id} />
       })
+    }
     else return null;
   }
 

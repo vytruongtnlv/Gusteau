@@ -46,8 +46,8 @@ export const retrieveFoodList = () => {
         firebase.database().ref(`food`)
             .on('value', snapshot => {
                 let data = checkAvaibleData(snapshot.val())
-
-                dispatch({ type: 'RETRIEVE_FOOD_LIST', payload: data })
+                let newFoodList = getFoodPriceByIdFood(data)
+                dispatch({ type: 'RETRIEVE_FOOD_LIST', payload: newFoodList })
             })
     }
 }
@@ -72,7 +72,6 @@ export const retrieveBillList = () => {
         firebase.database().ref(`bill`)
             .on('value', snapshot => {
                 let data = snapshot.val();
-                console.log('data', data)
                 dispatch({ type: 'RETRIEVE_BILL_LIST', payload: data })
             })
     }

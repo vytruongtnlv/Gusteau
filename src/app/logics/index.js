@@ -13,24 +13,26 @@ export const checkAvaibleData = (data) => {
   return newData;
 }
 
-export const getFoodPriceByIdFood = (priceList) => {
+export const getFoodPriceByIdFood = (foodList) => {
   // const priceList = store.getState().foodList.priceList;
-  const foodList = store.getState().foodList.foodList;
-  let newData = {}
+  let newData = {};
   Object.keys(foodList).forEach(idFood => {
+    let newFood = foodList[idFood]
+    let priceList = foodList[idFood]["price"];
     Object.keys(priceList).map(key => {
-      let price = 0;
-      let idPrice = ''
-      if (priceList[key]["idFood"] == idFood && priceList[key]["dateEnd"] == "") {
-        price = priceList[key]["price"];
-        idPrice = key;
-        let item = { idPrice, price };
-        newData = {
-          ...newData,
-          [idFood]: item
+      if (priceList[key]["dateEnd"] == "") {
+        newFood = {
+          ...newFood,
+          "price": {
+            [key]: priceList[key]
+          }
         }
       }
     })
+    newData = {
+      ...newData,
+      [idFood]: newFood
+    }
   })
   // store.dispatch({ type: 'RETRIEVE_FOOD_LIST', payload: newData })
   return newData

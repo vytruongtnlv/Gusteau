@@ -47,12 +47,13 @@ class OrderInfoView extends Component {
   addOrderIntoBill(idBill) {
     const key = `bill/${idBill}/billInfo`; // idBillinfo , idFood, Quantity, idPrice, idBill, available
     Object.keys(this.props.orders).forEach(idFood => {
-      console.log(this.props.orders[idFood])
       var order = this.props.orders[idFood]
       var value = {
         "idFood": idFood,
+        "foodName": order["foodName"],
         "quantity": order["quantity"],
-        "price": order["price"]
+        "price": order["price"],
+        "idPrice": order["idPrice"]
       }
       this.props.updateData({ key, value })
     })

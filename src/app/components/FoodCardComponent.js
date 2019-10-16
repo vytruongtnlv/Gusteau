@@ -19,13 +19,14 @@ class FoodCardComponent extends Component {
 
   render() {
     const { id, food } = this.props
+    const priceKey = Object.keys(food["price"])
     return (
       <TouchableOpacity onPress={() => this._orderInputChange(id, food.idPrice)}>
         <View style={styles.foodStyle}>
           <Image
             style={{ width: 100, height: 100 }}
             source={{ uri: food["foodImg"] }} />
-          <Text>{food["foodName"]} ${food.price}</Text>
+          <Text>{food["foodName"]} ${food["price"][priceKey]["price"]}</Text>
         </View>
       </TouchableOpacity>
     );

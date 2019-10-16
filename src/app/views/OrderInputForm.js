@@ -17,11 +17,14 @@ class OrderInputForm extends Component {
   }
 
   _orders() {
+    const food = this.props.foodList[this.props.idFood];
+    const priceKey = Object.keys(food["price"])
     let newOrder = {
       [this.props.idFood]: {
         quantity: this.props.quantity,
-        idPrice: this.props.idPrice,
-        price: this.props.foodList[this.props.idFood].price
+        idPrice: priceKey,
+        foodName: food["foodName"],
+        price: food["price"][priceKey]["price"]
       }
     }
     this.props.createOrder(newOrder)

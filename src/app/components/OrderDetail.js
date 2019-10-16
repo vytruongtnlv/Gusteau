@@ -9,9 +9,9 @@ class OrderDetail extends Component {
     const { id, item } = this.props
     return (
       <View style={{ flexDirection: 'row' }}>
-        <Text style={{ width: '33.33%', textAlign: 'left' }}>{list[id].foodName}</Text>
+        <Text style={{ width: '33.33%', textAlign: 'left' }}>{item.foodName}</Text>
         <Text style={{ width: '33.33%', textAlign: 'center' }}>x{item.quantity}</Text>
-        <Text style={{ width: '33.33%', textAlign: 'right' }}>{list[id].price}$</Text>
+        <Text style={{ width: '33.33%', textAlign: 'right' }}>{item.price}$</Text>
       </View>
     );
   }
