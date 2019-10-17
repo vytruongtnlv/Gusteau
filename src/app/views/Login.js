@@ -19,7 +19,7 @@ class Login extends Component {
     }
     render() {
         if (Object.keys(this.props.user).length !== 0) {
-            this.props.navigation.navigate('Home')
+            this.props.navigation.navigate('Tabs')
         }
         return (
             <View>

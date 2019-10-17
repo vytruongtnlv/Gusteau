@@ -3,8 +3,7 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import TableListView from './TableListView';
 import TableStatusView from './TableStatusView';
 import { appStyle, styles } from '../style';
-
-export default class Home extends Component {
+class Home extends Component {
 
   render() {
     return (
@@ -15,4 +14,6 @@ export default class Home extends Component {
     );
   }
 }
+
+export default (Home)
 

@@ -28,7 +28,6 @@ target 'Gusteau' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
 
-  pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
   target 'GusteauTests' do
     inherit! :search_paths
