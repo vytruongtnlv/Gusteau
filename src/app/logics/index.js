@@ -47,3 +47,7 @@ export const getBillByIdTable = (idTable) => {
   })
   return id;
 }
+
+export const billAnalyzer = () => {
+  // const data
+}
