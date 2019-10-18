@@ -1,3 +1,7 @@
+export const appColor = {
+  blue: "#5fe5fa"
+}
+
 export const appStyle = {
   defaultStyle: {
     margin: 1,
@@ -45,7 +49,6 @@ export const styles = {
     height: 140,
     marginHorizontal: 5,
     marginVertical: 5,
-
   },
   foodStyle: {
     width: 100,
@@ -55,4 +58,9 @@ export const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  buttonStyle: {
+    width: 100,
+    height: 50,
+    backgroundColor: appColor.blue,
+  }
 } 

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
-import { Input, Button } from 'react-native-elements'
+import { Input } from 'react-native-elements'
 import firebase from 'firebase'
 import config from '../config';
 import { connect } from 'react-redux'
 import { login, authInputChange } from '../actions';
 import Home from './Home';
+import Button from '../components/Button';
 class Login extends Component {
     componentDidMount() {
         firebase.initializeApp(config);
@@ -30,7 +31,8 @@ class Login extends Component {
                     placeholder="password"
                     onChangeText={text => this.props.authInputChange({ field: 'password', value: text })}
                     secureTextEntry={true} />
-                <Button title='Login' onPress={this.login.bind(this)} />
+                {/* <Button title='Login' onPress={this.login.bind(this)} /> */}
+                <Button name="Login" onPress={this.login.bind(this)} />
             </View>
         );
     }
