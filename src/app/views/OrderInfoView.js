@@ -4,8 +4,8 @@ import OrderDetail from '../components/OrderDetail'
 import OrderInputForm from './OrderInputForm';
 import { connect } from 'react-redux';
 import { currentTable, updateData, retrieveBillList } from '../actions'
-import { Button } from 'react-native-elements';
-import { getBillByIdTable } from '../logics';
+import { getBillByIdTable, changeTableStatus } from '../logics';
+import Button from '../components/Button';
 class OrderInfoView extends Component {
   constructor(props) {
     super(props);
@@ -34,14 +34,9 @@ class OrderInfoView extends Component {
   }
 
   changeTableStatus() {
-    const key = "tableFood";
-    var value = this.props.tableList[this.props.idTable];
     const id = this.props.idTable;
-    value = {
-      ...value,
-      ["tableStatus"]: "Ordered"
-    }
-    this.props.updateData({ key, value, id });
+    const obj = changeTableStatus(id, "Ordered")
+    this.props.updateData(obj)
   }
 
   addOrderIntoBill(idBill) {
@@ -63,22 +58,25 @@ class OrderInfoView extends Component {
     // key='bill'
     if (this.props.tableList[this.props.idTable]["tableStatus"] == 'Empty') {
       this.handleNewBill()
-      this.changeTableStatus()
+      this.changeTableStatus(this.props.idTable, "Ordered")
     }
     if (this.props.tableList[this.props.idTable]["tableStatus"] == 'Ordered') {
       console.log('old bill')
     }
     const idBill = await getBillByIdTable(this.props.idTable);
     this.addOrderIntoBill(idBill)
+    this.props.navigation.goBack();
   }
 
   render() {
     return (
       <View style={this.props.style}>
         <OrderInputForm />
-        <Text>Table</Text>
+        <Text style={{ fontSize: 24 }}>Table List</Text>
         {this.displayOrders()}
-        <Button title='Order' onPress={this._createAnOrder.bind(this)} />
+        <View style={{ position: "absolute", bottom: 10, justifyContent: 'center', width: "100%", alignItems: "center" }}>
+          <Button title='Order' onPress={this._createAnOrder.bind(this)} />
+        </View>
 
       </View>
     );

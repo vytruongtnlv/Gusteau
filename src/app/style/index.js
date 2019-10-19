@@ -24,10 +24,22 @@ export const styles = {
     height: "100%",
     flexDirection: 'row',
     alignItems: 'flex-end',
-    padding: appStyle.defaultStyle.padding
+    padding: appStyle.defaultStyle.padding,
+    margin: appStyle.defaultStyle.margin
   },
   leftContainer: {
     width: "75%",
+    height: "100%",
+    position: 'absolute',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    left: appStyle.defaultStyle.padding,
+    top: appStyle.defaultStyle.padding,
+  },
+  smallLeft: {
+    width: "50%",
     height: "100%",
     position: 'absolute',
     flexDirection: 'row',
@@ -49,12 +61,14 @@ export const styles = {
     height: 140,
     marginHorizontal: 5,
     marginVertical: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   foodStyle: {
     width: 100,
     height: 100,
-    marginHorizontal: 5,
-    marginVertical: 5,
+    marginHorizontal: 20,
+    marginVertical: 25,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -62,5 +76,9 @@ export const styles = {
     width: 100,
     height: 50,
     backgroundColor: appColor.blue,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'black',
   }
 } 

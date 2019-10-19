@@ -8,12 +8,11 @@ import { appStyle, styles } from '../style';
 import FoodListView from './FoodListView';
 import OrderInfoView from './OrderInfoView';
 class OrderView extends Component {
-
   render() {
     return (
       <View style={styles.mainContainer}>
         <FoodListView style={[styles.leftContainer, appStyle.containerStyle]} navigation={this.props.navigation} />
-        <OrderInfoView style={[styles.rightContainer, appStyle.containerStyle]} />
+        <OrderInfoView style={[styles.rightContainer, appStyle.containerStyle]} navigation={this.props.navigation} />
       </View>
     );
   }

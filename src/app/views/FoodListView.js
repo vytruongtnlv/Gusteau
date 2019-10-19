@@ -12,10 +12,9 @@ class FoodListView extends Component {
   }
 
   renderList() {
-    console.log(this.props.foodList)
     if (Object.keys(this.props.foodList).length > 0) {
       return Object.keys(this.props.foodList).map(id => {
-        return <FoodCardComponent food={this.props.foodList[id]} id={id} key={id} />
+        return <FoodCardComponent edit={this.props.edit} food={this.props.foodList[id]} id={id} key={id} />
       })
     }
     else return null;
@@ -23,7 +22,7 @@ class FoodListView extends Component {
 
   render() {
     return (
-      <View style={[styles.leftContainer, appStyle.containerStyle]}>
+      <View style={this.props.style}>
         {this.renderList()}
       </View>
 

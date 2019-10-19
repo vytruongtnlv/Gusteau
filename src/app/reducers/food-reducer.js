@@ -6,12 +6,15 @@ const initialState = {
   idCategory: '',
   price: '',
   foodList: {},
-  priceList: {}
+  priceList: {},
+  currentFood: ""
 }
 
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case 'CURRENT_FOOD':
+      return { ...state, currentFood: action.payload.id }
     case 'FOOD_INPUT_CHANGE':
       return { ...state, [action.payload.field]: action.payload.value };
     case 'RETRIEVE_FOOD_LIST':

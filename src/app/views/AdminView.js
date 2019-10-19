@@ -1,48 +1,76 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, DeviceEventEmitter } from 'react-native';
 import { styles, appStyle } from '../style';
 import Button from '../components/Button';
-
-export default class AdminView extends Component {
+import { billAnalyzer } from '../logics';
+import ChartComponents from '../components/ChartComponents';
+import { connect } from 'react-redux';
+import FoodInputForm from './FoodInputForm';
+const STATISTIC = "Statistic";
+const FOOD = "Food";
+const TABLE = "Table"
+class AdminView extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      view: STATISTIC
     };
   }
 
-  buttonMenu = (name, callBack) => {
+  switchView(value) {
+    this.setState({ view: value })
+
+  }
+
+
+  dataAnalyzer() {
+    const data = billAnalyzer('day');
+    if (data)
+      return (
+        <ChartComponents data={data} style={{ width: "100%", height: "100%" }} />
+      )
+  }
+
+  handleFoodInPut() {
     return (
-      <TouchableOpacity
-        onPress={() => callBack(name)}
-        style={{
-          width: 100, height: 100, backgroundColor: 'gray',
-          justifyContent: 'center', alignItems: 'center',
-          marginVertical: 20,
-        }}>
-        <Text>{name}</Text>
-      </TouchableOpacity>
+      <FoodInputForm />
     )
   }
 
-  dataAnalyzer(name) {
-    alert(name)
+  displayLeftView() {
+    switch (this.state.view) {
+      case STATISTIC: const data = billAnalyzer('day');
+        if (data)
+          return (
+            <ChartComponents data={data} style={{ width: "100%", height: "100%" }} />
+          )
+        return null
+      case FOOD:
+        return <FoodInputForm style={{ width: "100%", height: "100%" }} />
+    }
   }
 
   render() {
     return (
       <View style={[styles.mainContainer]}>
         <View style={[styles.leftContainer, appStyle.containerStyle, { width: "88%" }]} >
+          {this.displayLeftView()}
         </View>
         <View style={[styles.rightContainer, appStyle.containerStyle, { width: "12%", alignItems: 'center', justifyContent: 'space-around' }]} >
-          <Button tittle="Statistic" onPress={() => this.dataAnalyzer("Statistic")} />
-          <Button tittle="Food" onPress={() => this.dataAnalyzer("Food")} />
-          <Button tittle="Table" onPress={() => this.dataAnalyzer("Table")} />
-          <Button tittle="Employee" onPress={() => this.dataAnalyzer("Employee")} />
-          {/* {this.buttonMenu("Food", this.dataAnalyzer)}
-          {this.buttonMenu("Table", this.dataAnalyzer)}
-          {this.buttonMenu("Employee", this.dataAnalyzer)} */}
+          <Button title="Statistic" onPress={() => this.switchView(STATISTIC)} />
+          <Button title="Food" onPress={() => this.switchView(FOOD)} />
+          <Button title="Table" onPress={() => this.switchView(Table)} />
+          <Button title="Employee" onPress={() => this.switchView("Employee")} />
         </View>
       </View >
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    bill: state.orders.bill
+  }
+}
+
+export default connect(mapStateToProps)(AdminView)

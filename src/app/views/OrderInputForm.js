@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import NumericInput from 'react-native-numeric-input'
 import { connect } from 'react-redux';
-import { orderInputChange, createOrder } from '../actions';
+import { orderInputChange, createOrder, deleteOrder } from '../actions';
+import Button from '../components/Button';
 class OrderInputForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
     };
+  }
+
+  componentDidMount() {
+    this.props.deleteOrder()
   }
 
   _orderInputChange(quantity) {
@@ -32,21 +37,19 @@ class OrderInputForm extends Component {
 
   render() {
     const inputHeight = 55;
-    const name = this.props.idFood ? this.props.foodList[this.props.idFood].foodName : "Name"
+    const name = this.props.idFood ? this.props.foodList[this.props.idFood].foodName : ""
     return (
       <View style={{ justifyContent: "center", alignItems: "center", borderBottomWidth: 1, borderBottomColor: 'black', marginBottom: 20 }}>
-        <Text> OrderInputForm </Text>
-        <Text>{name} x{this.props.quantity}</Text>
+        <Text style={{ fontSize: 24 }}> Orders </Text>
+        {name != "" && <Text>{name} x{this.props.quantity}</Text>}
         <NumericInput
           type='up-down'
           initValue={1}
           onChange={value => this._orderInputChange(value)}
-          containerStyle={{ height: inputHeight }}
+          containerStyle={{ height: inputHeight, marginVertical: 10 }}
           inputStyle={{ height: inputHeight }}
         />
-        <TouchableOpacity style={{ width: 100, height: 50 }} onPress={this._orders.bind(this)}>
-          <Text>Button add</Text>
-        </TouchableOpacity>
+        <Button style={{ marginBottom: 10 }} title="Add order" onPress={this._orders.bind(this)} />
       </View>
     );
   }
@@ -60,4 +63,4 @@ const mapStateToProps = (state) => {
     idPrice: state.orders.idPrice,
   }
 }
-export default connect(mapStateToProps, { orderInputChange, createOrder })(OrderInputForm)
+export default connect(mapStateToProps, { orderInputChange, createOrder, deleteOrder })(OrderInputForm)

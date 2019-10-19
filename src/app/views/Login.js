@@ -20,10 +20,11 @@ class Login extends Component {
     }
     render() {
         if (Object.keys(this.props.user).length !== 0) {
+            alert('Success')
             this.props.navigation.navigate('Tabs')
         }
         return (
-            <View>
+            <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 10 }}>
                 <Input
                     placeholder="email"
                     onChangeText={text => this.props.authInputChange({ field: 'email', value: text })} />
@@ -31,8 +32,7 @@ class Login extends Component {
                     placeholder="password"
                     onChangeText={text => this.props.authInputChange({ field: 'password', value: text })}
                     secureTextEntry={true} />
-                {/* <Button title='Login' onPress={this.login.bind(this)} /> */}
-                <Button name="Login" onPress={this.login.bind(this)} />
+                <Button style={{ marginTop: 5, }} title="Login" onPress={this.login.bind(this)} />
             </View>
         );
     }

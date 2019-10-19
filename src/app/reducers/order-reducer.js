@@ -27,6 +27,11 @@ export default (state = initialState, action) => {
         ...state,
         bill: action.payload
       };
+    case 'DELETE_ORDER':
+      return {
+        ...state,
+        orders: {}
+      }
     default:
       return state
   }

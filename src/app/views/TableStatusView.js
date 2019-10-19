@@ -3,8 +3,9 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from '../style';
 import OrderDetail from '../components/OrderDetail';
 import { connect } from 'react-redux';
-import { retrieveBillList } from '../actions';
-import { getBillByIdTable } from '../logics';
+import { retrieveBillList, updateData } from '../actions';
+import { getBillByIdTable, checkOutByTable, changeTableStatus } from '../logics';
+import Button from '../components/Button';
 
 class TableStatusView extends Component {
   constructor(props) {
@@ -24,18 +25,29 @@ class TableStatusView extends Component {
     const idBill = getBillByIdTable(this.props.currentTable)
     if (idBill) {
       const billinfo = this.props.bill[idBill]["billInfo"]
-      return Object.keys(billinfo).map(id => {
-        return <OrderDetail item={billinfo[id]} id={id} key={id} />
-      })
+      if (billinfo)
+        return Object.keys(billinfo).map(id => {
+          return <OrderDetail item={billinfo[id]} id={id} key={id} />
+        })
     }
+  }
 
+
+
+  handleCheckOut() {
+    if (this.props.currentTable != "") {
+      const obj = checkOutByTable(this.props.currentTable)
+      this.props.updateData(obj);
+      const tableObj = changeTableStatus(this.props.currentTable, "Empty")
+      this.props.updateData(tableObj);
+    }
   }
 
   render() {
     return (
       <View style={this.props.style}>
         <View>
-          <Text> TableStatusView </Text>
+          <Text style={{ fontSize: 24 }}> Orders </Text>
         </View>
         {this.props.currentTable != "" && this.displayOrders()}
 
@@ -43,12 +55,8 @@ class TableStatusView extends Component {
           justifyContent: 'space-between', flexDirection: 'row',
           position: 'absolute', bottom: 10, width: "100%"
         }}>
-          <TouchableOpacity style={{ left: 20 }} onPress={() => this.props.navigation.navigate('OrderView')}>
-            <Text>Order</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={{ right: 20 }}>
-            <Text>Check out</Text>
-          </TouchableOpacity>
+          <Button style={{ left: 20 }} title="Order" onPress={() => this.props.navigation.navigate('OrderView')} />
+          <Button style={{ right: 20 }} title="Check Out" onPress={this.handleCheckOut.bind(this)} />
         </View>
       </View>
     );
@@ -64,4 +72,5 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { retrieveBillList })(TableStatusView)
+
+export default connect(mapStateToProps, { retrieveBillList, updateData })(TableStatusView)

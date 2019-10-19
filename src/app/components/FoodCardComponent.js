@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from '../style';
-import { orderInputChange } from '../actions';
+import { orderInputChange, currentFood } from '../actions';
 import { connect } from 'react-redux';
 class FoodCardComponent extends Component {
   constructor(props) {
@@ -17,11 +17,20 @@ class FoodCardComponent extends Component {
     this.props.orderInputChange(price)
   }
 
+  foodOnPress() {
+    const { id, food } = this.props
+    if (this.props.edit == true) {
+      this.props.currentFood({ id })
+    } else {
+      this._orderInputChange(id, food.idPrice)
+    }
+  }
+
   render() {
     const { id, food } = this.props
     const priceKey = Object.keys(food["price"])
     return (
-      <TouchableOpacity onPress={() => this._orderInputChange(id, food.idPrice)}>
+      <TouchableOpacity onPress={this.foodOnPress.bind(this)}>
         <View style={styles.foodStyle}>
           <Image
             style={{ width: 100, height: 100 }}
@@ -33,6 +42,6 @@ class FoodCardComponent extends Component {
   }
 }
 
-export default connect(null, { orderInputChange })(FoodCardComponent)
+export default connect(null, { orderInputChange, currentFood })(FoodCardComponent)
 
 

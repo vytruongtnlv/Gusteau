@@ -1,5 +1,6 @@
 import firebase from 'firebase'
 import { checkAvaibleData, getFoodPriceByIdFood } from '../logics'
+import store from '../../../store'
 
 export const authInputChange = ({ field, value }) => {
     return (dispatch) => {
@@ -80,6 +81,7 @@ export const retrieveBillList = () => {
 export const updateData = ({ key, value, id }) => {
     //key stand for property, value is an object
     var idItem = id ? id : firebase.database().ref().child(key).push().key;
+    store.dispatch({ type: 'CURRENT_KEY', payload: { idItem } })
     var updates = {}
     updates[`/${key}/${idItem}`] = value
 
@@ -94,6 +96,12 @@ export const orderInputChange = ({ field, value }) => {
     }
 }
 
+export const currentFood = ({ id }) => {
+    return (dispatch) => {
+        dispatch({ type: 'CURRENT_FOOD', payload: { id } })
+    }
+}
+
 export const createOrder = (orders) => {
     return (dispatch) => {
         dispatch({ type: 'ORDERS', payload: orders })
@@ -101,4 +109,9 @@ export const createOrder = (orders) => {
         //Insert field: dateCheckIn, idTable
         //Insert a record to billInfo
     }
-} 
+}
+export const deleteOrder = () => {
+    return (dispatch) => {
+        dispatch({ type: 'DELETE_ORDER' })
+    }
+}
