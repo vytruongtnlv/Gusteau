@@ -4,6 +4,7 @@ import NumericInput from 'react-native-numeric-input'
 import { connect } from 'react-redux';
 import { orderInputChange, createOrder, deleteOrder } from '../actions';
 import Button from '../components/Button';
+import HeaderBar from '../components/HeaderBar';
 class OrderInputForm extends Component {
   constructor(props) {
     super(props);
@@ -40,15 +41,20 @@ class OrderInputForm extends Component {
     const name = this.props.idFood ? this.props.foodList[this.props.idFood].foodName : ""
     return (
       <View style={{ justifyContent: "center", alignItems: "center", borderBottomWidth: 1, borderBottomColor: 'black', marginBottom: 20 }}>
-        <Text style={{ fontSize: 24 }}> Orders </Text>
-        {name != "" && <Text>{name} x{this.props.quantity}</Text>}
-        <NumericInput
-          type='up-down'
-          initValue={1}
-          onChange={value => this._orderInputChange(value)}
-          containerStyle={{ height: inputHeight, marginVertical: 10 }}
-          inputStyle={{ height: inputHeight }}
-        />
+        <Text style={{ textAlign: 'center', fontSize: 24 }}>Order</Text>
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: "100%", padding: 20 }}>
+          {name != "" && <Text style={{ fontSize: 25 }}>{name} x{this.props.quantity}</Text>}
+          <NumericInput
+            type='up-down'
+            initValue={1}
+            onChange={value => this._orderInputChange(value)}
+            containerStyle={{ height: inputHeight, marginVertical: 10, alignItems: 'center' }}
+            inputStyle={{ height: inputHeight, alignItems: 'center' }}
+          />
+        </View>
+
+
         <Button style={{ marginBottom: 10 }} title="Add order" onPress={this._orders.bind(this)} />
       </View>
     );

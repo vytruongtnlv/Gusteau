@@ -9,14 +9,13 @@ export default createBottomTabNavigator({
   },
   OrderView: {
     screen: OrderView,
-    navigationOptions: {
-      tabBarVisible: false,
-      hiddenTabs: true
-    }
   },
   AdminView: {
     screen: AdminView
   }
 }, {
-  order: ["Home", "AdminView"]
+  order: ["Home", "AdminView"],
+  labelStyle: {
+    fontSize: 24,
+  },
 })

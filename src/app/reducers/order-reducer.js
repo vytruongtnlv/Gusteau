@@ -25,6 +25,9 @@ export default (state = initialState, action) => {
     case 'RETRIEVE_BILL_LIST':
       return {
         ...state,
+        idFood: '',
+        idPrice: '',
+        quantity: 1,
         bill: action.payload
       };
     case 'DELETE_ORDER':

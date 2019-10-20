@@ -22,15 +22,6 @@ class AdminView extends Component {
 
   }
 
-
-  dataAnalyzer() {
-    const data = billAnalyzer('day');
-    if (data)
-      return (
-        <ChartComponents data={data} style={{ width: "100%", height: "100%" }} />
-      )
-  }
-
   handleFoodInPut() {
     return (
       <FoodInputForm />

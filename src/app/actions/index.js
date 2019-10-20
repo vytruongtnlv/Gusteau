@@ -105,9 +105,6 @@ export const currentFood = ({ id }) => {
 export const createOrder = (orders) => {
     return (dispatch) => {
         dispatch({ type: 'ORDERS', payload: orders })
-        //Create new key of bill
-        //Insert field: dateCheckIn, idTable
-        //Insert a record to billInfo
     }
 }
 export const deleteOrder = () => {
