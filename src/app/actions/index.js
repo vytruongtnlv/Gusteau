@@ -42,6 +42,16 @@ export const currentTable = (idTable) => {
     }
 }
 
+export const retrieveCategory = () => {
+    return (dispatch) => {
+        firebase.database().ref(`category`)
+            .on('value', snapshot => {
+                let data = checkAvaibleData(snapshot.val())
+                dispatch({ type: 'RETRIEVE_CATE_LIST', payload: data })
+            })
+    }
+}
+
 export const retrieveFoodList = () => {
     return (dispatch) => {
         firebase.database().ref(`food`)
@@ -99,6 +109,12 @@ export const orderInputChange = ({ field, value }) => {
 export const currentFood = ({ id }) => {
     return (dispatch) => {
         dispatch({ type: 'CURRENT_FOOD', payload: { id } })
+    }
+}
+
+export const currentCategory = ({ id }) => {
+    return (dispatch) => {
+        dispatch({ type: 'CURRENT_CATEGORY', payload: { id } })
     }
 }
 

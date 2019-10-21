@@ -5,20 +5,18 @@ import { connect } from 'react-redux';
 class OrderDetail extends Component {
 
   render() {
-    const list = this.props.foodList
     const { id, item } = this.props
     return (
       <View style={{ flexDirection: 'row' }}>
-        <Text style={{ width: '33.33%', textAlign: 'left' }}>{item.foodName}</Text>
-        <Text style={{ width: '33.33%', textAlign: 'center' }}>x{item.quantity}</Text>
-        <Text style={{ width: '33.33%', textAlign: 'right' }}>{item.price}$</Text>
+        <Text style={{ width: '33.33%', textAlign: 'left', fontSize: 20 }}>{item.foodName}</Text>
+        <Text style={{ width: '33.33%', textAlign: 'center', fontSize: 20 }}>x{item.quantity}</Text>
+        <Text style={{ width: '33.33%', textAlign: 'right', fontSize: 20 }}>{item.price}$</Text>
       </View>
     );
   }
 }
 const mapStateToProps = state => {
   return {
-    foodList: state.foodList.foodList
   }
 }
 export default connect(mapStateToProps)(OrderDetail)

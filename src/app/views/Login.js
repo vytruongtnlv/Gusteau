@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import { Input } from 'react-native-elements'
 import firebase from 'firebase'
-import config from '../config';
+import { config } from '../config';
 import { connect } from 'react-redux'
 import { login, authInputChange } from '../actions';
 import Home from './Home';

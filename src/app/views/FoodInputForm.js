@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import { Input } from 'react-native-elements'
-import { foodInputChange, createFood, updateData } from '../actions';
+import { foodInputChange, createFood, updateData, currentFood } from '../actions';
 import { connect } from 'react-redux'
 import ImagePicker from 'react-native-image-picker';
 import Button from '../components/Button';
@@ -21,27 +21,50 @@ class FoodInputForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      foodName: '',
+      cate: "c01",
+      price: 0
     };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.idFood != prevProps.idFood && this.state.foodName == prevState.foodName) {
+      const key = Object.keys(this.props.foodList[this.props.idFood]["price"])
+      const price = this.props.foodList[this.props.idFood]["price"][key]["price"]
+      this.setState({
+        price: price,
+        foodName: this.props.foodList[this.props.idFood]["foodName"],
+      })
+      alert(price)
+    }
   }
 
   async updateFood() {
     const { name, img, idCategory, price } = this.props
-    const id = this.props.currentFood
+    const id = this.props.idFood
     var key = 'food';
 
     var value = {
       available: true,
       foodImg: img,
       foodName: name,
-      idCategory: idCategory,
+      idCategory: "c01",
     }
-    if (this.props.currentFood != "") {
+    if (this.props.idFood != "") {
       this.props.updateData({ key, value, id });
     }
     else {
       await this.props.updateData({ key, value });
       this.updateFoodPrice(id, price)
     }
+  }
+
+  createFood() {
+    if (this.props.idFood != "") {
+      const id = ""
+      this.props.currentFood({ id });
+    }
+
   }
 
   updateFoodPrice(idFood, price) {
@@ -71,25 +94,38 @@ class FoodInputForm extends Component {
     });
   }
 
+  changeField(field, text) {
+    if (field == 'name') this.setState({ foodName: text })
+    if (field == 'price') this.setState({ price: text })
+    this.props.foodInputChange({ field: field, value: text })
+  }
+
   displayInputForm() {
+    const name = this.props.currentFood == "" ? "Create" : "Save"
+    const { foodName, price } = this.state
     return (
-      <View style={{ position: "absolute", right: 10, width: "50%", height: "50%" }}>
-        {this.props.currentFood != "" &&
-          <Text style={{ fontSize: 25, padding: 20 }}>{this.props.currentFood}</Text>
-        }
+      <View style={{ position: "absolute", right: 10, justifyContent: 'center', width: "50%", height: "50%" }}>
+        {/* {this.props.idFood != "" && */}
+        <Text style={{ fontSize: 25, marginLeft: 20, color: 'gray' }}>ID {this.props.idFood}</Text>
+        {/* } */}
         <Input
           placeholder="name"
-          onChangeText={name => this.props.foodInputChange({ field: 'name', value: name })} />
-        <Input
+          value={foodName}
+          onChangeText={foodName => this.changeField('name', foodName)} />
+        {/* <Input
           placeholder="idCategory"
           onChangeText={text => this.props.foodInputChange({ field: 'idCategory', value: text })} />
-        <Input
+        */}<Input
           placeholder="price"
-          onChangeText={price => this.props.foodInputChange({ field: 'price', value: parseFloat(price) })} />
+          value={price}
+          onChangeText={price => this.changeField('price', parseFloat(price))} />
         <View style={{ flexDirection: 'row', justifyContent: 'center', margin: 20 }}>
           <Button style={{ margin: 20 }} title='Choose' onPress={this.displayAlbumn.bind(this)} />
-          {/* <Image source={{ uri: this.props.img }} /> */}
-          <Button style={{ margin: 20 }} title='Create' onPress={this.updateFood.bind(this)} />
+          <Image source={{ uri: this.props.img }} />
+          <Button style={{ margin: 20 }} title={"Add new"} onPress={this.updateFood.bind(this)} />
+          {/* {this.props.idFood != "" &&
+            <Button style={{ margin: 20 }} title='Edit' onPress={this.updateFood.bind(this)} />
+          } */}
         </View>
 
       </View>
@@ -118,10 +154,10 @@ const mapStateToProps = state => {
     img: state.foodList.img,
     idCategory: state.foodList.idCategory,
     price: state.foodList.price,
-    currentFood: state.foodList.currentFood,
+    idFood: state.foodList.currentFood,
     foodList: state.foodList.foodList,
     idItem: state.other.idItem
   }
 }
 
-export default connect(mapStateToProps, { foodInputChange, createFood, updateData })(FoodInputForm)
+export default connect(mapStateToProps, { currentFood, foodInputChange, createFood, updateData })(FoodInputForm)

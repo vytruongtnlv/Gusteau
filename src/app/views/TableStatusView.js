@@ -47,7 +47,7 @@ class TableStatusView extends Component {
     return (
       <View style={this.props.style}>
         <View>
-          <Text style={{ fontSize: 24 }}> Orders </Text>
+          <Text style={{ fontSize: 24, textAlign: 'center' }}> Orders </Text>
         </View>
         {this.props.currentTable != "" && this.displayOrders()}
 

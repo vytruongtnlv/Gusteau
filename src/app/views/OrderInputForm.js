@@ -41,15 +41,15 @@ class OrderInputForm extends Component {
     const name = this.props.idFood ? this.props.foodList[this.props.idFood].foodName : ""
     return (
       <View style={{ justifyContent: "center", alignItems: "center", borderBottomWidth: 1, borderBottomColor: 'black', marginBottom: 20 }}>
-        <Text style={{ textAlign: 'center', fontSize: 24 }}>Order</Text>
+        <Text style={{ textAlign: 'center', fontSize: 24, marginBottom: 20 }}>Order</Text>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: "100%", padding: 20 }}>
-          {name != "" && <Text style={{ fontSize: 25 }}>{name} x{this.props.quantity}</Text>}
+          {name != "" && <Text style={{ fontSize: 25, position: "absolute", left: 0 }}>{name} x{this.props.quantity}</Text>}
           <NumericInput
             type='up-down'
             initValue={1}
             onChange={value => this._orderInputChange(value)}
-            containerStyle={{ height: inputHeight, marginVertical: 10, alignItems: 'center' }}
+            containerStyle={{ position: "absolute", right: 0, height: inputHeight, marginBottom: 20, alignItems: 'center' }}
             inputStyle={{ height: inputHeight, alignItems: 'center' }}
           />
         </View>

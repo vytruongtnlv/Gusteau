@@ -80,5 +80,6 @@ export const styles = {
     alignItems: 'center',
     borderWidth: 1,
     borderColor: 'black',
+    borderRadius: 15,
   }
 } 

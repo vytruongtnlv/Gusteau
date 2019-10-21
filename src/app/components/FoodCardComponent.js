@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from '../style';
-import { orderInputChange, currentFood } from '../actions';
+import { orderInputChange, currentFood, currentCategory } from '../actions';
 import { connect } from 'react-redux';
 class FoodCardComponent extends Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class FoodCardComponent extends Component {
 
   foodOnPress() {
     const { id, food } = this.props
+    this.props.currentCategory({ id })
     if (this.props.edit == true) {
       this.props.currentFood({ id })
     } else {
@@ -42,6 +43,6 @@ class FoodCardComponent extends Component {
   }
 }
 
-export default connect(null, { orderInputChange, currentFood })(FoodCardComponent)
+export default connect(null, { orderInputChange, currentFood, currentCategory })(FoodCardComponent)
 
 
