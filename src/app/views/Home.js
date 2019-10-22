@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { View, } from 'react-native';
 import TableListView from './TableListView';
 import TableStatusView from './TableStatusView';
 import { appStyle, styles } from '../style';
-import { retrieveCategory, retrieveFoodList, retrievePriceList } from '../actions';
+import { retrieveCategory } from '../actions';
 import { connect } from 'react-redux';
 class Home extends Component {
 
@@ -24,5 +24,5 @@ const mapStateToProps = state => {
 
   }
 }
-export default connect(mapStateToProps, { retrieveFoodList, retrievePriceList, retrieveCategory })(Home)
+export default connect(mapStateToProps, { retrieveCategory })(Home)
 

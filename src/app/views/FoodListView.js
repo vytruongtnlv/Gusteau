@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { connect } from 'react-redux'
-import { retrieveFoodList, retrievePriceList } from '../actions';
 import FoodCardComponent from '../components/FoodCardComponent';
 import { getFoodPriceByIdFood } from '../logics';
 import { styles, appStyle } from '../style';
 class FoodListView extends Component {
 
   componentDidMount = async () => {
-    this.props.retrieveFoodList()
   }
 
   renderList() {
@@ -39,6 +37,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { retrieveFoodList, retrievePriceList })(FoodListView)
+export default connect(mapStateToProps, {})(FoodListView)
 
 

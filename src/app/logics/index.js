@@ -6,7 +6,7 @@ import { updateData } from "../actions";
 export const checkAvaibleData = (data) => {
   let newData = {};
   Object.keys(data).map(key => {
-    if (data[key]["available"]) {
+    if (data[key]["is_available"]) {
       newData = {
         ...newData,
         [key]: data[key]
@@ -14,34 +14,6 @@ export const checkAvaibleData = (data) => {
     }
   })
   return newData;
-}
-
-export const getFoodPriceByIdFood = (foodList) => {
-  // const priceList = store.getState().foodList.priceList;
-  let newData = {};
-  Object.keys(foodList).forEach(idFood => {
-    if (foodList[idFood] && foodList[idFood]["price"]) {
-      let newFood = foodList[idFood]
-      let priceList = newFood["price"];
-      Object.keys(priceList).map(key => {
-        if (priceList[key]["dateEnd"] == "" && priceList[key]["price"]) {
-          newFood = {
-            ...newFood,
-            "price": {
-              [key]: priceList[key]
-            }
-          }
-        }
-      })
-      newData = {
-        ...newData,
-        [idFood]: newFood
-      }
-    }
-
-  })
-  // store.dispatch({ type: 'RETRIEVE_FOOD_LIST', payload: newData })
-  return newData
 }
 
 export const getBillByIdTable = (idTable) => {

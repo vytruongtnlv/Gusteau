@@ -65,8 +65,6 @@ class TableStatusView extends Component {
 
 const mapStateToProps = state => {
   return {
-    foodList: state.foodList.foodList,
-    priceList: state.foodList.priceList,
     bill: state.orders.bill,
     currentTable: state.tableDB.idTable
   }

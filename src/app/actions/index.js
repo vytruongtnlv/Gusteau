@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import { checkAvaibleData, getFoodPriceByIdFood } from '../logics'
+import { checkAvaibleData } from '../logics'
 import store from '../../../store'
 
 export const authInputChange = ({ field, value }) => {
@@ -52,32 +52,6 @@ export const retrieveCategory = () => {
     }
 }
 
-export const retrieveFoodList = () => {
-    return (dispatch) => {
-        firebase.database().ref(`food`)
-            .on('value', snapshot => {
-                let data = checkAvaibleData(snapshot.val())
-                let newFoodList = getFoodPriceByIdFood(data)
-                dispatch({ type: 'RETRIEVE_FOOD_LIST', payload: newFoodList })
-            })
-    }
-}
-
-export const retrievePriceList = () => {
-    return (dispatch) => {
-        firebase.database().ref(`price`)
-            .on('value', snapshot => {
-                let data = checkAvaibleData(snapshot.val())
-                dispatch({ type: 'RETRIEVE_PRICE_LIST', payload: data })
-                let newData = getFoodPriceByIdFood(data)
-                if (Object.keys(newData).length > 0) {
-                    dispatch({ type: 'RETRIEVE_FOOD_LIST', payload: newData })
-                }
-                else retrievePriceList()
-            })
-    }
-}
-
 export const retrieveBillList = () => {
     return (dispatch) => {
         firebase.database().ref(`bill`)
@@ -106,9 +80,9 @@ export const orderInputChange = ({ field, value }) => {
     }
 }
 
-export const currentFood = ({ id }) => {
+export const currentFood = (item) => {
     return (dispatch) => {
-        dispatch({ type: 'CURRENT_FOOD', payload: { id } })
+        dispatch({ type: 'CURRENT_FOOD', payload: item })
     }
 }
 

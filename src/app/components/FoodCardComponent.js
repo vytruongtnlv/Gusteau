@@ -19,9 +19,10 @@ class FoodCardComponent extends Component {
 
   foodOnPress() {
     const { id, food } = this.props
+    const item = this.props
     this.props.currentCategory({ id })
     if (this.props.edit == true) {
-      this.props.currentFood({ id })
+      this.props.currentFood(item)
     } else {
       this._orderInputChange(id, food.idPrice)
     }

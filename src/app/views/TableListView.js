@@ -8,7 +8,6 @@ class TableListView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'LoadTable'
     }
 
   }
@@ -33,14 +32,11 @@ class TableListView extends Component {
 
   render() {
     const tableList = this.props.tableList
-    if (Object.keys(tableList).length === 0)
-      return null
-    else return (
-      <View style={this.props.style}>
-        {this.renderList()}
-      </View>
-    )
-
+    return Object.keys(tableList).map(key => {
+      return (
+        <TableFoodComponent key={key} idTable={key} table={tableList[key]} navigation={this.props.navigation} />
+      )
+    })
   }
 }
 const mapStateToProps = state => {
