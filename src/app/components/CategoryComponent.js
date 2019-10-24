@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import FoodCardComponent from './FoodCardComponent';
 
 class CategoryComponent extends Component {
   constructor(props) {
@@ -8,29 +10,34 @@ class CategoryComponent extends Component {
     };
   }
 
-  displayFoodByCategory(idCategory) {
-    const food = this.props.category[idCategory]["food"]
-    if (Object.keys(food).length > 0) {
-      return Object.keys(food).map(id => {
-        return <FoodCardComponent edit={this.props.edit} food={food[id]} id={id} key={id} />
-      })
-    }
+  componentDidMount() {
+  }
+
+  displayFood(category) {
+    return Object.keys(category["dishes"]).map(id => {
+      return (
+        <FoodCardComponent food={category["dishes"][id]} id={id} />
+      )
+    })
   }
 
   render() {
+    const category = this.props.category
     return (
-      <View>
-
+      <View style={{
+        margin: 10, flexDirection: 'row',
+        flexWrap: 'wrap',
+      }}>
+        {
+          this.displayFood(category)
+        }
       </View>
-    );
+    )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    foodList: state.foodList.foodList,
-    priceList: state.foodList.priceList,
-    category: state.category.categoryList,
   }
 }
 

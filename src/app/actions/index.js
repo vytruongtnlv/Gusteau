@@ -28,7 +28,7 @@ export const login = ({ email, password }) => {
 
 export const retrieveTableList = () => {
     return (dispatch) => {
-        firebase.database().ref(`/tableFood`)
+        firebase.database().ref(`/table`)
             .on('value', snapshot => {
                 let data = checkAvaibleData(snapshot.val())
                 dispatch({ type: 'RETRIEVE_TABLE', payload: data })
@@ -46,8 +46,7 @@ export const retrieveCategory = () => {
     return (dispatch) => {
         firebase.database().ref(`category`)
             .on('value', snapshot => {
-                let data = checkAvaibleData(snapshot.val())
-                dispatch({ type: 'RETRIEVE_CATE_LIST', payload: data })
+                dispatch({ type: 'RETRIEVE_CATE_LIST', payload: snapshot.val() })
             })
     }
 }

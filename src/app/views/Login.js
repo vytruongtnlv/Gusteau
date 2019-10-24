@@ -20,7 +20,7 @@ class Login extends Component {
     }
     render() {
         if (Object.keys(this.props.user).length !== 0) {
-            alert('Success')
+            // alert('Success')
             this.props.navigation.navigate('Tabs')
         }
         return (

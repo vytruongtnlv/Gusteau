@@ -1,31 +1,65 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text, Picker, ScrollView } from 'react-native';
 import { connect } from 'react-redux'
 import { retrieveFoodList, retrievePriceList } from '../actions';
 import FoodCardComponent from '../components/FoodCardComponent';
 import { getFoodPriceByIdFood } from '../logics';
 import { styles, appStyle } from '../style';
+import CategoryComponent from '../components/CategoryComponent';
 class FoodListView extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      categoryList: [],
+      selectedCategory: ""
+    };
+  }
   componentDidMount = async () => {
-    this.props.retrieveFoodList()
+    const data = this.props.category;
+    const list = this.getCategoryList(data)
+    console.log(list)
+    await this.setState({
+      categoryList: list,
+      selectedCategory: list[0] ? list[0]["props"]["value"] : ""
+    })
+
   }
 
-  renderList() {
-    if (Object.keys(this.props.category).length > 0) {
-      return Object.keys(this.props.category).map(id => {
-        <Text>{id}</Text>
-        //   return <FoodCardComponent edit={this.props.edit} food={this.props.foodList[id]} id={id} key={id} />
-      })
-    }
-    else return null;
+  getCategoryList(data) {
+    let list = [];
+    Object.keys(data).forEach(key => {
+      list.push(<Picker.Item label={data[key]["dish_type_name"]} value={key} />)
+    })
+    return list
+  }
+
+  renderList(data) {
+    if (this.state.selectedCategory && this.state.selectedCategory != "")
+      return (
+        <CategoryComponent category={data[this.state.selectedCategory]} />
+      )
+    else return Object.keys(data).map(key => {
+      return (
+        <CategoryComponent key={key} category={data[key]} />
+      )
+    })
   }
 
   render() {
+    const data = this.props.category;
     return (
-      <View style={this.props.style}>
-        {this.renderList()}
+      <View style={[this.props.style,]}>
+        <ScrollView
+          contentContainerStyle={{ paddingVertical: 20 }}>
+          <Picker
+            selectedValue={this.state.selectedCategory}
+            onValueChange={(selected) => this.setState({ selectedCategory: selected })}>
+            {this.state.categoryList}
+          </Picker>
+          {this.renderList(data)}
+        </ScrollView>
       </View>
+
 
     );
   }
@@ -33,8 +67,6 @@ class FoodListView extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    foodList: state.foodList.foodList,
-    priceList: state.foodList.priceList,
     category: state.category.categoryList,
   }
 }

@@ -65,10 +65,8 @@ export const styles = {
     alignItems: 'center',
   },
   foodStyle: {
-    width: 100,
-    height: 100,
-    marginHorizontal: 20,
-    marginVertical: 25,
+    width: 150,
+    height: 150,
     justifyContent: 'center',
     alignItems: 'center',
   },

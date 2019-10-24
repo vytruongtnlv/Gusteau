@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux'
 import { retrieveTableList } from '../actions';
 import TableFoodComponent from '../components/TableFoodComponent';
-import OrderView from './OrderView';
 class TableListView extends Component {
   constructor(props) {
     super(props);
