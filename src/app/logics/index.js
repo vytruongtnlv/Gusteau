@@ -45,7 +45,7 @@ export const getFoodPriceByIdFood = (foodList) => {
 }
 
 export const getBillByIdTable = (idTable) => {
-  const billList = store.getState().orders.bill;
+  const billList = store.getState().bill.bill;
   let id = "";
   Object.keys(billList).forEach(idBill => {
     if (billList[idBill]["idTable"] == idTable && !billList[idBill]["dateCheckOut"])
@@ -55,7 +55,7 @@ export const getBillByIdTable = (idTable) => {
 }
 
 export const billAnalyzer = (type) => {
-  const bill = store.getState().orders.bill;
+  const bill = store.getState().bill.bill;
   const analyzer = groupBy(bill, type);
   return analyzer;
 }

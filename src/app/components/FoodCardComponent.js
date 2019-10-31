@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Modal } from 'react-native';
 import { styles } from '../style';
 import { orderInputChange, currentFood, currentCategory } from '../actions';
 import { connect } from 'react-redux';
@@ -7,8 +7,10 @@ class FoodCardComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      modalVisible: false,
     };
   }
+
 
   _orderInputChange(idFood, idPrice) {
     const food = { field: 'idFood', value: idFood }
@@ -19,23 +21,23 @@ class FoodCardComponent extends Component {
 
   foodOnPress() {
     const { id, food } = this.props
-    // this.props.currentCategory({ id })
+    this.props.currentCategory({ id })
     // if (this.props.edit == true) {
     //   this.props.currentFood({ id })
     // } else {
     //   this._orderInputChange(id, food.idPrice)
     // }
   }
-
   render() {
     const { id, food } = this.props
     return (
-      <TouchableOpacity style={styles.foodStyle} onPress={this.foodOnPress.bind(this)}>
+      <View style={styles.foodStyle}>
         <Image
-          style={{ width: 120, height: 120 }}
+          style={styles.foodImg}
           source={{ uri: food["photos"][0]["value"] }} />
         <Text>{food["name"]} ${food["price"]["text"]}</Text>
-      </TouchableOpacity>
+      </View>
+
     );
   }
 }

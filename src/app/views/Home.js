@@ -13,8 +13,8 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <TableListView style={[styles.leftContainer, appStyle.containerStyle]} navigation={this.props.navigation} />
-        <TableStatusView style={[styles.rightContainer, appStyle.containerStyle]} navigation={this.props.navigation} />
+        <TableListView style={[styles.bigContainer]} navigation={this.props.navigation} />
+        {/* <TableStatusView style={[styles.rightContainer, appStyle.containerStyle]} navigation={this.props.navigation} /> */}
       </View>
     );
   }

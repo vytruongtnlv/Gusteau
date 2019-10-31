@@ -55,8 +55,8 @@ class TableStatusView extends Component {
           justifyContent: 'space-between', flexDirection: 'row',
           position: 'absolute', bottom: 10, width: "100%"
         }}>
-          <Button style={{ left: 20 }} title="Order" onPress={() => this.props.navigation.navigate('OrderView')} />
-          <Button style={{ right: 20 }} title="Check Out" onPress={this.handleCheckOut.bind(this)} />
+          <Button style={{ left: 20 }} title="Gọi món" onPress={() => this.props.navigation.navigate('OrderView')} />
+          {/* <Button style={{ right: 20 }} title="Check Out" onPress={this.handleCheckOut.bind(this)} /> */}
         </View>
       </View>
     );

@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { orderInputChange, createOrder, deleteOrder } from '../actions';
 import Button from '../components/Button';
 import HeaderBar from '../components/HeaderBar';
+import { orderInputStyles } from '../style';
+import { Input } from 'react-native-elements';
 class OrderInputForm extends Component {
   constructor(props) {
     super(props);
@@ -13,49 +15,59 @@ class OrderInputForm extends Component {
   }
 
   componentDidMount() {
-    this.props.deleteOrder()
+    this._orderInputChange("quantity", 1)
+    this._orderInputChange("note", "")
   }
 
-  _orderInputChange(quantity) {
-    const field = "quantity";
-    const value = parseInt(quantity);
+  _orderInputChange(field, value) {
     this.props.orderInputChange({ field, value })
   }
 
   _orders() {
-    const food = this.props.foodList[this.props.idFood];
-    const priceKey = Object.keys(food["price"])
+    const idCategory = this.props.category
+    const idFood = this.props.currentFood
+    const food = this.props.categoryList[idCategory]["dishes"][idFood]
+    const price = food["price"]["value"]
     let newOrder = {
-      [this.props.idFood]: {
+      [idFood]: {
         quantity: this.props.quantity,
-        idPrice: priceKey,
-        foodName: food["foodName"],
-        price: food["price"][priceKey]["price"]
+        name: food["name"],
+        price: price,
+        note: this.props.note
       }
     }
-    this.props.createOrder(newOrder)
+    this.props.createOrder(newOrder);
+    this.cancelOrder();
+  }
+
+  cancelOrder() {
+    this.props.callBackFunction()
   }
 
   render() {
     const inputHeight = 55;
-    const name = this.props.idFood ? this.props.foodList[this.props.idFood].foodName : ""
+    const idCategory = this.props.category
+    const idFood = this.props.currentFood
+    const food = this.props.categoryList[idCategory]["dishes"][idFood]
+    const name = food["name"] ? food["name"] : "Món"
     return (
-      <View style={{ justifyContent: "center", alignItems: "center", borderBottomWidth: 1, borderBottomColor: 'black', marginBottom: 20 }}>
-        <Text style={{ textAlign: 'center', fontSize: 24, marginBottom: 20 }}>Order</Text>
-
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: "100%", padding: 20 }}>
-          {name != "" && <Text style={{ fontSize: 25, position: "absolute", left: 0 }}>{name} x{this.props.quantity}</Text>}
-          <NumericInput
-            type='up-down'
-            initValue={1}
-            onChange={value => this._orderInputChange(value)}
-            containerStyle={{ position: "absolute", right: 0, height: inputHeight, marginBottom: 20, alignItems: 'center' }}
-            inputStyle={{ height: inputHeight, alignItems: 'center' }}
-          />
+      <View style={orderInputStyles.viewContent}>
+        <Text style={orderInputStyles.foodName}>{name} x{this.props.quantity}</Text>
+        <Input
+          placeholder="Ghi chú"
+          containerStyle={{ borderBottomWidth: 1, width: "25%", marginBottom: 5 }}
+          onChangeText={text => this._orderInputChange("note", text)} />
+        <NumericInput
+          type='up-down'
+          initValue={1}
+          onChange={value => this._orderInputChange("quantity", value)}
+          containerStyle={orderInputStyles.numericStyle}
+          inputStyle={{ height: inputHeight, alignItems: 'center' }}
+        />
+        <View style={orderInputStyles.buttonRow}>
+          <Button style={{ marginBottom: 10 }} title="Thêm" onPress={this._orders.bind(this)} />
+          <Button style={{ marginBottom: 10 }} title="Huỷ" onPress={this.cancelOrder.bind(this)} />
         </View>
-
-
-        <Button style={{ marginBottom: 10 }} title="Add order" onPress={this._orders.bind(this)} />
       </View>
     );
   }
@@ -63,10 +75,12 @@ class OrderInputForm extends Component {
 const mapStateToProps = (state) => {
   return {
     orders: state.orders.orders,
-    foodList: state.foodList.foodList,
-    idFood: state.orders.idFood,
     quantity: state.orders.quantity,
-    idPrice: state.orders.idPrice,
+    note: state.orders.note,
+    currentFood: state.orders.currentFood,
+    categoryList: state.category.categoryList,
+    category: state.category.category
+
   }
 }
 export default connect(mapStateToProps, { orderInputChange, createOrder, deleteOrder })(OrderInputForm)

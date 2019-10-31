@@ -7,12 +7,13 @@ import { getFoodPriceByIdFood } from '../logics';
 import { appStyle, styles } from '../style';
 import FoodListView from './FoodListView';
 import OrderInfoView from './OrderInfoView';
+import OrderTab from '../../../OrderTab';
 class OrderView extends Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <FoodListView style={[styles.leftContainer, appStyle.containerStyle]} navigation={this.props.navigation} />
-        <OrderInfoView style={[styles.rightContainer, appStyle.containerStyle]} navigation={this.props.navigation} />
+        <OrderTab navigation={this.props.navigation} />
+        {/* <FoodListView style={[styles.bigContainer]} navigation={this.props.navigation} /> */}
       </View>
     );
   }

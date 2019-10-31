@@ -3,7 +3,9 @@ const initialState = {
     email: '',
     password: '',
     user: {},
-    error: ''
+    error: '',
+    permission: '',
+    permissionList: {}
 }
 
 export default (state = initialState, action) => {
@@ -13,6 +15,8 @@ export default (state = initialState, action) => {
         case 'LOGIN_SUCCESS':
             console.log('Connect!')
             return { ...state, user: action.payload };
+        case 'RETRIEVE_PERMISSION':
+            return { ...state, permissionList: action.payload };
         default:
             return state
     }

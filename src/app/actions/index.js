@@ -2,6 +2,16 @@ import firebase from 'firebase'
 import { checkAvaibleData, getFoodPriceByIdFood } from '../logics'
 import store from '../../../store'
 
+export const retrievePermissions = () => {
+    return (dispatch) => {
+        firebase.database().ref(`permissions`)
+            .on('value', snapshot => {
+                const data = snapshot.val();
+                dispatch({ type: 'RETRIEVE_PERMISSION', payload: data })
+            })
+    }
+}
+
 export const authInputChange = ({ field, value }) => {
     return (dispatch) => {
         dispatch({ type: 'AUTH_INPUT_CHANGE', payload: { field, value } })

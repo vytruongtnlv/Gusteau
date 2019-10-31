@@ -7,3 +7,8 @@ export const config = {
     messagingSenderId: "486132524866",
     appId: "1:486132524866:web:55adf078ea528c15"
 };
+
+export const setConst = {
+    empty: "Trống",
+    ordered: "Đã gọi món",
+}

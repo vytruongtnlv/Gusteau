@@ -28,19 +28,19 @@ class FoodListView extends Component {
   getCategoryList(data) {
     let list = [];
     Object.keys(data).forEach(key => {
-      list.push(<Picker.Item label={data[key]["dish_type_name"]} value={key} />)
+      list.push(<Picker.Item key={key.toString()} label={data[key]["dish_type_name"]} value={key} />)
     })
     return list
   }
 
   renderList(data) {
-    if (this.state.selectedCategory && this.state.selectedCategory != "")
+    if (this.state.selectedCategory != "")
       return (
-        <CategoryComponent category={data[this.state.selectedCategory]} />
+        <CategoryComponent id={this.state.selectedCategory} key={this.state.selectedCategory.toString()} category={data[this.state.selectedCategory]} />
       )
     else return Object.keys(data).map(key => {
       return (
-        <CategoryComponent key={key} category={data[key]} />
+        <CategoryComponent key={key.toString()} id={key} category={data[key]} />
       )
     })
   }
@@ -49,8 +49,7 @@ class FoodListView extends Component {
     const data = this.props.category;
     return (
       <View style={[this.props.style,]}>
-        <ScrollView
-          contentContainerStyle={{ paddingVertical: 20 }}>
+        <ScrollView >
           <Picker
             selectedValue={this.state.selectedCategory}
             onValueChange={(selected) => this.setState({ selectedCategory: selected })}>

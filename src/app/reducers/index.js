@@ -5,11 +5,13 @@ import foodReducer from "./food-reducer";
 import orderReducer from "./order-reducer";
 import otherReducer from "./other-reducer";
 import categoryReducer from "./category-reducer";
+import billReducer from "./bill-reducer";
 export default combineReducers({
     auth: authenticationReducer,
     tableDB: tablefoodReducer,
     foodList: foodReducer,
     orders: orderReducer,
     category: categoryReducer,
+    bill: billReducer,
     other: otherReducer
 })

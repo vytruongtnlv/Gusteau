@@ -1,0 +1,122 @@
+{
+  "TB01": {
+    "available": true,
+    "tableName": "Bàn 1",
+    "tableStatus": "Trống",
+    "area": "Khu A"
+  },
+  "TB02": {
+    "available": true,
+    "tableName": "Bàn 2",
+    "tableStatus": "Trống",
+    "area": "Khu A"
+  },
+  "TB03": {
+    "available": true,
+    "tableName": "Bàn 3",
+    "tableStatus": "Trống",
+    "area": "Khu A"
+  },
+  "TB04": {
+    "available": true,
+    "tableName": "Bàn 4",
+    "tableStatus": "Trống",
+    "area": "Khu A"
+  },
+  "TB05": {
+    "available": true,
+    "tableName": "Bàn 5",
+    "tableStatus": "Trống",
+    "area": "Khu A"
+  },
+  "TB06": {
+    "available": true,
+    "tableName": "Bàn 6",
+    "tableStatus": "Trống",
+    "area": "Khu A"
+  },
+  "TB07": {
+    "available": true,
+    "tableName": "Bàn 7",
+    "tableStatus": "Trống",
+    "area": "Khu A"
+  },
+  "TB08": {
+    "available": true,
+    "tableName": "Bàn 8",
+    "tableStatus": "Trống",
+    "area": "Khu A"
+  },
+  "TB09": {
+    "available": true,
+    "tableName": "Bàn 9",
+    "tableStatus": "Trống",
+    "area": "Khu A"
+  },
+  "TB010": {
+    "available": true,
+    "tableName": "Bàn 10",
+    "tableStatus": "Trống",
+    "area": "Khu A"
+  },
+  "TB11": {
+    "available": true,
+    "tableName": "Bàn 11",
+    "tableStatus": "Trống",
+    "area": "Khu A"
+  },
+  "TB12": {
+    "available": true,
+    "tableName": "Bàn 12",
+    "tableStatus": "Trống",
+    "area": "Khu A"
+  },
+  "TB13": {
+    "available": true,
+    "tableName": "Bàn 13",
+    "tableStatus": "Trống",
+    "area": "Khu A"
+  },
+  "TB14": {
+    "available": true,
+    "tableName": "Bàn 14",
+    "tableStatus": "Trống",
+    "area": "Khu A"
+  },
+  "TB15": {
+    "available": true,
+    "tableName": "Bàn 15",
+    "tableStatus": "Trống",
+    "area": "Mang về"
+  },
+  "TB16": {
+    "available": true,
+    "tableName": "Bàn 16",
+    "tableStatus": "Trống",
+    "area": "Mang về"
+  },
+  "TB17": {
+    "available": true,
+    "tableName": "Bàn 17",
+    "tableStatus": "Trống",
+    "area": "Mang về"
+  },
+  "TB18": {
+    "available": true,
+    "tableName": "Bàn 18",
+    "tableStatus": "Trống",
+    "area": "Mang về"
+  },
+  "TB19": {
+    "available": true,
+    "tableName": "Bàn 19",
+    "tableStatus": "Trống",
+    "area": "Mang về"
+  },
+  "TB20": {
+    "available": true,
+    "tableName": "Bàn 20",
+    "tableStatus": "Trống",
+    "area": "Mang về"
+  }
+}

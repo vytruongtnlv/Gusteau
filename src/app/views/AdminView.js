@@ -6,6 +6,7 @@ import { billAnalyzer } from '../logics';
 import ChartComponents from '../components/ChartComponents';
 import { connect } from 'react-redux';
 import FoodInputForm from './FoodInputForm';
+import BillStatistic from './BillStatistic';
 const STATISTIC = "Statistic";
 const FOOD = "Food";
 const TABLE = "Table"
@@ -33,7 +34,8 @@ class AdminView extends Component {
       case STATISTIC: const data = billAnalyzer('day');
         if (data)
           return (
-            <ChartComponents data={data} style={{ width: "100%", height: "100%" }} />
+            <BillStatistic />
+            // <ChartComponents data={data} style={{ width: "100%", height: "100%" }} />
           )
         return null
       case FOOD:

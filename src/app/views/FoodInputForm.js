@@ -154,7 +154,7 @@ const mapStateToProps = state => {
     img: state.foodList.img,
     idCategory: state.foodList.idCategory,
     price: state.foodList.price,
-    idFood: state.foodList.currentFood,
+    idFood: state.orders.currentFood,
     foodList: state.foodList.foodList,
     idItem: state.other.idItem
   }

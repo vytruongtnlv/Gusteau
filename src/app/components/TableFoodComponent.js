@@ -3,21 +3,24 @@ import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
 import tableEmpty from '../../img/tablex128.png'
 import tableOrdered from '../../img/servingx128.png'
 import tableServed from '../../img/dishx128.png'
-import { styles } from '../style';
+import { styles, appColor } from '../style';
 import { connect } from 'react-redux'
 import { currentTable } from '../actions';
+const empty = "Trống";
+const ordered = "Đã gọi món";
 class TableFoodComponent extends Component {
 
-  orderHandle() {
-    this.props.currentTable(this.props.idTable)
+  async orderHandle() {
+    await this.props.currentTable(this.props.idTable)
+    this.props.navigation.navigate('OrderTab')
   }
 
   setImg(status) {
     switch (status) {
-      case 'Empty':
-        return tableEmpty;
-      case 'Ordered':
-        return tableOrdered;
+      case empty:
+        return appColor.green;
+      case ordered:
+        return appColor.red;
       case 'Served':
         return tableServed;
     }
@@ -27,11 +30,13 @@ class TableFoodComponent extends Component {
     const tableStatus = table["tableStatus"];
     const img = this.setImg(tableStatus)
     return (
-      <TouchableOpacity style={styles.tableStyle} onPress={this.orderHandle.bind(this)}>
-        <Image
-          source={img} />
+      <View style={[styles.tableStyle, { backgroundColor: img, }]} >
         <Text>{table["tableName"]}</Text>
-      </TouchableOpacity>
+        <View style={{ position: 'absolute', bottom: 0, flexDirection: 'row', width: "100%", padding: 10, justifyContent: 'space-between', }}>
+          <TouchableOpacity onPress={this.orderHandle.bind(this)}><Text>Đặt món</Text></TouchableOpacity>
+          <TouchableOpacity><Text>Thanh toán</Text></TouchableOpacity>
+        </View>
+      </View>
 
 
     );
