@@ -1,16 +1,18 @@
 // "android-shake": "adb shell input keyevent 82"
 import React, { Component } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, Image, ScrollView, Alert } from 'react-native';
 import OrderDetail from '../components/OrderDetail'
 import OrderInputForm from './OrderInputForm';
 import { connect } from 'react-redux';
-import { currentTable, updateData, retrieveBillList } from '../actions'
-import { getBillByIdTable, changeTableStatus } from '../logics';
+import { currentTable, updateData, retrieveBillList, otherInput } from '../actions'
+import { getBillByIdTable, changeTableStatus, checkOutByTable } from '../logics';
 import Button from '../components/Button';
 import { orderStyle, appStyle, orderInputStyles } from '../style';
 import { setConst } from '../config';
 import Calculator from '../components/Calculator';
 import Modal from 'react-native-modal';
+import { servedToCustomer } from '../logics/checkOut';
+import Tabs from '../../../Tabs';
 
 const logo = require('../../img/lotteria.png');
 class OrderInfoView extends Component {
@@ -22,21 +24,29 @@ class OrderInfoView extends Component {
       totalPrice: 0,
       isModalVisible: false,
       check: false,
+      checkOut: false,
+      isPayment: false,
     };
   }
 
   componentDidMount() {
-    this.props.retrieveBillList();
+    const payment = {
+      field: "isPayment",
+      value: false
+    }
+    this.props.otherInput(payment)
+    const bill = this.getBillInfo();
     this.setState({
+      isPayment: (bill && bill["price"]) ? true : false,
       totalPrice: this._calTotalPrice()
     })
   }
 
-  displayOrders() {
-    return Object.keys(this.props.orders).map(id => {
-      return <OrderDetail item={this.props.orders[id]} id={id} key={id} />
-    })
-  }
+  // displayOrders() {
+  //   return Object.keys(this.props.orders).map(id => {
+  //     return <OrderDetail item={this.props.orders[id]} id={id} key={id} />
+  //   })
+  // }
 
   handleNewBill() {
     const key = "bill";
@@ -48,8 +58,10 @@ class OrderInfoView extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const bill = this.getBillInfo();
     if (JSON.stringify(this.props.orders) != JSON.stringify(nextProps.orders)) {
       this.setState({
+        payment: (bill && bill["price"]) ? true : false,
         totalPrice: this._calTotalPrice()
       })
     }
@@ -78,10 +90,10 @@ class OrderInfoView extends Component {
 
   async _createAnOrder() {
     // key='bill'
-    if (this.state.check == false) {
-      alert('Vui lòng xác nhận đã thanh toán!');
-      return;
-    }
+    // if (this.props.isPayment == false) {
+    //   alert('Vui lòng xác nhận đã thanh toán!');
+    //   return;
+    // }
     if (this.props.tableList[this.props.idTable]["tableStatus"] == setConst.empty) {
       this.handleNewBill()
       this.changeTableStatus(this.props.idTable, setConst.ordered)
@@ -91,15 +103,19 @@ class OrderInfoView extends Component {
     }
     const idBill = await getBillByIdTable(this.props.idTable);
     this.addOrderIntoBill(idBill)
-    this.props.navigation.goBack();
   }
 
   _calTotalPrice() {
     let value = 0;
+    const bill = this.getBillInfo();
+    if (bill && bill["price"]) {
+      value += bill["price"];
+    }
     if (Object.keys(this.props.orders).length > 0)
       Object.keys(this.props.orders).forEach(id => {
         value += this.props.orders[id]["price"] * this.props.orders[id]["quantity"]
       });
+
     return value;
   }
 
@@ -110,10 +126,18 @@ class OrderInfoView extends Component {
   async payment() {
     const price = await this._calTotalPrice();
     await this.setState({
-      isModalVisible: true,
+      // isModalVisible: true,
       // showCal: true,
       totalPrice: price
     })
+
+  }
+
+  alertForPaymen = () => {
+    this._createAnOrder();
+    alert('Đã thanh toán')
+    this.handleCheckOut();
+    // this.props.navigation.navigate('Home')
   }
 
   async checkMethod() {
@@ -123,14 +147,67 @@ class OrderInfoView extends Component {
     })
   }
 
+
+  handleCheckOut() {
+    if (this.props.idTable != "") {
+      const obj = checkOutByTable(this.props.idTable)
+      this.props.updateData(obj);
+
+    }
+  }
+
+  servedToCustomer() {
+    if (this.props.idTable != "") {
+      const obj = servedToCustomer(this.props.bill, this.props.idTable)
+      this.props.updateData(obj);
+      const tableObj = changeTableStatus(this.props.idTable, "Trống")
+      this.props.updateData(tableObj);
+
+      // this.props.navigation.navigate()
+
+    }
+    return (
+      <Tabs />
+    )
+  }
+
+  displayOrders() {
+    const idBill = getBillByIdTable(this.props.idTable)
+    if (idBill) {
+      const billinfo = this.props.bill[idBill]["billInfo"]
+      if (billinfo)
+        return Object.keys(billinfo).map(id => {
+          return <OrderDetail item={billinfo[id]} id={id} key={id} />
+        })
+    } else {
+      return Object.keys(this.props.orders).map(id => {
+        return <OrderDetail item={this.props.orders[id]} id={id} key={id} />
+      })
+    }
+  }
+
+  getBillInfo() {
+    const idBill = getBillByIdTable(this.props.idTable)
+    if (idBill) {
+      const bill = this.props.bill[idBill]
+      if (bill["price"]) {
+        this.setState({
+          isPayment: true,
+        })
+      }
+      return bill
+    }
+    return null;
+  }
+
   render() {
     return (
       <View>
         <Modal
-          style={{ justifyContent: 'center', alignItems: 'center', }}
+          style={{ justifyContent: 'center', alignItems: 'center', width: "100%", height: "75%", }}
           isVisible={this.state.isModalVisible}>
-          <View style={{ borderRightWidth: 1, width: "100%", height: "75%", alignItems: 'center', flexDirection: 'column' }}>
-            <Calculator totalPrice={this.state.totalPrice} callBackFunction={this.checkMethod} />
+          <View style={{ borderRightWidth: 1, alignItems: 'center', flexDirection: 'row' }}>
+            <Calculator totalPrice={this.state.totalPrice} navigation={this.props.navigation} />
           </View>
         </Modal>
         <View style={orderStyle.orderView}>
@@ -143,25 +220,29 @@ class OrderInfoView extends Component {
             {this.displayOrders()}
           </View>
           <View style={{ flexDirection: 'row', position: "absolute", bottom: 0, justifyContent: 'space-between', height: "35%", width: "100%", alignItems: "center" }}>
-
+            <Text style={orderStyle.priceStyle}>Tổng tiền: {this.state.totalPrice} {this.state.isPayment ? "Đã thanh toán" : "Chưa thanh toán"}</Text>
             <View style={{ width: "50%", alignItems: 'center', flexDirection: 'row', justifyContent: 'space-around', }}>
-              <Button title='Thanh toán' onPress={() => this.payment()} />
-              <Button title='In hoá đơn' onPress={this._createAnOrder.bind(this)} />
+              <View pointerEvents={this.state.isPayment ? 'none' : 'auto'}>
+                <Button title='Thanh toán' onPress={() => this.alertForPaymen()} />
+              </View>
+              <Button title='Đã phục vụ' onPress={this.servedToCustomer.bind(this)} />
             </View>
           </View>
         </View>
       </View>
     );
   }
-}
+} 44
 
 const mapStateToProps = state => {
   return {
+    bill: state.bill.bill,
     orders: state.orders.orders,
     tableList: state.tableDB.tableList,
     idTable: state.tableDB.idTable,
-    foodList: state.foodList.foodList
+    foodList: state.foodList.foodList,
+    isPayment: state.other.isPayment
   }
 }
 
-export default connect(mapStateToProps, { currentTable, updateData, retrieveBillList })(OrderInfoView)
+export default connect(mapStateToProps, { currentTable, updateData, retrieveBillList, otherInput })(OrderInfoView)

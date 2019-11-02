@@ -45,6 +45,13 @@ export const styles = EStyleSheet.create({
     // justifyContent: 'space-between',
     alignItems: 'center',
   },
+  tableContainer: {
+    width: "100%",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    // justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   leftContainer: {
     flex: 1,
     width: "65%",
@@ -81,13 +88,19 @@ export const styles = EStyleSheet.create({
     top: appStyle.defaultStyle.padding,
   },
   tableStyle: {
-    width: '120rem',
-    height: '75rem',
+    width: '183.5rem',
+    height: '90rem',
     backgroundColor: appColor.green,
     marginHorizontal: '3rem',
     marginVertical: '3rem',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  areaText: {
+    fontSize: '15rem',
+  },
+  tableText: {
+    fontSize: '10rem'
   },
   foodStyle: {
     // borderWidth: 1,
@@ -137,13 +150,13 @@ export const orderInputStyles = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    width: "50%",
-    height: "50%"
+    width: "200rem",
+    height: "100rem"
   },
   viewContent: {
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20
+    marginBottom: '5rem',
   },
   buttonRow: {
     flexDirection: 'row',
@@ -152,12 +165,21 @@ export const orderInputStyles = EStyleSheet.create({
   },
   foodName: {
     textAlign: 'center',
-    fontSize: 24,
-    marginBottom: 20
+    fontSize: '7.5rem',
+    marginBottom: '5rem'
+  },
+  inputStyle: {
+    width: "80rem",
+    marginBottom: '5rem'
   },
   numericStyle: {
-    height: 75,
-    marginBottom: 20,
-    alignItems: 'center'
+    // height: '20rem',
+    marginBottom: '5rem',
+    alignItems: 'center',
+    borderWidth: 1,
+  },
+  numericInputStyle: {
+    // height: '15rem',
+    alignItems: 'center',
   }
 })

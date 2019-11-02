@@ -62,7 +62,7 @@ export const billAnalyzer = (type) => {
 
 export const changeTableStatus = (id, status) => {
   const tableList = store.getState().tableDB.tableList;
-  const key = "tableFood";
+  const key = "table";
   var value = tableList[id];
   value = {
     ...value,
@@ -72,10 +72,17 @@ export const changeTableStatus = (id, status) => {
 }
 
 export const checkOutByTable = (idTable) => {
-  const billList = store.getState().orders.bill;
-  const { value, id } = checkOut(billList, idTable)
-  const key = "bill";
-  return { key, value, id }
+  const billList = store.getState().bill.bill;
+  if (!billList) {
+    setTimeout(() => {
+      checkOutByTable(idTable)
+    }, 3000)
+  }
+  else {
+    const { value, id } = checkOut(billList, idTable)
+    const key = "bill";
+    return { key, value, id }
+  }
 }
 
 export const setFoodPrice = (idFood, price) => {

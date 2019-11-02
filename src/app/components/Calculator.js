@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import Button from './Button';
 import { orderStyle, appStyle } from '../style';
+import { connect } from 'react-redux';
+import { otherInput } from '../actions';
 
-export default class Calculator extends Component {
+class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,12 +35,12 @@ export default class Calculator extends Component {
 
   cancelPayment() {
     this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.navigation.goBack();
   }
 
   async payment() {
     const price = await this._calTotalPrice();
     await this.setState({
-      isModalVisible: true,
       // showCal: true,
       totalPrice: price
     })
@@ -65,7 +67,10 @@ export default class Calculator extends Component {
   }
 
   accept() {
-    this.props.callBackFunction()
+    const field = "isPayment";
+    const value = true
+    this.props.otherInput({ field, value })
+    this.props.navigation.goBack();
   }
 
   render() {
@@ -84,17 +89,18 @@ export default class Calculator extends Component {
             <Text style={orderStyle.priceStyle}>{this.state.cash - total}</Text>
           </View>
         </View>
-        <View style={{ height: "50%", width: "100%", flexDirection: 'column', backgroundColor: 'white' }}>
+        <View style={{ height: "50%", width: "100%", flexDirection: 'row', backgroundColor: 'white' }}>
           {this.setSign()}
           {this.setButtonPosition(1000, 2000, 5000)}
           {this.setButtonPosition(10000, 20000, 50000)}
           {this.setButtonPosition(100000, 200000, 500000)}
-          <Button title='Huỷ' onPress={this.cancelPayment.bind(this)} />
-          <Button title='Đã thu' onPress={this.accept.bind(this)} />
         </View>
-
+        <Button title='Huỷ' onPress={this.cancelPayment.bind(this)} />
+        <Button title='Đã thu' onPress={this.accept.bind(this)} />
       </View >
 
     );
   }
 }
+
+export default connect(null, { otherInput })(Calculator)

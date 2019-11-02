@@ -30,13 +30,16 @@ class TableFoodComponent extends Component {
     const tableStatus = table["tableStatus"];
     const img = this.setImg(tableStatus)
     return (
-      <View style={[styles.tableStyle, { backgroundColor: img, }]} >
-        <Text>{table["tableName"]}</Text>
-        <View style={{ position: 'absolute', bottom: 0, flexDirection: 'row', width: "100%", padding: 10, justifyContent: 'space-between', }}>
-          <TouchableOpacity onPress={this.orderHandle.bind(this)}><Text>Đặt món</Text></TouchableOpacity>
-          <TouchableOpacity><Text>Thanh toán</Text></TouchableOpacity>
-        </View>
-      </View>
+      // <View style={[styles.tableStyle, { backgroundColor: img, }]} >
+      //    <Text style={styles.tableText}>{table["tableName"]}</Text>
+      //   <View style={{ position: 'absolute', bottom: 0, flexDirection: 'row', width: "100%", 
+      //   padding: 10, justifyContent: 'space-between', }}>
+      <TouchableOpacity onPress={this.orderHandle.bind(this)} style={[styles.tableStyle, { backgroundColor: img, }]} >
+        <Text style={styles.tableText}>{table["tableName"]}</Text>
+      </TouchableOpacity>
+      // TouchableOpacity><Text style={styles.tableText}>Thanh toán</Text></TouchableOpacity>
+      // </View> 
+      // </View>
 
 
     );

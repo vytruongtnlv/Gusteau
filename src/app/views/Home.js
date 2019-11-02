@@ -3,12 +3,15 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import TableListView from './TableListView';
 import TableStatusView from './TableStatusView';
 import { appStyle, styles } from '../style';
-import { retrieveCategory, retrieveFoodList, retrievePriceList } from '../actions';
+import { retrieveCategory, retrieveFoodList, retrievePriceList, retrieveBillList } from '../actions';
 import { connect } from 'react-redux';
 class Home extends Component {
 
   componentDidMount() {
     this.props.retrieveCategory()
+
+    this.props.retrieveBillList();
+
   }
   render() {
     return (
@@ -24,5 +27,5 @@ const mapStateToProps = state => {
 
   }
 }
-export default connect(mapStateToProps, { retrieveFoodList, retrievePriceList, retrieveCategory })(Home)
+export default connect(mapStateToProps, { retrieveFoodList, retrievePriceList, retrieveCategory, retrieveBillList })(Home)
 

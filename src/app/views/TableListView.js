@@ -1,32 +1,74 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux'
 import { retrieveTableList } from '../actions';
 import TableFoodComponent from '../components/TableFoodComponent';
+import { displayTableArea } from '../logics/displayData';
+import { FlatList } from 'react-native-gesture-handler';
+import { styles } from '../style';
 class TableListView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'LoadTable'
+      view: 'LoadTable',
+      area: [],
+      // show: true,
     }
 
   }
-  componentDidMount() {
-    this.retrieveData()
+  async componentDidMount() {
+    await this.retrieveData()
+    this.setArea()
   }
 
   retrieveData() {
     this.props.retrieveTableList()
   }
 
+  componentDidUpdate(prevProps) {
+    if (JSON.stringify(this.props.tableList) != JSON.stringify(prevProps.tableList)) {
+      this.setArea()
+    }
+  }
+
+  setArea() {
+    const arr = displayTableArea(this.props.tableList);
+    this.setState({ area: arr })
+  }
+
+  displayArea() {
+    return (
+      <View>
+        <FlatList
+          data={this.state.area}
+          renderItem={({ item }) =>
+            <View key={item.id} style={[styles.tableContainer]}>
+              <View style={{ width: "100%", marginLeft: 10 }}>
+                <Text style={styles.areaText}>{item}</Text>
+
+              </View>
+              {
+                this.renderList(item)
+              }
+            </View>
+          }
+          keyExtractor={item => item.id}
+        />
+      </View>
+
+    )
+  }
 
 
-  renderList() {
+
+  renderList(area) {
     const tableList = this.props.tableList
     return Object.keys(tableList).map(key => {
-      return (
-        <TableFoodComponent key={key} idTable={key} table={tableList[key]} navigation={this.props.navigation} />
-      )
+      if (tableList[key]["area"] == area)
+        return (
+          <TableFoodComponent key={key} idTable={key} table={tableList[key]} navigation={this.props.navigation} />
+        )
+      else return null;
     })
   }
 
@@ -35,9 +77,11 @@ class TableListView extends Component {
     if (Object.keys(tableList).length === 0)
       return null
     else return (
-      <View style={this.props.style}>
-        {this.renderList()}
-      </View>
+      <ScrollView
+      // contentContainerStyle={[styles.bigContainer]}
+      >
+        {this.displayArea()}
+      </ScrollView>
     )
 
   }

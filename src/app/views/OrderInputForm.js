@@ -55,14 +55,14 @@ class OrderInputForm extends Component {
         <Text style={orderInputStyles.foodName}>{name} x{this.props.quantity}</Text>
         <Input
           placeholder="Ghi chú"
-          containerStyle={{ borderBottomWidth: 1, width: "25%", marginBottom: 5 }}
+          containerStyle={orderInputStyles.inputStyle}
           onChangeText={text => this._orderInputChange("note", text)} />
         <NumericInput
-          type='up-down'
+          type='plus-minus'
           initValue={1}
           onChange={value => this._orderInputChange("quantity", value)}
           containerStyle={orderInputStyles.numericStyle}
-          inputStyle={{ height: inputHeight, alignItems: 'center' }}
+          inputStyle={orderInputStyles.numericInputStyle}
         />
         <View style={orderInputStyles.buttonRow}>
           <Button style={{ marginBottom: 10 }} title="Thêm" onPress={this._orders.bind(this)} />

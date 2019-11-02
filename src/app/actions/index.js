@@ -1,7 +1,11 @@
 import firebase from 'firebase'
 import { checkAvaibleData, getFoodPriceByIdFood } from '../logics'
 import store from '../../../store'
-
+export const otherInput = ({ field, value }) => {
+    return (dispatch) => {
+        dispatch({ type: 'OTHER_INPUT', payload: { field, value } })
+    }
+}
 export const retrievePermissions = () => {
     return (dispatch) => {
         firebase.database().ref(`permissions`)
