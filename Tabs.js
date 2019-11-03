@@ -1,25 +1,8 @@
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Home from './src/app/views/Home';
-import OrderView from './src/app/views/OrderView';
-import AdminView from './src/app/views/AdminView';
 import { Icon } from 'react-native-elements';
 import { appStyle } from './src/app/style';
-import { connect } from 'react-redux';
-import store from './store';
-const setView = () => {
-  const permission = store.getState().auth.permission;
-  let val = ["Home"];
-  if (permission)
-    switch (permission) {
-      case 'all':
-        val = ["Home", "AdminView"];
-        break;
-      default:
-        val = ["Home"];
-        break;
-    }
-  return val;
-}
+import Profile from './src/app/views/Profile';
 
 const Tabs = createBottomTabNavigator({
   Home: {
@@ -33,20 +16,15 @@ const Tabs = createBottomTabNavigator({
       // )
     }
   },
-  AdminView: {
-    screen: AdminView,
+  Profile: {
+    screen: Profile,
     navigationOptions: {
-      title: 'Quản lý',
-      // tabBarIcon: ({ tintColor }) => (
-      //   <View >
-      //     <Icon type="material" name="notifications" color={tintColor} />
-      //   </View>
-      // )
+      title: 'Tài khoản',
+
     }
   }
 },
   {
-    order: ["Home", "AdminView"],
     tabBarOptions: {
       // style: {
       //   backgroundColor: 'white',

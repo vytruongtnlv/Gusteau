@@ -4,7 +4,7 @@ import { View, Text, Image, ScrollView, Alert } from 'react-native';
 import OrderDetail from '../components/OrderDetail'
 import OrderInputForm from './OrderInputForm';
 import { connect } from 'react-redux';
-import { currentTable, updateData, retrieveBillList, otherInput } from '../actions'
+import { currentTable, updateData, retrieveBillList, otherInput, createOrder } from '../actions'
 import { getBillByIdTable, changeTableStatus, checkOutByTable } from '../logics';
 import Button from '../components/Button';
 import { orderStyle, appStyle, orderInputStyles } from '../style';
@@ -23,30 +23,40 @@ class OrderInfoView extends Component {
       showCal: false,
       totalPrice: 0,
       isModalVisible: false,
-      check: false,
-      checkOut: false,
-      isPayment: false,
+      paid: false,
     };
+    this.idBill = getBillByIdTable(this.props.idTable)
+    this.bill = {}
   }
 
   componentDidMount() {
-    const payment = {
-      field: "isPayment",
-      value: false
-    }
-    this.props.otherInput(payment)
     const bill = this.getBillInfo();
+    this.bill = this.getBillInfo()
+    this._orders();
+    this.billWasPaid((bill && bill["price"]) ? true : false)
     this.setState({
-      isPayment: (bill && bill["price"]) ? true : false,
+      paid: (bill && bill["price"]) ? true : false,
       totalPrice: this._calTotalPrice()
     })
   }
 
-  // displayOrders() {
-  //   return Object.keys(this.props.orders).map(id => {
-  //     return <OrderDetail item={this.props.orders[id]} id={id} key={id} />
-  //   })
-  // }
+  billWasPaid(value) {
+    const payment = {
+      field: "paid",
+      value: value
+    }
+    this.props.otherInput(payment)
+  }
+
+  _orders() {
+    if (this.bill && this.bill["billInfo"]) {
+      let newOrder = {
+        [this.idBill]: this.bill
+      }
+      this.props.createOrder(newOrder);
+    }
+
+  }
 
   handleNewBill() {
     const key = "bill";
@@ -59,7 +69,10 @@ class OrderInfoView extends Component {
 
   componentWillReceiveProps(nextProps) {
     const bill = this.getBillInfo();
-    if (JSON.stringify(this.props.orders) != JSON.stringify(nextProps.orders)) {
+    if (JSON.stringify(this.props.orders) != JSON.stringify(nextProps.orders) ||
+      JSON.stringify(this.props.bill) != JSON.stringify(nextProps.bill)
+    ) {
+      this.billWasPaid((bill && bill["price"]) ? true : false)
       this.setState({
         payment: (bill && bill["price"]) ? true : false,
         totalPrice: this._calTotalPrice()
@@ -88,20 +101,16 @@ class OrderInfoView extends Component {
     })
   }
 
-  async _createAnOrder() {
-    // key='bill'
-    // if (this.props.isPayment == false) {
-    //   alert('Vui lòng xác nhận đã thanh toán!');
-    //   return;
-    // }
+  _createAnOrder() {
     if (this.props.tableList[this.props.idTable]["tableStatus"] == setConst.empty) {
       this.handleNewBill()
-      this.changeTableStatus(this.props.idTable, setConst.ordered)
+
+      this.changeTableStatus(this.props.idTable, setConst.ordered)//check 
     }
     else if (this.props.tableList[this.props.idTable]["tableStatus"] == setConst.ordered) {
       console.log('old bill')
     }
-    const idBill = await getBillByIdTable(this.props.idTable);
+    const idBill = getBillByIdTable(this.props.idTable); //check 
     this.addOrderIntoBill(idBill)
   }
 
@@ -134,10 +143,10 @@ class OrderInfoView extends Component {
   }
 
   alertForPaymen = () => {
-    this._createAnOrder();
+    this._createAnOrder()
+    this.handleCheckOut()
+    this.billWasPaid()
     alert('Đã thanh toán')
-    this.handleCheckOut();
-    // this.props.navigation.navigate('Home')
   }
 
   async checkMethod() {
@@ -160,15 +169,13 @@ class OrderInfoView extends Component {
     if (this.props.idTable != "") {
       const obj = servedToCustomer(this.props.bill, this.props.idTable)
       this.props.updateData(obj);
-      const tableObj = changeTableStatus(this.props.idTable, "Trống")
+      const tableObj = changeTableStatus(this.props.idTable, setConst.empty)
       this.props.updateData(tableObj);
 
       // this.props.navigation.navigate()
 
     }
-    return (
-      <Tabs />
-    )
+    this.props.navigation.navigate("Tabs")
   }
 
   displayOrders() {
@@ -190,12 +197,13 @@ class OrderInfoView extends Component {
     const idBill = getBillByIdTable(this.props.idTable)
     if (idBill) {
       const bill = this.props.bill[idBill]
-      if (bill["price"]) {
+      if (bill && bill["price"]) {
+        this.billWasPaid(true)
         this.setState({
-          isPayment: true,
+          paid: true,
         })
+        return bill
       }
-      return bill
     }
     return null;
   }
@@ -220,9 +228,9 @@ class OrderInfoView extends Component {
             {this.displayOrders()}
           </View>
           <View style={{ flexDirection: 'row', position: "absolute", bottom: 0, justifyContent: 'space-between', height: "35%", width: "100%", alignItems: "center" }}>
-            <Text style={orderStyle.priceStyle}>Tổng tiền: {this.state.totalPrice} {this.state.isPayment ? "Đã thanh toán" : "Chưa thanh toán"}</Text>
+            <Text style={orderStyle.priceStyle}>Tổng tiền: {this.state.totalPrice} {this.props.paid ? "Đã thanh toán" : "Chưa thanh toán"}</Text>
             <View style={{ width: "50%", alignItems: 'center', flexDirection: 'row', justifyContent: 'space-around', }}>
-              <View pointerEvents={this.state.isPayment ? 'none' : 'auto'}>
+              <View pointerEvents={this.props.paid ? 'none' : 'auto'}>
                 <Button title='Thanh toán' onPress={() => this.alertForPaymen()} />
               </View>
               <Button title='Đã phục vụ' onPress={this.servedToCustomer.bind(this)} />
@@ -241,8 +249,8 @@ const mapStateToProps = state => {
     tableList: state.tableDB.tableList,
     idTable: state.tableDB.idTable,
     foodList: state.foodList.foodList,
-    isPayment: state.other.isPayment
+    paid: state.other.paid
   }
 }
 
-export default connect(mapStateToProps, { currentTable, updateData, retrieveBillList, otherInput })(OrderInfoView)
+export default connect(mapStateToProps, { createOrder, currentTable, updateData, retrieveBillList, otherInput })(OrderInfoView)

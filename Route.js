@@ -8,6 +8,7 @@ import TableListView from './src/app/views/TableListView';
 import FoodInputForm from './src/app/views/FoodInputForm';
 import Tabs from './Tabs';
 import OrderTab from './OrderTab';
+import AdminTabs from './AdminTabs';
 const stack = createStackNavigator({
   Login: {
     screen: Login,
@@ -23,6 +24,9 @@ const stack = createStackNavigator({
   },
   Tabs: {
     screen: Tabs
+  },
+  AdminTabs: {
+    screen: AdminTabs
   },
   OrderTab: {
     screen: OrderTab

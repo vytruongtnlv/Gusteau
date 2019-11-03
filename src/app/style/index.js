@@ -5,10 +5,13 @@ EStyleSheet.build({
   $rem: width / 380
 });
 
+
 export const appColor = {
   blue: "#5fe5fa",
   green: '#54ff60',
-  red: '#ff2e2e'
+  red: '#ff2e2e',
+  enableColor: '',
+  disableColor: '#14637d',
 }
 
 export const appStyle = {

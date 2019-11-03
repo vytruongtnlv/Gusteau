@@ -9,7 +9,6 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.retrieveCategory()
-
     this.props.retrieveBillList();
 
   }

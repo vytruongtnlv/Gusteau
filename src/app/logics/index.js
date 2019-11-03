@@ -48,7 +48,7 @@ export const getBillByIdTable = (idTable) => {
   const billList = store.getState().bill.bill;
   let id = "";
   Object.keys(billList).forEach(idBill => {
-    if (billList[idBill]["idTable"] == idTable && !billList[idBill]["dateCheckOut"])
+    if (billList[idBill]["idTable"] == idTable && !billList[idBill]["served"])
       id = idBill;
   })
   return id;
@@ -79,9 +79,8 @@ export const checkOutByTable = (idTable) => {
     }, 3000)
   }
   else {
-    const { value, id } = checkOut(billList, idTable)
-    const key = "bill";
-    return { key, value, id }
+    const obj = checkOut(billList, idTable)
+    return obj
   }
 }
 

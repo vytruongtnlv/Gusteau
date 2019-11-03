@@ -19,7 +19,7 @@ export function groupBy(bill, type) {
   })
 
   var groups = _.groupBy(dateArr, function (date) {
-    return moment(date["dateCheckOut"]).startOf(type).valueOf();
+    return moment(date["dateCheckIn"]).startOf(type).valueOf();
   });
   var sortable = [];
   for (var index in groups) {
@@ -35,6 +35,5 @@ export function groupBy(bill, type) {
   sortable.sort(function (a, b) {
     return a["startDate"] - b["startDate"]
   })
-  console.log(sortable)
   return sortable;
 }

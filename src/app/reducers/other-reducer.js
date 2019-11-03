@@ -1,6 +1,6 @@
 const initialState = {
   idItem: "",
-  isPayment: false
+  paid: false
 }
 
 

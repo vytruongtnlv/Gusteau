@@ -34,8 +34,8 @@ class AdminView extends Component {
       case STATISTIC: const data = billAnalyzer('day');
         if (data)
           return (
-            <BillStatistic />
-            // <ChartComponents data={data} style={{ width: "100%", height: "100%" }} />
+            // <BillStatistic />
+            <ChartComponents data={data} style={{ width: "100%", height: "100%" }} />
           )
         return null
       case FOOD:
