@@ -6,6 +6,22 @@ export const otherInput = ({ field, value }) => {
         dispatch({ type: 'OTHER_INPUT', payload: { field, value } })
     }
 }
+
+export const getCurrentMember = (member) => {
+    return (dispatch) => {
+        dispatch({ type: 'GET_MEMBER', payload: member })
+    }
+}
+
+export const retrieveMembers = () => {
+    return (dispatch) => {
+        firebase.database().ref(`members`)
+            .on('value', snapshot => {
+                const data = snapshot.val();
+                dispatch({ type: 'RETRIEVE_MEMBERS', payload: data })
+            })
+    }
+}
 export const retrievePermissions = () => {
     return (dispatch) => {
         firebase.database().ref(`permissions`)

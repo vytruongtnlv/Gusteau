@@ -39,13 +39,13 @@ class Login extends Component {
                     resizeMode="center"
                     source={logo} />
                 <Input
-                    placeholder="email"
+                    placeholder="Tài khoản"
                     onChangeText={text => this.props.authInputChange({ field: 'email', value: text })} />
                 <Input
-                    placeholder="password"
+                    placeholder="Mật khẩu"
                     onChangeText={text => this.props.authInputChange({ field: 'password', value: text })}
                     secureTextEntry={true} />
-                <Button style={{ marginTop: 5, }} title="Login" onPress={this.login.bind(this)} />
+                <Button style={{ marginTop: 5, }} title="Đăng nhập" onPress={this.login.bind(this)} />
             </View>
         );
     }

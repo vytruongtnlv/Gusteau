@@ -9,6 +9,9 @@ import FoodInputForm from './src/app/views/FoodInputForm';
 import Tabs from './Tabs';
 import OrderTab from './OrderTab';
 import AdminTabs from './AdminTabs';
+import ScanScreen from './src/app/views/ScanScreen';
+import CustomerView from './src/app/views/CustomerView';
+import QrcodeScanner from './src/app/views/QrcodeScanner';
 const stack = createStackNavigator({
   Login: {
     screen: Login,
@@ -30,6 +33,15 @@ const stack = createStackNavigator({
   },
   OrderTab: {
     screen: OrderTab
+  },
+  ScanScreen: {
+    screen: ScanScreen
+  },
+  CustomerView: {
+    screen: CustomerView
+  },
+  Scanner: {
+    screen: QrcodeScanner
   }
 }, {
   headerMode: 'none'

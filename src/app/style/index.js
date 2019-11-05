@@ -2,7 +2,7 @@ import EStyleSheet from "react-native-extended-stylesheet";
 import { Dimensions } from 'react-native';
 let { height, width } = Dimensions.get('window');
 EStyleSheet.build({
-  $rem: width / 380
+  $rem: width < 380 ? width / 190 : width / 380
 });
 
 

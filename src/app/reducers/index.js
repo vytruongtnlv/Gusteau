@@ -6,6 +6,7 @@ import orderReducer from "./order-reducer";
 import otherReducer from "./other-reducer";
 import categoryReducer from "./category-reducer";
 import billReducer from "./bill-reducer";
+import memberReducer from "./member-reducer";
 export default combineReducers({
     auth: authenticationReducer,
     tableDB: tablefoodReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
     orders: orderReducer,
     category: categoryReducer,
     bill: billReducer,
-    other: otherReducer
+    other: otherReducer,
+    members: memberReducer
 })

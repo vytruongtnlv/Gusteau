@@ -13,12 +13,21 @@ export default class Profile extends Component {
   navigateToAdminTab() {
     this.props.navigation.navigate('AdminTabs')
   }
+  navigateToScanner() {
+    this.props.navigation.navigate('ScanScreen')
+    // this.props.navigation.navigate('Scanner')
+  }
+  navigateToCreate() {
+    this.props.navigation.navigate('CustomerView')
+  }
 
   render() {
     return (
       <View>
         <Text> Profile </Text>
-        <Button title="Admin" onPress={() => this.navigateToAdminTab()} />
+        <Button title="Quét mã QR" onPress={() => this.navigateToScanner()} />
+        <Button title="Tạo khách hàng mới" onPress={() => this.navigateToCreate()} />
+        <Button title="Quản trị" onPress={() => this.navigateToAdminTab()} />
       </View>
     );
   }
