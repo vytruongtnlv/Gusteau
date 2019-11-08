@@ -152,6 +152,12 @@ export const createOrder = (orders) => {
         dispatch({ type: 'ORDERS', payload: orders })
     }
 }
+
+export const currenOrder = (orders) => {
+    return (dispatch) => {
+        dispatch({ type: 'CURRENT_ORDER', payload: orders })
+    }
+}
 export const deleteOrder = () => {
     return (dispatch) => {
         dispatch({ type: 'DELETE_ORDER' })

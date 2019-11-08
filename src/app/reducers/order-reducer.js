@@ -4,6 +4,7 @@ const initialState = {
   price: '',
   quantity: 1,
   note: '',
+  currentOrder: {},
   orders: {}, //idFood, quantity, idPrice, idBill, orderStatus
 }
 
@@ -11,6 +12,9 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'ORDER_INPUT_CHANGE':
+      // if(action.payload.field == "quantity" && action.payload.value <= 0 ){
+      //   state.orders.delete(action.payload.)
+      // }
       return { ...state, [action.payload.field]: action.payload.value };
     case 'CURRENT_FOOD':
       return { ...state, currentFood: action.payload.id }
@@ -26,10 +30,22 @@ export default (state = initialState, action) => {
       }
       return newState;
     }
+
+    case 'CURRENT_ORDER': {
+      return {
+        ...state,
+        orders: action.payload
+      }
+    }
     case 'DELETE_ORDER':
       return {
         ...state,
         quantity: 1,
+        orders: {}
+      }
+    case 'DELETE_ONE_FOOD':
+      return {
+        ...state,
         orders: {}
       }
     default:

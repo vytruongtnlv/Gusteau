@@ -15,8 +15,17 @@ class OrderInputForm extends Component {
   }
 
   componentDidMount() {
-    this._orderInputChange("quantity", 1)
-    this._orderInputChange("note", "")
+    if (this.props.id && this.props.item) {
+      if (Object.keys(this.props.item)[0]) {
+        this._orderInputChange("quantity", this.props.item["quantity"])
+        this._orderInputChange("note", this.props.item["note"])
+      }
+    }
+    else {
+      this._orderInputChange("quantity", 1)
+      this._orderInputChange("note", "")
+    }
+
   }
 
   _orderInputChange(field, value) {
@@ -24,6 +33,29 @@ class OrderInputForm extends Component {
   }
 
   _orders() {
+    if (this.props.id && this.props.item) {
+      this.oldOrder()
+    }
+    else {
+      this.newOrder()
+    }
+
+  }
+  oldOrder() {
+    const item = this.props.item
+    let newOrder = {
+      [this.props.id]: {
+        quantity: this.props.quantity,
+        name: item["name"],
+        price: item["price"],
+        note: this.props.note
+      }
+    }
+    this.props.createOrder(newOrder);
+    this.cancelOrder();
+  }
+
+  newOrder() {
     const idCategory = this.props.category
     const idFood = this.props.currentFood
     const food = this.props.categoryList[idCategory]["dishes"][idFood]
@@ -45,21 +77,22 @@ class OrderInputForm extends Component {
   }
 
   render() {
-    const inputHeight = 55;
     const idCategory = this.props.category
-    const idFood = this.props.currentFood
-    const food = this.props.categoryList[idCategory]["dishes"][idFood]
+    const idFood = this.props.id ? this.props.id : this.props.currentFood
+    const food = this.props.item ? this.props.item : this.props.categoryList[idCategory]["dishes"][idFood]
     const name = food["name"] ? food["name"] : "Món"
+    const note = this.props.item ? this.props.item["note"] : "Ghi chú"
     return (
       <View style={orderInputStyles.viewContent}>
         <Text style={orderInputStyles.foodName}>{name} x{this.props.quantity}</Text>
         <Input
           placeholder="Ghi chú"
+          value={this.props.note}
           containerStyle={orderInputStyles.inputStyle}
           onChangeText={text => this._orderInputChange("note", text)} />
         <NumericInput
           type='plus-minus'
-          initValue={1}
+          initValue={this.props.quantity}
           onChange={value => this._orderInputChange("quantity", value)}
           containerStyle={orderInputStyles.numericStyle}
           inputStyle={orderInputStyles.numericInputStyle}

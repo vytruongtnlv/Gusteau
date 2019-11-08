@@ -6,15 +6,15 @@ import Route from './Route';
 import Login from './src/app/views/Login';
 import store from './store';
 import { ScanScreen } from './src/app/views/ScanScreen';
-import CustomerView from './src/app/views/CustomerView';
+import Payment from './src/app/views/Payment';
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
         <Route />
+        {/* <Payment /> */}
         {/* <ScanScreen /> */}
-        {/* <CustomerView /> */}
       </Provider>
     );
   }

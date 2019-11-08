@@ -1,6 +1,14 @@
 import EStyleSheet from "react-native-extended-stylesheet";
+import Orientation from 'react-native-orientation';
 import { Dimensions } from 'react-native';
 let { height, width } = Dimensions.get('window');
+
+Orientation.addOrientationListener((orientation) => {
+  EStyleSheet.build({
+    $rem: width < 380 ? width / 190 : width / 380
+  });
+});
+
 EStyleSheet.build({
   $rem: width < 380 ? width / 190 : width / 380
 });
@@ -42,11 +50,18 @@ export const styles = EStyleSheet.create({
   },
   bigContainer: {
     width: "100%",
-    height: "100%",
+    // height: "100%",
     flexDirection: 'row',
     flexWrap: 'wrap',
     // justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+  },
+  contentPanal: {
+    width: "99%",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    margin: '2rem',
+    backgroundColor: '#e8e8e8',
   },
   tableContainer: {
     width: "100%",
@@ -91,7 +106,7 @@ export const styles = EStyleSheet.create({
     top: appStyle.defaultStyle.padding,
   },
   tableStyle: {
-    width: '183.5rem',
+    width: '182rem',
     height: '90rem',
     backgroundColor: appColor.green,
     marginHorizontal: '3rem',
@@ -106,18 +121,29 @@ export const styles = EStyleSheet.create({
     fontSize: '10rem'
   },
   foodStyle: {
-    // borderWidth: 1,
-    // borderColor: 'black',
-    width: '75rem',
-    height: '75rem',
+    width: '77.25rem',
+    height: '88.75rem',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     margin: appStyle.defaultStyle.space
   },
   foodImg: {
-    flex: 1,
-    width: '70rem',
-    height: '70rem',
+    width: '65rem',
+    height: '65rem',
+  },
+  imgView: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  foodTextView: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -141,20 +167,29 @@ export const orderStyle = EStyleSheet.create({
     fontSize: '11rem',
     textAlign: 'left',
   },
+  fontSize: {
+    fontSize: '11rem',
+  },
   orderTitle: {
     fontSize: 24,
     textAlign: 'center',
     margin: '10rem'
   },
-
 })
+
+export const memberStyle = EStyleSheet.create({
+  fontSize: {
+    fontSize: '9rem',
+  }
+})
+
 export const orderInputStyles = EStyleSheet.create({
   modalInsideStyle: {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    width: "200rem",
-    height: "100rem"
+    width: "100%",
+    height: "125rem"
   },
   viewContent: {
     justifyContent: "center",
@@ -168,8 +203,8 @@ export const orderInputStyles = EStyleSheet.create({
   },
   foodName: {
     textAlign: 'center',
-    fontSize: '7.5rem',
-    marginBottom: '5rem'
+    fontSize: '10rem',
+    marginBottom: '3.5rem'
   },
   inputStyle: {
     width: "80rem",

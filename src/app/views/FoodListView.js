@@ -17,7 +17,6 @@ class FoodListView extends Component {
   componentDidMount = async () => {
     const data = this.props.category;
     const list = this.getCategoryList(data)
-    console.log(list)
     await this.setState({
       categoryList: list,
       selectedCategory: list[0] ? list[0]["props"]["value"] : ""
@@ -49,7 +48,9 @@ class FoodListView extends Component {
     const data = this.props.category;
     return (
       <View style={[this.props.style,]}>
-        <ScrollView >
+        <ScrollView
+          contentContainerStyle={{ paddingBottom: 20 }}
+        >
           <Picker
             selectedValue={this.state.selectedCategory}
             onValueChange={(selected) => this.setState({ selectedCategory: selected })}>

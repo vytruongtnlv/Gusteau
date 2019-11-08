@@ -18,7 +18,7 @@ export default class Profile extends Component {
     // this.props.navigation.navigate('Scanner')
   }
   navigateToCreate() {
-    this.props.navigation.navigate('CustomerView')
+    this.props.navigation.navigate('QrCreator')
   }
 
   render() {

@@ -6,6 +6,7 @@ import TableFoodComponent from '../components/TableFoodComponent';
 import { displayTableArea } from '../logics/displayData';
 import { FlatList } from 'react-native-gesture-handler';
 import { styles } from '../style';
+import TableArea from '../components/TableArea';
 class TableListView extends Component {
   constructor(props) {
     super(props);
@@ -43,13 +44,8 @@ class TableListView extends Component {
           data={this.state.area}
           renderItem={({ item }) =>
             <View key={item.id} style={[styles.tableContainer]}>
-              <View style={{ width: "100%", marginLeft: 10 }}>
-                <Text style={styles.areaText}>{item}</Text>
 
-              </View>
-              {
-                this.renderList(item)
-              }
+              <TableArea navigation={this.props.navigation} area={item} />
             </View>
           }
           keyExtractor={item => item.id}
@@ -77,11 +73,15 @@ class TableListView extends Component {
     if (Object.keys(tableList).length === 0)
       return null
     else return (
-      <ScrollView
-      // contentContainerStyle={[styles.bigContainer]}
-      >
-        {this.displayArea()}
-      </ScrollView>
+      <View
+        style={styles.bigContainer}>
+        <ScrollView>
+
+          {this.displayArea()}
+
+        </ScrollView>
+      </View >
+
     )
 
   }

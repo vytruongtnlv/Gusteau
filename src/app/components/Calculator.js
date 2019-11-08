@@ -4,6 +4,7 @@ import Button from './Button';
 import { orderStyle, appStyle } from '../style';
 import { connect } from 'react-redux';
 import { otherInput } from '../actions';
+import { Input } from 'react-native-elements';
 
 class Calculator extends Component {
   constructor(props) {
@@ -76,25 +77,16 @@ class Calculator extends Component {
   render() {
     const total = this.props.totalPrice;
     return (
-      <View style={{ backgroundColor: 'black' }}>
+      <View>
         <View style={{ flexDirection: 'row', width: "100%", padding: appStyle.padding }}>
-          <View style={{ alignItems: 'flex-start', width: "50%", marginLeft: appStyle.padding }}>
-            <Text style={orderStyle.priceStyle}>Tổng tiền:</Text>
-            <Text style={orderStyle.priceStyle}>Nhận:</Text>
-            <Text style={orderStyle.priceStyle}>Tiền thối:</Text>
-          </View>
-          <View style={{ alignItems: 'flex-end', width: "50%", marginRight: appStyle.padding }}>
-            <Text style={orderStyle.priceStyle}>{total}</Text>
-            <Text style={orderStyle.priceStyle}>{this.state.cash}</Text>
-            <Text style={orderStyle.priceStyle}>{this.state.cash - total}</Text>
-          </View>
+          <Text style={orderStyle.priceStyle}>Tổng tiền:</Text>
+          <Text style={orderStyle.priceStyle}>Nhận:</Text>
+          <Text style={orderStyle.priceStyle}>Tiền thối:</Text>
         </View>
-        <View style={{ height: "50%", width: "100%", flexDirection: 'row', backgroundColor: 'white' }}>
-          {this.setSign()}
-          {this.setButtonPosition(1000, 2000, 5000)}
-          {this.setButtonPosition(10000, 20000, 50000)}
-          {this.setButtonPosition(100000, 200000, 500000)}
-        </View>
+        <Input
+          placeholder="Số tiền nhận"
+          keyboardType="numeric"
+          onChangeText={text => this.setState({ cash: text })} />
         <Button title='Huỷ' onPress={this.cancelPayment.bind(this)} />
         <Button title='Đã thu' onPress={this.accept.bind(this)} />
       </View >

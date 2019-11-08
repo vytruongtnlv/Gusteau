@@ -10,8 +10,10 @@ import Tabs from './Tabs';
 import OrderTab from './OrderTab';
 import AdminTabs from './AdminTabs';
 import ScanScreen from './src/app/views/ScanScreen';
-import CustomerView from './src/app/views/CustomerView';
-import QrcodeScanner from './src/app/views/QrcodeScanner';
+import Payment from './src/app/views/Payment';
+import MemberList from './src/app/views/MemberList';
+import MemberView from './src/app/views/MemberView';
+import QrCreator from './src/app/views/QrCreator';
 const stack = createStackNavigator({
   Login: {
     screen: Login,
@@ -37,12 +39,19 @@ const stack = createStackNavigator({
   ScanScreen: {
     screen: ScanScreen
   },
-  CustomerView: {
-    screen: CustomerView
+  QrCreator: {
+    screen: QrCreator
   },
-  Scanner: {
-    screen: QrcodeScanner
-  }
+  Payment: {
+    screen: Payment
+  },
+  MemberList: {
+    screen: MemberList
+  },
+  MemberView: {
+    screen: MemberView
+  },
+
 }, {
   headerMode: 'none'
 })

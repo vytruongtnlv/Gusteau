@@ -12,7 +12,7 @@ class Home extends Component {
     this.props.retrieveCategory()
     this.props.retrieveBillList();
     this.props.retrieveMembers();
-
+    // this.props.navigation.navigate("Payment")
   }
   render() {
     return (

@@ -19,45 +19,26 @@ class ScanScreen extends Component {
     this.scanner;
   }
 
-  setScore = (member) => {
-    const score = member["score"] + 1
-    member = {
-      ...member,
-      "score": score
-    }
-    return member
-  }
-
-
   onSuccess = (e) => {
     const memberList = this.props.memberList;
     let member = null;
-    Object.keys(memberList).map(id => {
-      if (memberList[id]["tel"] == e.data) {
-        _id = id
-        member = this.setScore(memberList[id])
-        this.updateScore(id, member)
+    if (Object.keys(memberList)[0]) {
+      Object.keys(memberList).map(id => {
+        if (memberList[id]["tel"] == e.data) {
+          _id = id
+          this.props.navigation.navigate('MemberView', { idMember: id, member: memberList[id] })
+          return;
+        }
+      })
+      if (memberList[_id]["tel"] != e.data) {
+        alert("Mã QR không phù hợp!")
       }
-    })
-  }
-
-  updateScore = (id, member) => {
-    if (member) {
-      const updateValue = {
-        key: "members",
-        value: member,
-        id: id
-      }
-      this.props.updateData(updateValue)
-      alert('Tích điểm thành công cho khách hàng')
     }
     else {
-      alert('Không tìm thấy mã!')
+      alert("Chưa có dữ liệu thành viên nào!")
     }
-    this.props.navigation.goBack()
+
   }
-
-
 
   render() {
     return (
@@ -65,14 +46,10 @@ class ScanScreen extends Component {
         showMarker={true}
         ref={(node) => { this.scanner = node }}
         onRead={this.onSuccess}
-        topContent={
-          <Text style={styles.centerText}>
-            Go to <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on your computer and scan the QR code to test.</Text>
-        }
         bottomContent={
           <View>
-            <TouchableOpacity style={styles.buttonTouchable} onPress={() => this.scanner.reactivate()}>
-              <Text style={styles.buttonTextStyle}>OK. Got it!</Text>
+            <TouchableOpacity style={styles.buttonTouchable} onPress={() => this.props.navigation.goBack()}>
+              <Text style={styles.buttonTextStyle}>Quay lại</Text>
             </TouchableOpacity>
           </View>
 

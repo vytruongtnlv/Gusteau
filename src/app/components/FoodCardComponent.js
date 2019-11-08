@@ -32,10 +32,14 @@ class FoodCardComponent extends Component {
     const { id, food } = this.props
     return (
       <View style={styles.foodStyle}>
-        <Image
-          style={styles.foodImg}
-          source={{ uri: food["photos"][0]["value"] }} />
-        <Text>{food["name"]} ${food["price"]["text"]}</Text>
+        <View style={styles.imgView}>
+          <Image
+            style={styles.foodImg}
+            source={{ uri: food["photos"][0]["value"] }} />
+        </View>
+        <View style={styles.foodTextView}>
+          <Text>{food["name"]} {food["price"]["text"]}</Text>
+        </View>
       </View>
 
     );
