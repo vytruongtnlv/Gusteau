@@ -6,18 +6,20 @@ import { appStyle } from './src/app/style';
 export default createBottomTabNavigator({
   FoodList: {
     screen: FoodListView,
+    navigationOptions: {
+      title: 'Món ăn',
+    }
   },
   Order: {
     screen: OrderInfoView,
+    navigationOptions: {
+      title: 'Đơn hàng',
+    }
   },
 }, {
   tabBarOptions: {
     labelStyle: {
       fontSize: appStyle.tabFontSize
     },
-    showIcon: true,
-    activeTintColor: 'white',
-    inactiveTintColor: '#b2b2b2',
-    adaptive: false
   }
 })

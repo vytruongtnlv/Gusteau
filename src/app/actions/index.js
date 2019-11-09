@@ -38,6 +38,29 @@ export const authInputChange = ({ field, value }) => {
     }
 }
 
+export const createUser = (email, password, name, permission) => {
+    return (dispatch) => {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(function (firebaseUser) {
+                const user = firebaseUser.user
+                const type = permission == "order" ? "Nhân viên ghi món" : "Quản trị viên"
+                firebase.database().ref("permissions")
+                    .child(user.uid).set({
+                        name: name,
+                        type: type,
+                        permission: permission
+                    });
+            })
+            .catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // ...
+            });
+
+    }
+}
+
 export const foodInputChange = ({ field, value }) => {
     return (dispatch) => {
         dispatch({ type: 'FOOD_INPUT_CHANGE', payload: { field, value } })

@@ -4,17 +4,21 @@ import OrderInfoView from './src/app/views/OrderInfoView';
 import { appStyle } from './src/app/style';
 import BillStatistic from './src/app/views/BillStatistic';
 import FoodInputForm from './src/app/views/FoodInputForm';
+import EmployeeView from './src/app/views/EmployeeView';
 
 export default createBottomTabNavigator({
   BillStatistic: {
     screen: BillStatistic,
-    tabBarOptions: {
-      title: 'Thống kê'
+    navigationOptions: {
+      title: 'Thống kê',
     }
   },
-  Food: {
-    screen: FoodInputForm,
-  },
+  Employee: {
+    screen: EmployeeView,
+    navigationOptions: {
+      title: 'Quản lý nhân viên',
+    }
+  }
 }, {
   tabBarOptions: {
     style: {

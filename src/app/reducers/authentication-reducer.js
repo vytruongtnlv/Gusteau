@@ -5,13 +5,16 @@ const initialState = {
     user: {},
     error: '',
     permission: '',
-    permissionList: {}
+    permissionList: {},
+    newuid: ""
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
         case 'AUTH_INPUT_CHANGE':
             return { ...state, [action.payload.field]: action.payload.value };
+        case 'GET_NEWUSER':
+            return { ...state, newuid: action.payload };
         case 'LOGIN_SUCCESS':
             console.log('Connect!')
             return { ...state, user: action.payload };

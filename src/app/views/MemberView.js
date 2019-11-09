@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Text, Alert, ToastAndroid } from 'react-native';
 import { updateData } from '../actions';
 import PaymentComponent from '../components/PaymentComponent';
 import { connect } from 'react-redux';
-import Button from '../components/Button';
 import { ButtonGroup } from 'react-native-elements';
-
+import { appColor } from '../style';
 
 const btnSave = () => <Text>Tích điểm</Text>
 const btnUse = () => <Text>Sử dụng điểm</Text>
@@ -52,7 +51,7 @@ class MemberView extends Component {
         id: this.idMember
       }
       this.props.updateData(updateValue)
-      alert('Tích điểm thành công cho khách hàng')
+      this.props.navigation.navigate("Tabs")
     }
     else {
       alert('Không tìm thấy mã!')
@@ -61,7 +60,6 @@ class MemberView extends Component {
 
   discount() {
     this.setState({ discount: this.member["point"] })
-    alert(`Tổng phải trả ${this.cost - this.member["point"]}`)
   }
 
   updateIndex(selectedIndex) {
@@ -78,16 +76,15 @@ class MemberView extends Component {
     const buttons = [{ element: btnSave }, { element: btnUse }]
     const { selectedIndex } = this.state
 
-    const { navigation } = this.props
-    const { idMember, member, cost } = navigation.state.params
     return (
       <View>
         <View>
           <Text> Thành viên </Text>
-          <Text> Số điện thoại {member["tel"]} </Text>
-          <Text> Điểm {member["point"]} </Text>
+          <Text> Số điện thoại {this.member["tel"]} </Text>
+          <Text> Điểm {this.member["point"]} </Text>
           <ButtonGroup
             onPress={this.updateIndex.bind(this)}
+            selectedButtonStyle={{ backgroundColor: appColor.blue, }}
             selectedIndex={selectedIndex}
             buttons={buttons} />
         </View>

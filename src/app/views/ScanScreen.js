@@ -16,6 +16,9 @@ class ScanScreen extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      render: false
+    }
     this.scanner;
   }
 
@@ -30,10 +33,11 @@ class ScanScreen extends Component {
         id = arr[i];
         if (memberList[id]["tel"] == e.data) {
           this.props.navigation.navigate('MemberView', { idMember: id, member: memberList[id], cost: cost })
-          break;
+          return;
         }
       }
       if (memberList[id]["tel"] != e.data) {
+        this.setState({ render: !this.state.render })
         alert("Mã QR không phù hợp!")
       }
     }

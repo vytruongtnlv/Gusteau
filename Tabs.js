@@ -9,11 +9,6 @@ const Tabs = createBottomTabNavigator({
     screen: Home,
     navigationOptions: {
       title: 'Trang chủ',
-      // tabBarIcon: ({ tintColor }) => (
-      //   <View >
-      //     <Icon type="material" name="notifications" color={tintColor} />
-      //   </View>
-      // )
     }
   },
   Profile: {

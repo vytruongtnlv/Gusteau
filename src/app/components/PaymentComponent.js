@@ -27,7 +27,7 @@ class PaymentComponent extends Component {
       const obj = checkOutByTable(this.props.idTable, this.props.discount)
       this.props.updateData(obj);
       alert("Thanh toán thành công!");
-      this.props.navigation.navigate("Home")
+      this.props.navigation.navigate("Tabs")
     }
   }
 
@@ -64,7 +64,7 @@ class PaymentComponent extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{ width: "100%", justifyContent: 'center', alignItems: 'center' }}>
         <Button title="Thanh toán" onPress={async () => this._createAnOrder()} />
       </View>
     );
