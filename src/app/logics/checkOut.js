@@ -1,6 +1,6 @@
 const moment = require('moment-timezone')
 
-function getBillByTable(billList, table) {
+function getBillByTable(billList, table, discount) {
   var value = {}
   var id = "";
   const key = "bill"
@@ -12,7 +12,7 @@ function getBillByTable(billList, table) {
       value = {
         ...value,
         "price": price,
-        "discount": 0,
+        "discount": discount ? discount : 0,
       }
       return { key, value, id }
     }
@@ -49,8 +49,8 @@ function calPrice(billInfo) {
   return totalPrice
 }
 
-export function checkOut(billList, table) {
-  const bill = getBillByTable(billList, table)
+export function checkOut(billList, table, discount) {
+  const bill = getBillByTable(billList, table, discount)
   return bill;
 }
 

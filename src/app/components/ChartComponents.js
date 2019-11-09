@@ -12,12 +12,13 @@ export default class ChartComponents extends Component {
     var conf = {
       chart: {
         zoomType: 'x',
-        type: 'spline',
+        type: 'line',
         animation: Highcharts.svg,
-        margin: 100
+        marginLeft: 65,
+        marginBottom: 70
       },
       title: {
-        text: 'Bill statistic'
+        text: 'Thống kê doanh thu'
       },
       xAxis: {
         type: 'datetime',
@@ -31,6 +32,9 @@ export default class ChartComponents extends Component {
       },
       yAxis: {
         text: 'value',
+        title: {
+          text: ""
+        },
         plotLines: [{
           value: 0,
           width: 1,

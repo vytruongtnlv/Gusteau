@@ -12,10 +12,6 @@ export default createBottomTabNavigator({
   },
 }, {
   tabBarOptions: {
-    style: {
-      backgroundColor: '#323232',
-
-    },
     labelStyle: {
       fontSize: appStyle.tabFontSize
     },

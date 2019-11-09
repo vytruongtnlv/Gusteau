@@ -17,9 +17,9 @@ class OrderDetail extends Component {
     return (
       // <TouchableOpacity onLongPress={() => this.deleteOrder()}>
       <View style={{ flexDirection: 'row' }}>
-        <Text style={{ width: '33.33%', textAlign: 'left', fontSize: 20 }}>{item.name} {item.note}</Text>
-        <Text style={{ width: '33.33%', textAlign: 'center', fontSize: 20 }}>x{item.quantity}</Text>
-        <Text style={{ width: '33.33%', textAlign: 'right', fontSize: 20 }}>{item.price}đ</Text>
+        <Text style={{ width: '33.33%', textAlign: 'left', fontSize: 16 }}>{item.name} {item.note}</Text>
+        <Text style={{ width: '33.33%', textAlign: 'center', fontSize: 16 }}>x{item.quantity}</Text>
+        <Text style={{ width: '33.33%', textAlign: 'right', fontSize: 16 }}>{item.price}đ</Text>
       </View>
 
       // </TouchableOpacity>

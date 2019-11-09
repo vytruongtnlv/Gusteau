@@ -71,15 +71,15 @@ export const changeTableStatus = (id, status) => {
   return { key, value, id }
 }
 
-export const checkOutByTable = (idTable) => {
+export const checkOutByTable = (idTable, discount) => {
   const billList = store.getState().bill.bill;
   if (!billList) {
     setTimeout(() => {
-      checkOutByTable(idTable)
+      checkOutByTable(idTable, discount)
     }, 3000)
   }
   else {
-    const obj = checkOut(billList, idTable)
+    const obj = checkOut(billList, idTable, discount)
     return obj
   }
 }

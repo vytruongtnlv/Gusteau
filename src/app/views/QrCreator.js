@@ -108,6 +108,7 @@ class QrCreator extends Component {
 
 
   async acceptToCreate() {
+    const { cost } = this.props.navigation.state.params
     await this.getDataURL();
     const value = {
       tel: this.props.text,
@@ -119,7 +120,7 @@ class QrCreator extends Component {
     }
     this.props.updateData(item)
     this.saveQrToDisk()
-    this.props.navigation.navigate('MemberView', { idMember: this.props.idItem, member: value })
+    this.props.navigation.navigate('MemberView', { idMember: this.props.idItem, member: value, cost: cost })
   }
 
   checkExist(check) {

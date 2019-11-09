@@ -7,6 +7,8 @@ import { getBillByIdTable } from '../logics';
 import Calculator from './Calculator';
 import ScanScreen from '../views/ScanScreen';
 import MemberList from '../views/MemberList';
+import PaymentComponent from './PaymentComponent';
+import { appColor } from '../style';
 
 const btnNo = () => <Text>Không</Text>
 const btnQR = () => <Text>Quét mã QR</Text>
@@ -78,11 +80,13 @@ class PaymentOptions extends Component {
   renderView() {
     switch (this.state.selectedIndex) {
       case 0:
-        return null;
+        return (
+          <PaymentComponent />
+        )
       case 1:
-        return this.props.navigation.navigate('ScanScreen');
+        return this.props.navigation.navigate('ScanScreen', { cost: this.props.cost });
       case 2:
-        return this.props.navigation.navigate('QrCreator');
+        return this.props.navigation.navigate('QrCreator', { cost: this.props.cost });
       case 3:
         return this.props.navigation.navigate('MemberList', { cost: this.props.cost });
     }
@@ -95,6 +99,8 @@ class PaymentOptions extends Component {
     return (
       <View style={{ width: "100%" }}>
         <ButtonGroup
+          buttonStyle={[{ justifyContent: 'center', alignItems: 'center' }]}
+          selectedButtonStyle={{ backgroundColor: appColor.blue, }}
           onPress={this.updateIndex.bind(this)}
           selectedIndex={selectedIndex}
           buttons={buttons} />

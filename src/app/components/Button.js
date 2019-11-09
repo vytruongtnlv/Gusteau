@@ -15,7 +15,7 @@ export default class Button extends Component {
       <TouchableOpacity
         style={[styles.buttonStyle, style]}
         onPress={onPress}>
-        <Text style={{ color: 'black' }}>{title}</Text>
+        <Text style={{ color: 'black', textAlign: 'center' }}>{title}</Text>
       </TouchableOpacity>
     );
   }

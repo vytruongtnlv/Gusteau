@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Picker, ScrollView } from 'react-native';
 import { connect } from 'react-redux'
-import { retrieveFoodList, retrievePriceList } from '../actions';
+import { retrieveFoodList, retrievePriceList, deleteOrder } from '../actions';
 import FoodCardComponent from '../components/FoodCardComponent';
 import { getFoodPriceByIdFood } from '../logics';
 import { styles, appStyle } from '../style';
@@ -15,6 +15,7 @@ class FoodListView extends Component {
     };
   }
   componentDidMount = async () => {
+    this.props.deleteOrder();
     const data = this.props.category;
     const list = this.getCategoryList(data)
     await this.setState({
@@ -71,6 +72,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { retrieveFoodList, retrievePriceList })(FoodListView)
+export default connect(mapStateToProps, { deleteOrder, retrieveFoodList, retrievePriceList })(FoodListView)
 
 

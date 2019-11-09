@@ -14,17 +14,14 @@ class MemberView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedIndex: 0
+      selectedIndex: 0,
+      discount: 0
     };
     const { navigation } = this.props
     const { idMember, member, cost } = navigation.state.params
     this.member = member;
     this.idMember = idMember;
     this.cost = cost;
-  }
-
-  finishCheckOut() {
-    this.props.navigation.goBack()
   }
 
   setPoint() {
@@ -38,17 +35,20 @@ class MemberView extends Component {
           onPress: () => console.log('Cancel Pressed'),
           style: 'cancel',
         },
-        { text: 'Xác nhận', onPress: () => console.log('OK Pressed') },
+        { text: 'Xác nhận', onPress: () => this.updatePoint(point) },
       ],
       { cancelable: false },
     );
   }
 
-  updatePoint = () => {
+  updatePoint = (point) => {
     if (this.member) {
       const updateValue = {
         key: "members",
-        value: this.member,
+        value: {
+          ...this.member,
+          "point": this.member["point"] + point
+        },
         id: this.idMember
       }
       this.props.updateData(updateValue)
@@ -57,11 +57,11 @@ class MemberView extends Component {
     else {
       alert('Không tìm thấy mã!')
     }
-    // this.props.navigation.goBack()
   }
 
   discount() {
-    alert(`${this.member["point"]}`)
+    this.setState({ discount: this.member["point"] })
+    alert(`Tổng phải trả ${this.cost - this.member["point"]}`)
   }
 
   updateIndex(selectedIndex) {
@@ -82,14 +82,16 @@ class MemberView extends Component {
     const { idMember, member, cost } = navigation.state.params
     return (
       <View>
-        <Text> Thành viên </Text>
-        <Text> Số điện thoại {member["tel"]} </Text>
-        <Text> Điểm {member["point"]} </Text>
-        <ButtonGroup
-          onPress={this.updateIndex.bind(this)}
-          selectedIndex={selectedIndex}
-          buttons={buttons} />
-        <PaymentComponent />
+        <View>
+          <Text> Thành viên </Text>
+          <Text> Số điện thoại {member["tel"]} </Text>
+          <Text> Điểm {member["point"]} </Text>
+          <ButtonGroup
+            onPress={this.updateIndex.bind(this)}
+            selectedIndex={selectedIndex}
+            buttons={buttons} />
+        </View>
+        <PaymentComponent discount={this.state.discount} />
       </View>
     );
   }

@@ -38,14 +38,14 @@ export default class Payment extends Component {
   }
   //Thanh toan -> Thu Tien -> Quet ma (1) Tao ma(2) Nhap ma(3)
   render() {
-    const { navigation } = this.props.navigation
+    const { navigation } = this.props
     const { cost } = navigation.state.params
     return (
       <View style={{ width: "100%", height: "100%" }}>
         <Text style={orderStyle.priceStyle}> Thanh toán </Text>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: "100%" }}>
           <Text style={orderStyle.priceStyle}>Tổng tiền:</Text>
-          <Text style={orderStyle.priceStyle}>{cost}VNĐ</Text>
+          <Text style={[orderStyle.priceStyle,]}>{cost}</Text>
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: "100%" }}>
           <Text style={orderStyle.priceStyle}>Nhận:</Text>
@@ -53,14 +53,14 @@ export default class Payment extends Component {
             defaultValue={`${this.state.cash}`}
             keyboardType="numeric"
             inputStyle={[{ textAlign: 'right', textDecorationLine: "underline" }, orderStyle.fontSize,]}
-            inputContainerStyle={{ borderBottomWidth: 0 }}
-            containerStyle={{ width: "50%", }}
+            inputContainerStyle={{ borderBottomWidth: 0, marginRight: "-2.25%" }}
+            containerStyle={{ width: "50%", marginRight: "-2.35%" }}
             onChangeText={text => this.onChangeText(text)} />
         </View>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: "100%" }}>
           <Text style={orderStyle.priceStyle}>Tiền thối:</Text>
-          <Text style={orderStyle.priceStyle}>{this.state.cash - cosh}VNĐ</Text>
+          <Text style={orderStyle.priceStyle}>{this.state.cash - cost}</Text>
         </View>
         {/* <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: "1.5%" }}>
           <Button title="Thanh toán" onPress={async () => await this.paid(enable)} />

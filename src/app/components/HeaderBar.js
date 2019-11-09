@@ -10,12 +10,16 @@ export default class HeaderBar extends Component {
   }
 
   render() {
-    const title = this.props.title
+    const title = (this.props.title).toUpperCase();
     return (
-      <View style={[{ width: "100%" }, this.props.style]}>
-        <Header
-          centerComponent={{ text: title, style: { color: '#fff' } }} />
+      <View style={{
+        backgroundColor: '#3D6DCC',
+        width: "100%", height: "7.5%",
+        justifyContent: 'center', alignItems: 'center', marginBottom: "2.5%"
+      }}>
+        <Text style={{ color: 'white', fontSize: 18, textAlign: 'center' }}>{title}</Text>
       </View>
-    );
+    )
   }
 }
+

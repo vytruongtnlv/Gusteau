@@ -1,13 +1,6 @@
 import EStyleSheet from "react-native-extended-stylesheet";
-import Orientation from 'react-native-orientation';
 import { Dimensions } from 'react-native';
 let { height, width } = Dimensions.get('window');
-
-Orientation.addOrientationListener((orientation) => {
-  EStyleSheet.build({
-    $rem: width < 380 ? width / 190 : width / 380
-  });
-});
 
 EStyleSheet.build({
   $rem: width < 380 ? width / 190 : width / 380
@@ -39,6 +32,9 @@ export const appStyle = {
   lightTheme: {
 
   },
+  fontSize: {
+    fontSize: '10rem'
+  }
 
 }
 export const styles = EStyleSheet.create({

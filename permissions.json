@@ -1,5 +1,12 @@
 {
   "Q0xlFsQKRIR7hEEB4KsbCmQX9qL2": {
+    "type": "Quản trị viên",
+    "name": "Nguyễn Văn A",
     "permission": "all"
+  },
+  "YjySy1ZaN4USZACPvqHvRqLPdI93": {
+    "type": "Nhân viên ghi món",
+    "name": "Nguyễn Văn B",
+    "permission": "order"
   }
 }

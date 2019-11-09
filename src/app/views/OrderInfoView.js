@@ -32,7 +32,6 @@ class OrderInfoView extends Component {
   }
 
   componentDidMount() {
-    this.props.deleteOrder();
     this.bill = this.getBillInfo()
     this._orders();
   }
@@ -112,9 +111,6 @@ class OrderInfoView extends Component {
   alertForPaymen = () => {
     const cost = this._calTotalPrice();
     this.props.navigation.navigate('Payment', { cost: cost })
-    // this._createAnOrder()
-    // this.handleCheckOut()
-    // alert('Đã thanh toán')
   }
 
   async checkMethod() {
@@ -203,16 +199,17 @@ class OrderInfoView extends Component {
             resizeMode="center"
             source={logo} />
           <Text style={orderStyle.orderTitle}>Hoá đơn</Text>
-          <View style={{ borderBottomWidth: 1, minHeight: "45%", borderBottomColor: 'black', borderTopColor: 'white', borderTopWidth: 1 }}>
+          <View style={{ borderBottomWidth: 1, minHeight: "60%", borderBottomColor: 'black', borderTopColor: 'white', borderTopWidth: 1 }}>
             {this.displayOrders()}
           </View>
-          <View style={{ flexDirection: direction, position: "absolute", bottom: 0, justifyContent: 'space-between', height: "35%", width: "100%", alignItems: "center" }}>
-            <Text style={orderStyle.priceStyle}>Tổng tiền: {this._calTotalPrice()} {paid ? "Đã thanh toán" : "Chưa thanh toán"}</Text>
-            <View style={{ width: "50%", alignItems: 'center', flexDirection: 'row', justifyContent: 'space-around', }}>
-              <View pointerEvents={paid ? 'none' : 'auto'}>
-                <Button title='Thanh toán' onPress={() => this.alertForPaymen()} />
-              </View>
-              <Button title='Đã phục vụ' onPress={this.servedToCustomer.bind(this)} />
+          <View style={{ flexDirection: direction, position: "absolute", bottom: 0, justifyContent: 'space-between', height: "20%", width: "100%", alignItems: "center" }}>
+            <Text style={orderStyle.priceStyle}>Tổng tiền: {this._calTotalPrice()} VNĐ</Text>
+            <View style={{ width: "50%", alignItems: 'center', flexDirection: 'row', justifyContent: 'space-around', paddingBottom: "2%" }}>
+              {
+                paid ?
+                  <Button title='Đã phục vụ' onPress={this.servedToCustomer.bind(this)} /> :
+                  <Button title='Thanh toán' onPress={() => this.alertForPaymen()} />
+              }
             </View>
           </View>
         </View>

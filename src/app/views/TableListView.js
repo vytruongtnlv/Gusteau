@@ -45,7 +45,7 @@ class TableListView extends Component {
           renderItem={({ item }) =>
             <View key={item.id} style={[styles.tableContainer]}>
 
-              <TableArea navigation={this.props.navigation} area={item} />
+              <TableArea key={item.id} navigation={this.props.navigation} area={item} />
             </View>
           }
           keyExtractor={item => item.id}

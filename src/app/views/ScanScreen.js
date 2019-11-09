@@ -20,17 +20,20 @@ class ScanScreen extends Component {
   }
 
   onSuccess = (e) => {
+    const { cost } = this.props.navigation.state.params
     const memberList = this.props.memberList;
     let member = null;
-    if (Object.keys(memberList)[0]) {
-      Object.keys(memberList).map(id => {
+    const arr = Object.keys(memberList)
+    if (arr[0]) {
+      var id = ""
+      for (var i = 0; i < arr.length; i++) {
+        id = arr[i];
         if (memberList[id]["tel"] == e.data) {
-          _id = id
-          this.props.navigation.navigate('MemberView', { idMember: id, member: memberList[id] })
-          return;
+          this.props.navigation.navigate('MemberView', { idMember: id, member: memberList[id], cost: cost })
+          break;
         }
-      })
-      if (memberList[_id]["tel"] != e.data) {
+      }
+      if (memberList[id]["tel"] != e.data) {
         alert("Mã QR không phù hợp!")
       }
     }
