@@ -38,7 +38,7 @@ class FoodCardComponent extends Component {
             source={{ uri: food["photos"][0]["value"] }} />
         </View>
         <View style={styles.foodTextView}>
-          <Text>{food["name"]} {food["price"]["text"]}</Text>
+          <Text style={{ textAlign: 'center' }}>{food["name"]} {food["price"]["value"]}đ</Text>
         </View>
       </View>
 

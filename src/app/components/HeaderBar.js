@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { Header } from 'react-native-elements';
-
-export default class HeaderBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
+import React, { Component } from 'react'
+import { Header, Icon } from 'react-native-elements'
+import { appStyle, appColor } from '../style'
+import { View, Text, TouchableOpacity } from 'react-native'
+class HeaderBar extends React.Component {
   render() {
-    const title = (this.props.title).toUpperCase();
+    const rightComponent = this.props.rightComponent
+    const navigation = this.props.navigation
+    const label = this.props.label
     return (
-      <View style={{
-        backgroundColor: '#3D6DCC',
-        width: "100%", height: "7.5%",
-        justifyContent: 'center', alignItems: 'center', marginBottom: "2.5%"
-      }}>
-        <Text style={{ color: 'white', fontSize: 18, textAlign: 'center' }}>{title}</Text>
+      <View style={{ borderBottomWidth: 2, borderColor: 'black', height: "7.5%", flexDirection: 'row', alignItems: 'center', marginBottom: 15 }}>
+        <TouchableOpacity style={{ width: "15%", alignItems: 'flex-start', paddingLeft: "2.5%" }}
+          onPress={() => navigation.goBack()}>
+          <Icon name='arrow-back' type="ionicons" />
+        </TouchableOpacity>
+        <Text style={{ width: "70%", textAlign: 'center', fontWeight: 'bold', fontSize: 20 }}>{label.toUpperCase()}</Text>
+        <View style={{ width: "15%", alignItems: 'flex-end', paddingRight: "2.5%" }}>
+          {rightComponent}
+        </View>
       </View>
     )
   }
 }
 
+export default (HeaderBar)

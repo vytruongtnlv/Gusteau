@@ -14,6 +14,15 @@ import Payment from './src/app/views/Payment';
 import MemberList from './src/app/views/MemberList';
 import MemberView from './src/app/views/MemberView';
 import QrCreator from './src/app/views/QrCreator';
+import PaymentComponent from './src/app/components/PaymentComponent';
+import TableManagement from './src/app/views/TableManagement';
+import CategoryManagement from './src/app/views/CategoryManagement';
+import MemberManagement from './src/app/views/MemberManagement';
+import EmployeeManagement from './src/app/views/EmployeeManagement';
+import TableDetail from './src/app/components/TableDetail';
+import CategoryDetail from './src/app/components/CategoryDetail';
+import FoodDetail from './src/app/components/FoodDetail';
+import EmployeeView from './src/app/views/EmployeeView';
 const stack = createStackNavigator({
   Login: {
     screen: Login,
@@ -26,6 +35,21 @@ const stack = createStackNavigator({
   },
   FoodInputForm: {
     screen: FoodInputForm
+  },
+  Tables: {
+    screen: TableManagement
+  },
+  Categories: {
+    screen: CategoryManagement
+  },
+  Members: {
+    screen: MemberManagement
+  },
+  Employees: {
+    screen: EmployeeManagement
+  },
+  EmployeeView: {
+    screen: EmployeeView
   },
   Tabs: {
     screen: Tabs
@@ -51,6 +75,18 @@ const stack = createStackNavigator({
   MemberView: {
     screen: MemberView
   },
+  PaymentComponent: {
+    screen: PaymentComponent
+  },
+  TableDetail: {
+    screen: TableDetail
+  },
+  CategoryDetail: {
+    screen: CategoryDetail
+  },
+  FoodDetail: {
+    screen: FoodDetail
+  }
 
 }, {
   headerMode: 'none'

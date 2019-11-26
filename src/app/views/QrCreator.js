@@ -7,7 +7,7 @@ const file_path = RNFS.CachesDirectoryPath
 import CameraRoll from "@react-native-community/cameraroll";
 import { otherInput, updateData } from '../actions';
 import { connect } from 'react-redux';
-import { Input } from 'react-native-elements';
+import { Input, Icon } from 'react-native-elements';
 class QrCreator extends Component {
   constructor(props) {
     super(props);
@@ -148,7 +148,7 @@ class QrCreator extends Component {
 
   render() {
     return (
-      <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start', height: "100%" }}>
+      <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start', height: "100%", width: "100%" }}>
         <Input
           keyboardType="phone-pad"
           errorMessage="Không được bỏ trống"
@@ -156,11 +156,14 @@ class QrCreator extends Component {
           onChangeText={text => this.props.otherInput({ field: 'text', value: text })}
         />
         <View pointerEvents={this.props.text != "" ? "auto" : "none"} style={{ width: "100%", justifyContent: 'center', alignItems: 'center' }}>
-          <Button title="Tạo mã QR" onPress={() => this.createNewQRCode()} />
+          <Button
+            title="Tạo mã QR"
+            icon={<Icon name="add" type="ionicons" />}
+            onPress={() => this.createNewQRCode()} />
 
         </View>
         {this.state.created &&
-          <View>
+          <View style={{ justifyContent: 'center', alignItems: 'center', width: "100%" }}>
             <QRCode
               value={this.props.text != "" ? this.props.text : "Lotteria"}
               size={200}
@@ -168,7 +171,10 @@ class QrCreator extends Component {
               getRef={(c) => (this.svg = c)}
             />
             <View style={{ marginTop: 10 }}>
-              <Button title="Xác nhận" onPress={() => this.checkExist(true)} />
+              <Button
+                title="Xác nhận"
+                icon={<Icon name="check" type="font-awesome" />}
+                onPress={() => this.checkExist(true)} />
             </View>
           </View>}
 

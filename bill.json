@@ -1,5 +1,5 @@
 {
-  "-2569": {
+  "0": {
     "billInfo": {
       "-LqWGuPYt8XZYeEyTgT3": {
         "foodName": "Pizza1",
@@ -17,9 +17,9 @@
     "served": true,
     "dateCheckIn": 1571330135000,
     "idTable": "TB04",
-    "price": 35.5
+    "price": 1500000
   },
-  "-LqWGuFbp6NJLO5Wc": {
+  "2": {
     "billInfo": {
       "-LqWGuPYt8XZYeEyTgT3": {
         "foodName": "Pizza1",
@@ -35,11 +35,11 @@
       }
     },
     "served": true,
-    "dateCheckIn": 1571243735000,
+    "dateCheckIn": 1571378921000,
     "idTable": "TB04",
-    "price": 60.5
+    "price": 1750000
   },
-  "-LqWGuFbp6t5kNJLO5Wc": {
+  "3": {
     "billInfo": {
       "-LqWGuPYt8XZYeEyTgT3": {
         "foodName": "Pizza1",
@@ -55,168 +55,748 @@
       }
     },
     "served": true,
-    "dateCheckIn": 1571157335000,
-    "discount": 0,
+    "dateCheckIn": 1571465321000,
     "idTable": "TB04",
-    "price": 42.5
+    "price": 1800000
   },
-  "-LrK91EupE8DxNkukonb": {
+  "4": {
     "billInfo": {
-      "-LrK91FHf-qP8KcJ--BR": {
-        "idFood": "-LooWwsGIuCfwJ2Sfq4i",
-        "price": 15,
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
         "quantity": 3
       },
-      "-LrK91FJIc7PFOcJc8wf": {
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
         "idFood": "F01",
         "price": 5,
         "quantity": 4
-      },
-      "-LrK91FLxBZZHrenss-G": {
-        "idFood": "F03",
-        "price": 6.5,
-        "quantity": 5
       }
     },
     "served": true,
-    "dateCheckIn": 1571394720000,
-    "discount": 0,
-    "idTable": "TB01",
-    "price": 97.5
-  },
-  "-LrYY19-FlM8_yFe4rak": {
-    "billInfo": {
-      "-LrYY1BJFNJxd-2RdDcB": {
-        "foodName": "Pizza1",
-        "idFood": "F02",
-        "idPrice": [
-          "P03"
-        ],
-        "price": 7.5,
-        "quantity": 1
-      }
-    },
-    "served": true,
-    "dateCheckIn": 1571480675072,
-    "discount": 0,
+    "dateCheckIn": 1571551721000,
     "idTable": "TB04",
-    "price": 7.5
+    "price": 1300000
   },
-  "-LrZ7PVYxrIMtdQlg3Vp": {
+  "5": {
     "billInfo": {
-      "-LrZ7PXLMtZT-iRZHX_S": {
+      "-LqWGuPYt8XZYeEyTgT3": {
         "foodName": "Pizza1",
         "idFood": "F02",
-        "idPrice": [
-          "P03"
-        ],
         "price": 7.5,
         "quantity": 3
       },
-      "-LrZ7PZ6HUC749_C8Ofc": {
-        "foodName": "Nono",
-        "idFood": "-LooWwsGIuCfwJ2Sfq4i",
-        "idPrice": [
-          "P02"
-        ],
-        "price": 15,
-        "quantity": 3
-      }
-    },
-    "served": true,
-    "dateCheckIn": 1571490474596,
-    "discount": 0,
-    "idTable": "TB05",
-    "price": 67.5
-  },
-  "-LrdpaBCwnttc0xwumQ_": {
-    "billInfo": {
-      "-LrdpaCHKNcxVU3_mR3T": {
-        "foodName": "Nono",
-        "idFood": "-LooWwsGIuCfwJ2Sfq4i",
-        "idPrice": [
-          "P02"
-        ],
-        "price": 15,
-        "quantity": 3
-      }
-    },
-    "served": true,
-    "dateCheckIn": 1571586203958,
-    "discount": 0,
-    "idTable": "TB03",
-    "price": 45
-  },
-  "-LrduZ9G5jTW-W7dDtJS": {
-    "billInfo": {
-      "-LrduZCJh5jFQrfiNqFD": {
-        "foodName": "Pizza1",
-        "idFood": "F02",
-        "idPrice": [
-          "P03"
-        ],
-        "price": 7.5,
-        "quantity": 1
-      },
-      "-LrduZDjuyw8rZHs1cTd": {
+      "-LqWGuP_VSRi_feFhTUF": {
         "foodName": "Pizza",
         "idFood": "F01",
-        "idPrice": [
-          "P01"
-        ],
         "price": 5,
-        "quantity": 3
+        "quantity": 4
       }
     },
     "served": true,
-    "dateCheckIn": 1571587507530,
-    "discount": 0,
+    "dateCheckIn": 1571638121000,
     "idTable": "TB04",
-    "price": 22.5
+    "price": 2100000
   },
-  "-Lrfz9H7vXlS58zNaj9F": {
+  "6": {
     "billInfo": {
-      "-Lrfz9KNYvvsVobJvbXD": {
-        "foodName": "noodle",
-        "idFood": "-LrdusewJ7fkGvl8uHbM",
-        "idPrice": [
-          "-Lrdusin6jRUc6GxrHpP"
-        ],
-        "price": 3.6,
-        "quantity": 1
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
       },
-      "-Lrfz9Oa079d-X95e0vO": {
-        "foodName": "Nono",
-        "idFood": "-LooWwsGIuCfwJ2Sfq4i",
-        "idPrice": [
-          "P02"
-        ],
-        "price": 15,
-        "quantity": 2
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
       }
     },
     "served": true,
-    "dateCheckIn": 1571622266187,
-    "discount": 0,
-    "idTable": "TB02",
-    "price": 33.6
+    "dateCheckIn": 1571724521000,
+    "idTable": "TB04",
+    "price": 1550000
   },
-  "-Lrg9eoNtWMRalLHomP4": {
+  "7": {
     "billInfo": {
-      "-Lrg9erSC5YwJdnh9pm4": {
-        "foodName": "pizza 3",
-        "idFood": "-Lrg-43cv7c3SaO0of2C",
-        "idPrice": [
-          "-Lrg-45p9iDXzpEegMXz"
-        ],
-        "price": 3.6,
-        "quantity": 1
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
       }
     },
     "served": true,
-    "dateCheckIn": 1571625282893,
-    "discount": 0,
-    "idTable": "TB01",
-    "price": 3.6
+    "dateCheckIn": 1571810921000,
+    "idTable": "TB04",
+    "price": 1750000
+  },
+  "8": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1571897321000,
+    "idTable": "TB04",
+    "price": 1950000
+  },
+  "9": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1571983721000,
+    "idTable": "TB04",
+    "price": 1850000
+  },
+  "10": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1572070121000,
+    "idTable": "TB04",
+    "price": 2350000
+  },
+  "11": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1572156521000,
+    "idTable": "TB04",
+    "price": 1230000
+  },
+  "12": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1572242921000,
+    "idTable": "TB04",
+    "price": 1780000
+  },
+  "13": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1572329321000,
+    "idTable": "TB04",
+    "price": 1890000
+  },
+  "14": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1572415721000,
+    "idTable": "TB04",
+    "price": 1560000
+  },
+  "15": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1572502121000,
+    "idTable": "TB04",
+    "price": 2320000
+  },
+  "16": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1572588521000,
+    "idTable": "TB04",
+    "price": 1750000
+  },
+  "17": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1572674921000,
+    "idTable": "TB04",
+    "price": 1800000
+  },
+  "18": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1572761321000,
+    "idTable": "TB04",
+    "price": 1980000
+  },
+  "19": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1572847721000,
+    "idTable": "TB04",
+    "price": 1630000
+  },
+  "20": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1572934121000,
+    "idTable": "TB04",
+    "price": 2150000
+  },
+  "21": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1573020521000,
+    "idTable": "TB04",
+    "price": 1570000
+  },
+  "22": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1573106921000,
+    "idTable": "TB04",
+    "price": 1750000
+  },
+  "23": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1573193321000,
+    "idTable": "TB04",
+    "price": 1450000
+  },
+  "24": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1573279721000,
+    "idTable": "TB04",
+    "price": 1680000
+  },
+  "25": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1573366121000,
+    "idTable": "TB04",
+    "price": 2200000
+  },
+  "26": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1573452521000,
+    "idTable": "TB04",
+    "price": 1570000
+  },
+  "27": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1573538921000,
+    "idTable": "TB04",
+    "price": 1780000
+  },
+  "28": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1573625321000,
+    "idTable": "TB04",
+    "price": 1860000
+  },
+  "29": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1573711721000,
+    "idTable": "TB04",
+    "price": 1830000
+  },
+  "30": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1573798121000,
+    "idTable": "TB04",
+    "price": 2860000
+  },
+  "31": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1573884521000,
+    "idTable": "TB04",
+    "price": 2500000
+  },
+  "32": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1573970921000,
+    "idTable": "TB04",
+    "price": 1755000
+  },
+  "33": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1574057321000,
+    "idTable": "TB04",
+    "price": 1860000
+  },
+  "34": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1574143721000,
+    "idTable": "TB04",
+    "price": 1890000
+  },
+  "35": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1574230121000,
+    "idTable": "TB04",
+    "price": 2320000
+  },
+  "36": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1574316521000,
+    "idTable": "TB04",
+    "price": 1650000
+  },
+  "37": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1574402921000,
+    "idTable": "TB04",
+    "price": 1750000
+  },
+  "38": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1574489321000,
+    "idTable": "TB04",
+    "price": 1890000
+  },
+  "39": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1574575721000,
+    "idTable": "TB04",
+    "price": 1830000
+  },
+  "40": {
+    "billInfo": {
+      "-LqWGuPYt8XZYeEyTgT3": {
+        "foodName": "Pizza1",
+        "idFood": "F02",
+        "price": 7.5,
+        "quantity": 3
+      },
+      "-LqWGuP_VSRi_feFhTUF": {
+        "foodName": "Pizza",
+        "idFood": "F01",
+        "price": 5,
+        "quantity": 4
+      }
+    },
+    "served": true,
+    "dateCheckIn": 1574748521000,
+    "idTable": "TB04",
+    "price": 2500000
   }
 }

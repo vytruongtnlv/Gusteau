@@ -18,7 +18,7 @@ export default class ChartComponents extends Component {
         marginBottom: 70
       },
       title: {
-        text: 'Thống kê doanh thu'
+        text: ''
       },
       xAxis: {
         type: 'datetime',
@@ -47,8 +47,9 @@ export default class ChartComponents extends Component {
       tooltip: {
         formatter: function () {
           return '<b>' + this.series.name + '</b><br/>' +
-            Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-            '$' + Highcharts.numberFormat(this.y, 2);
+            Highcharts.dateFormat('%d-%m-%Y', this.x) + '<br/>' +
+            Highcharts.numberFormat(this.y, 0) +
+            'đ';
         }
       },
       legend: {
@@ -81,6 +82,7 @@ export default class ChartComponents extends Component {
         useUTC: false
       },
       lang: {
+        resetZoom: "Thoát zoom",
         decimalPoint: ',',
         thousandsSep: '.'
       }

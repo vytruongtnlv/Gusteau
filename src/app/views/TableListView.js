@@ -44,7 +44,6 @@ class TableListView extends Component {
           data={this.state.area}
           renderItem={({ item }) =>
             <View key={item.id} style={[styles.tableContainer]}>
-
               <TableArea key={item.id} navigation={this.props.navigation} area={item} />
             </View>
           }
@@ -76,9 +75,7 @@ class TableListView extends Component {
       <View
         style={styles.bigContainer}>
         <ScrollView>
-
           {this.displayArea()}
-
         </ScrollView>
       </View >
 

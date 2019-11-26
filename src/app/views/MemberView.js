@@ -51,7 +51,7 @@ class MemberView extends Component {
         id: this.idMember
       }
       this.props.updateData(updateValue)
-      this.props.navigation.navigate("Tabs")
+      this.props.navigation.navigate("MemberView", { idMember: this.idMember, member: this.member, cost: this.cost })
     }
     else {
       alert('Không tìm thấy mã!')
@@ -81,7 +81,7 @@ class MemberView extends Component {
         <View>
           <Text> Thành viên </Text>
           <Text> Số điện thoại {this.member["tel"]} </Text>
-          <Text> Điểm {this.member["point"]} </Text>
+          <Text> Điểm {this.props.memberList[this.idMember]["point"]} </Text>
           <ButtonGroup
             onPress={this.updateIndex.bind(this)}
             selectedButtonStyle={{ backgroundColor: appColor.blue, }}

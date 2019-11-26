@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Picker, ScrollView } from 'react-native';
 import { connect } from 'react-redux'
-import { retrieveFoodList, retrievePriceList, deleteOrder } from '../actions';
+import { deleteOrder } from '../actions';
 import FoodCardComponent from '../components/FoodCardComponent';
-import { getFoodPriceByIdFood } from '../logics';
 import { styles, appStyle } from '../style';
 import CategoryComponent from '../components/CategoryComponent';
 class FoodListView extends Component {
@@ -50,8 +49,7 @@ class FoodListView extends Component {
     return (
       <View style={[this.props.style,]}>
         <ScrollView
-          contentContainerStyle={{ paddingBottom: 20 }}
-        >
+          contentContainerStyle={{ paddingBottom: 20 }}>
           <Picker
             selectedValue={this.state.selectedCategory}
             onValueChange={(selected) => this.setState({ selectedCategory: selected })}>
@@ -72,6 +70,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { deleteOrder, retrieveFoodList, retrievePriceList })(FoodListView)
+export default connect(mapStateToProps, { deleteOrder })(FoodListView)
 
 

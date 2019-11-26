@@ -27,7 +27,7 @@ class PaymentComponent extends Component {
       const obj = checkOutByTable(this.props.idTable, this.props.discount)
       this.props.updateData(obj);
       alert("Thanh toán thành công!");
-      this.props.navigation.navigate("Tabs")
+      this.props.navigation.navigate("Home")
     }
   }
 

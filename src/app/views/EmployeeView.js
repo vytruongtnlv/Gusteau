@@ -27,8 +27,8 @@ class EmployeeView extends Component {
   }
 
   createNewUser() {
-    const permission = this.state.selectedIndex == 0 ? "none" : "all"
-    this.props.createUser(`${this.state.email}@gus.com`, this.state.password, this.state.name, permission)
+    const permission = this.state.selectedIndex == 0 ? "order" : "half"
+    this.props.createUser(`${this.state.email}`, this.state.password, this.state.name, permission)
   }
 
   updateIndex(selectedIndex) {
@@ -37,18 +37,30 @@ class EmployeeView extends Component {
 
   render() {
     const buttons = [{ element: btnNone }, { element: btnAdmin }]
-    const { selectedIndex } = this.state
+    const { selectedIndex, name, email, password } = this.state
 
     return (
       <View>
         <Input
+          label="Họ và tên"
           placeholder="Họ tên"
+          errorStyle={{ color: 'red' }}
+          errorMessage={name == "" ? 'Đừng để trống' : ''}
           onChangeText={text => this.setState({ name: text })} />
         <Input
-          placeholder="Tài khoản"
+          label="Email"
+          keyboardType="email-address"
+          placeholder="Email"
+          errorStyle={{ color: 'red' }}
+          errorMessage={email == "" ? 'Đừng để trống' : ''}
           onChangeText={text => this.setState({ email: text })} />
+        <Text style={{ fontStyle: 'italic', fontSize: 12 }}>Vd: abcdef@gmail.com</Text>
         <Input
+          label="Mật khẩu"
           placeholder="Mật khẩu"
+          maxLength={8}
+          errorStyle={{ color: 'red' }}
+          errorMessage={password == "" ? 'Đừng để trống' : ''}
           onChangeText={text => this.setState({ password: text })}
           rightIcon={
             <TouchableWithoutFeedback onPress={() => this.setState({ invisible: !this.state.invisible })}>
@@ -60,14 +72,17 @@ class EmployeeView extends Component {
             </TouchableWithoutFeedback>
           }
           secureTextEntry={this.state.invisible} />
+        {
+          global.permission == "all" &&
+          <ButtonGroup
+            buttonStyle={[{ justifyContent: 'center', alignItems: 'center' }]}
+            selectedButtonStyle={{ backgroundColor: appColor.blue, }}
+            onPress={this.updateIndex.bind(this)}
+            selectedIndex={selectedIndex}
+            buttons={buttons} />
+        }
 
-        <ButtonGroup
-          buttonStyle={[{ justifyContent: 'center', alignItems: 'center' }]}
-          selectedButtonStyle={{ backgroundColor: appColor.blue, }}
-          onPress={this.updateIndex.bind(this)}
-          selectedIndex={selectedIndex}
-          buttons={buttons} />
-        <View style={{ width: "100%", justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ width: "100%", justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
           <Button title="Tạo tài khoản mới" onPress={() => this.createNewUser()} />
 
         </View>

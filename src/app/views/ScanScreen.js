@@ -32,8 +32,13 @@ class ScanScreen extends Component {
       for (var i = 0; i < arr.length; i++) {
         id = arr[i];
         if (memberList[id]["tel"] == e.data) {
-          this.props.navigation.navigate('MemberView', { idMember: id, member: memberList[id], cost: cost })
-          return;
+          if (cost) {
+            this.props.navigation.navigate('MemberView', { idMember: id, member: memberList[id], cost: cost })
+            return;
+          }
+          else {
+            alert(`L.Point của khách hàng là ${memberList[id]["point"]}`)
+          }
         }
       }
       if (memberList[id]["tel"] != e.data) {
@@ -47,6 +52,10 @@ class ScanScreen extends Component {
 
   }
 
+  goBack() {
+    this.props.navigation.goBack()
+  }
+
   render() {
     return (
       <QRCodeScanner
@@ -55,7 +64,7 @@ class ScanScreen extends Component {
         onRead={this.onSuccess}
         bottomContent={
           <View>
-            <TouchableOpacity style={styles.buttonTouchable} onPress={() => this.props.navigation.goBack()}>
+            <TouchableOpacity style={styles.buttonTouchable} onPress={() => this.goBack()}>
               <Text style={styles.buttonTextStyle}>Quay lại</Text>
             </TouchableOpacity>
           </View>

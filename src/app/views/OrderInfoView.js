@@ -96,7 +96,8 @@ class OrderInfoView extends Component {
     }
     else if (Object.keys(this.props.orders).length > 0)
       Object.keys(this.props.orders).forEach(id => {
-        value += this.props.orders[id]["price"] * this.props.orders[id]["quantity"]
+        if (this.props.orders[id] && this.props.orders[id]["price"])
+          value += this.props.orders[id]["price"] * this.props.orders[id]["quantity"]
       });
 
 
@@ -224,7 +225,6 @@ const mapStateToProps = state => {
     orders: state.orders.orders,
     tableList: state.tableDB.tableList,
     idTable: state.tableDB.idTable,
-    foodList: state.foodList.foodList,
     paid: state.other.paid
   }
 }

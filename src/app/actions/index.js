@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import { checkAvaibleData, getFoodPriceByIdFood } from '../logics'
+import { checkAvaibleData, getFoodPriceByIdFood, checkFoodAvailable } from '../logics'
 import store from '../../../store'
 export const otherInput = ({ field, value }) => {
     return (dispatch) => {
@@ -26,7 +26,7 @@ export const retrievePermissions = () => {
     return (dispatch) => {
         firebase.database().ref(`permissions`)
             .on('value', snapshot => {
-                const data = snapshot.val();
+                const data = checkAvaibleData(snapshot.val())
                 dispatch({ type: 'RETRIEVE_PERMISSION', payload: data })
             })
     }
@@ -46,6 +46,8 @@ export const createUser = (email, password, name, permission) => {
                 const type = permission == "order" ? "Nhân viên ghi món" : "Quản trị viên"
                 firebase.database().ref("permissions")
                     .child(user.uid).set({
+                        available: true,
+                        email: email,
                         name: name,
                         type: type,
                         permission: permission
@@ -61,12 +63,40 @@ export const createUser = (email, password, name, permission) => {
     }
 }
 
-export const foodInputChange = ({ field, value }) => {
-    return (dispatch) => {
-        dispatch({ type: 'FOOD_INPUT_CHANGE', payload: { field, value } })
+export const resetPassword = (email) => {
+    return () => {
+        var auth = firebase.auth();
+        auth.sendPasswordResetEmail(email).then(function () {
+            // Email sent.
+        }).catch(function (error) {
+            // An error happened.
+        });
     }
 }
 
+export const updatePassword = (password) => {
+    return () => {
+        var user = firebase.auth().currentUser;
+        // var newPassword = getASecureRandomPassword();
+
+        user.updatePassword(password).then(function () {
+            alert("Đổi mật khẩu thành công")
+        }).catch(function (error) {
+            // An error happened.
+        });
+    }
+}
+
+export const logout = () => {
+    return (dispatch) => {
+        firebase.auth().signOut().then(function () {
+            dispatch({ type: 'LOGIN_SUCCESS', payload: {} })
+        }).catch(function (error) {
+            // An error happened.
+        });
+    }
+
+}
 export const login = ({ email, password }) => {
     return (dispatch) => {
         firebase.auth().signInWithEmailAndPassword(email, password)
@@ -99,33 +129,8 @@ export const retrieveCategory = () => {
     return (dispatch) => {
         firebase.database().ref(`category`)
             .on('value', snapshot => {
-                dispatch({ type: 'RETRIEVE_CATE_LIST', payload: snapshot.val() })
-            })
-    }
-}
-
-export const retrieveFoodList = () => {
-    return (dispatch) => {
-        firebase.database().ref(`food`)
-            .on('value', snapshot => {
-                let data = checkAvaibleData(snapshot.val())
-                let newFoodList = getFoodPriceByIdFood(data)
-                dispatch({ type: 'RETRIEVE_FOOD_LIST', payload: newFoodList })
-            })
-    }
-}
-
-export const retrievePriceList = () => {
-    return (dispatch) => {
-        firebase.database().ref(`price`)
-            .on('value', snapshot => {
-                let data = checkAvaibleData(snapshot.val())
-                dispatch({ type: 'RETRIEVE_PRICE_LIST', payload: data })
-                let newData = getFoodPriceByIdFood(data)
-                if (Object.keys(newData).length > 0) {
-                    dispatch({ type: 'RETRIEVE_FOOD_LIST', payload: newData })
-                }
-                else retrievePriceList()
+                let data = checkFoodAvailable(snapshot.val())
+                dispatch({ type: 'RETRIEVE_CATE_LIST', payload: data })
             })
     }
 }

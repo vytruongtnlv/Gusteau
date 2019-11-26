@@ -1,5 +1,3 @@
-import deepmerge from 'deepmerge';
-
 const initialState = {
   categoryList: {},
   category: ""
@@ -11,7 +9,7 @@ export default (state = initialState, action) => {
     case 'RETRIEVE_CATE_LIST':
       return {
         ...state,
-        categoryList: deepmerge(state.categoryList, action.payload)
+        categoryList: action.payload
       };
     case 'CURRENT_CATEGORY':
       return {

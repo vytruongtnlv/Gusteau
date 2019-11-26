@@ -8,6 +8,8 @@ import { connect } from 'react-redux'
 import { currentTable } from '../actions';
 const empty = "Trống";
 const ordered = "Đã gọi món";
+const tableimg = require('../../img/tablex128.png')
+
 class TableFoodComponent extends Component {
 
   async orderHandle() {
@@ -34,9 +36,10 @@ class TableFoodComponent extends Component {
       //    <Text style={styles.tableText}>{table["tableName"]}</Text>
       //   <View style={{ position: 'absolute', bottom: 0, flexDirection: 'row', width: "100%", 
       //   padding: 10, justifyContent: 'space-between', }}>
-      <TouchableOpacity onPress={this.orderHandle.bind(this)} style={[styles.tableStyle, { backgroundColor: img, }]} >
+      <TouchableOpacity onPress={this.orderHandle.bind(this)} style={[styles.tableStyle, { backgroundColor: img }]} >
+        <Image source={tableimg} />
         <Text style={styles.tableText}>{table["tableName"]}</Text>
-      </TouchableOpacity>
+      </TouchableOpacity >
       // TouchableOpacity><Text style={styles.tableText}>Thanh toán</Text></TouchableOpacity>
       // </View> 
       // </View>

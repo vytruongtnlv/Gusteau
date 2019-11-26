@@ -5,6 +5,11 @@ import { appStyle } from './src/app/style';
 import BillStatistic from './src/app/views/BillStatistic';
 import FoodInputForm from './src/app/views/FoodInputForm';
 import EmployeeView from './src/app/views/EmployeeView';
+import CategoryManagement from './src/app/views/CategoryManagement';
+import TableManagement from './src/app/views/TableManagement';
+import MemberManagement from './src/app/views/MemberManagement';
+import AdminView from './src/app/views/AdminView';
+import Profile from './src/app/views/Profile';
 
 export default createBottomTabNavigator({
   BillStatistic: {
@@ -13,24 +18,23 @@ export default createBottomTabNavigator({
       title: 'Thống kê',
     }
   },
-  Employee: {
-    screen: EmployeeView,
+  AdminView: {
+    screen: AdminView,
     navigationOptions: {
-      title: 'Quản lý nhân viên',
+      title: 'Quản lý',
+    }
+  },
+  Profile: {
+    screen: Profile,
+    navigationOptions: {
+      title: 'Tài khoản',
     }
   }
 }, {
-  tabBarOptions: {
-    style: {
-      backgroundColor: '#323232',
 
-    },
+  tabBarOptions: {
     labelStyle: {
       fontSize: appStyle.tabFontSize
-    },
-    showIcon: true,
-    activeTintColor: 'white',
-    inactiveTintColor: '#b2b2b2',
-    adaptive: false
+    }
   }
 })

@@ -4,10 +4,11 @@ import { Input } from 'react-native-elements'
 import firebase from 'firebase'
 import { config } from '../config';
 import { connect } from 'react-redux'
-import { login, authInputChange, retrievePermissions } from '../actions';
+import { login, authInputChange, retrievePermissions, logout } from '../actions';
 import Button from '../components/Button';
 const logo = require('../../img/lotteria.png');
-global.permission = "none";
+
+global.permission;
 class Login extends Component {
     async componentDidMount() {
         firebase.initializeApp(config);
@@ -19,20 +20,16 @@ class Login extends Component {
     }
     login() {
         // const { email, password } = this.props
-        const email = "qtvien@gus.com"
+        // const email = "vytruong.tnlv@gmail.com"
+        // const password = "7472mRJf"
+        // const email = "vyb1505869@student.ctu.edu.vn"
+        // const password = "654321"
+        const email = "vytruong.520@gmail.com"
         const password = "123456"
         this.props.login({ email, password })
     }
-    render() {
-        if (Object.keys(this.props.user).length !== 0) {
-            // alert('Success')
-            const uid = this.props.user.user["uid"]
-            if (!uid) return null;
-            const permission = this.props.permissionList[uid]
-            if (!permission) return null;
-            this.props.authInputChange({ field: 'permission', value: permission["permission"] })
-            this.props.navigation.navigate('Tabs')
-        }
+
+    displayLogInForm() {
         return (
             <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 10 }}>
                 <Image
@@ -47,6 +44,36 @@ class Login extends Component {
                     secureTextEntry={true} />
                 <Button style={{ marginTop: 5, }} title="Đăng nhập" onPress={this.login.bind(this)} />
             </View>
+        )
+    }
+    render() {
+        if (Object.keys(this.props.user).length !== 0) {
+            // alert('Success')
+            const uid = this.props.user.user["uid"]
+            if (!uid) return null;
+            const account = this.props.permissionList[uid]
+            // if (!account) {
+            //     this.props.logout()
+            //     return (
+            //         <View>
+            //             {this.displayLogInForm()}
+            //         </View>
+            //     )
+            // } else 
+            if (account) {
+                const permission = this.props.permissionList[uid]
+                if (!permission) return null;
+                this.props.authInputChange({ field: 'permission', value: permission["permission"] })
+                global.permission = permission["permission"]
+                if (permission["permission"] == "all" || permission["permission"] == "half") this.props.navigation.navigate("AdminTabs")
+                else
+                    this.props.navigation.navigate('Tabs')
+            }
+        }
+        return (
+            <View>
+                {this.displayLogInForm()}
+            </View>
         );
     }
 }
@@ -59,4 +86,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { login, authInputChange, retrievePermissions })(Login)
+export default connect(mapStateToProps, { logout, login, authInputChange, retrievePermissions })(Login)

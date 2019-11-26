@@ -1,12 +1,16 @@
 {
   "Q0xlFsQKRIR7hEEB4KsbCmQX9qL2": {
-    "type": "Quản trị viên",
+    "available": true,
     "name": "Nguyễn Văn A",
-    "permission": "all"
+    "email": "qtvien@gus.com",
+    "permission": "all",
+    "type": "Quản trị viên"
   },
-  "YjySy1ZaN4USZACPvqHvRqLPdI93": {
-    "type": "Nhân viên ghi món",
-    "name": "Nguyễn Văn B",
-    "permission": "order"
+  "5z5Ed8lpweMWjBitGwIxT72XyE22": {
+    "available": true,
+    "name": "Vy Trương",
+    "email": "vytruong.tnlv@gmail.com",
+    "permission": "all",
+    "type": "Quản trị viên"
   }
 }

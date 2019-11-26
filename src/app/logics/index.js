@@ -16,32 +16,40 @@ export const checkAvaibleData = (data) => {
   return newData;
 }
 
-export const getFoodPriceByIdFood = (foodList) => {
-  // const priceList = store.getState().foodList.priceList;
-  let newData = {};
-  Object.keys(foodList).forEach(idFood => {
-    if (foodList[idFood] && foodList[idFood]["price"]) {
-      let newFood = foodList[idFood]
-      let priceList = newFood["price"];
-      Object.keys(priceList).map(key => {
-        if (priceList[key]["dateEnd"] == "" && priceList[key]["price"]) {
-          newFood = {
-            ...newFood,
-            "price": {
-              [key]: priceList[key]
-            }
-          }
+export const checkFoodAvailable = (data) => {
+  let newData = {}
+  if (Object.keys(data)[0])
+    Object.keys(data).map(key => {
+      if (data[key]["available"]) {
+        let category = data[key];
+        category = {
+          ...category,
+          "dishes": data[key]["dishes"] ? filterFood(data[key]["dishes"]) : {}
         }
-      })
-      newData = {
-        ...newData,
-        [idFood]: newFood
+        newData = {
+          ...newData,
+          [key]: category
+          // {
+          //   "available": data[key]["available"],
+          //   "dish_type_name": data[key]["dish_type_name"],
+          //   "dishes": data[key]["dishes"] ? filterFood(data[key]["dishes"]) : {}
+          // }
+        }
       }
-    }
+    })
+  return newData;
+}
 
+export const filterFood = (obj) => {
+  let foodList = {}
+  Object.keys(obj).map(key => {
+    if (obj[key]["is_available"])
+      foodList = {
+        ...foodList,
+        [key]: obj[key]
+      }
   })
-  // store.dispatch({ type: 'RETRIEVE_FOOD_LIST', payload: newData })
-  return newData
+  return foodList;
 }
 
 export const getBillByIdTable = (idTable) => {
