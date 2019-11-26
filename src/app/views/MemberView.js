@@ -5,6 +5,7 @@ import PaymentComponent from '../components/PaymentComponent';
 import { connect } from 'react-redux';
 import { ButtonGroup } from 'react-native-elements';
 import { appColor } from '../style';
+import HeaderBar from '../components/HeaderBar';
 
 const btnSave = () => <Text>Tích điểm</Text>
 const btnUse = () => <Text>Sử dụng điểm</Text>
@@ -13,6 +14,7 @@ class MemberView extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      point: 0,
       selectedIndex: 0,
       discount: 0
     };
@@ -21,6 +23,10 @@ class MemberView extends Component {
     this.member = member;
     this.idMember = idMember;
     this.cost = cost;
+  }
+
+  componentDidMount() {
+    this.setState({ point: this.member["point"] })
   }
 
   setPoint() {
@@ -40,16 +46,18 @@ class MemberView extends Component {
     );
   }
 
-  updatePoint = (point) => {
+
+  updatePoint = (point, reset) => {
     if (this.member) {
       const updateValue = {
         key: "members",
         value: {
           ...this.member,
-          "point": this.member["point"] + point
+          "point": reset ? point : this.member["point"] + point
         },
         id: this.idMember
       }
+      this.setState({ point: reset ? point : this.member["point"] + point })
       this.props.updateData(updateValue)
       this.props.navigation.navigate("MemberView", { idMember: this.idMember, member: this.member, cost: this.cost })
     }
@@ -59,17 +67,20 @@ class MemberView extends Component {
   }
 
   discount() {
-    this.setState({ discount: this.member["point"] })
+    var discount = parseInt(this.member["point"] / 1000) * 1000
+    var remain = this.member["point"] - discount
+    alert(`Khách hàng được giảm ${discount}đ`)
+    this.updatePoint(remain, true)
   }
 
   updateIndex(selectedIndex) {
     this.setState({ selectedIndex })
-    switch (selectedIndex) {
-      case 0:
-        return this.setPoint()
-      case 1:
-        return this.discount();
-    }
+    // switch (selectedIndex) {
+    //   case 0:
+    //     return this.setPoint()
+    //   case 1:
+    //     return this.discount();
+    // }
   }
 
   render() {
@@ -77,18 +88,24 @@ class MemberView extends Component {
     const { selectedIndex } = this.state
 
     return (
-      <View>
+      <View style={{ width: "100%", height: "100%" }}>
+        <HeaderBar label="Thành viên" navigation={this.props.navigation} />
         <View>
-          <Text> Thành viên </Text>
-          <Text> Số điện thoại {this.member["tel"]} </Text>
-          <Text> Điểm {this.props.memberList[this.idMember]["point"]} </Text>
+
+          <Text style={{ fontSize: 16, paddingLeft: 5 }}>Số điện thoại
+          <Text style={{ fontSize: 20 }}>    {this.member["tel"]}</Text></Text>
+          <Text style={{ fontSize: 16, paddingLeft: 5 }}>Điểm
+           <Text style={{ fontSize: 20 }}>    {this.props.memberList[this.idMember]["point"]}</Text> </Text>
           <ButtonGroup
+            buttonStyle={[{ justifyContent: 'center', alignItems: 'center', backgroundColor: appColor.unfocusedColor, }]}
             onPress={this.updateIndex.bind(this)}
-            selectedButtonStyle={{ backgroundColor: appColor.blue, }}
+            selectedButtonStyle={{ backgroundColor: appColor.focusedColor, }}
             selectedIndex={selectedIndex}
             buttons={buttons} />
         </View>
-        <PaymentComponent discount={this.state.discount} />
+        <PaymentComponent
+          cost={this.cost} member={this.member}
+          idMember={this.idMember} option={this.state.selectedIndex} discount={this.state.discount} />
       </View>
     );
   }

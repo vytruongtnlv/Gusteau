@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { updateData } from '../actions';
 import { memberStyle, orderStyle } from '../style';
+import HeaderBar from '../components/HeaderBar';
 class MemberList extends Component {
   constructor(props) {
     super(props);
@@ -29,26 +30,50 @@ class MemberList extends Component {
     await this.setState({ searchList: searchList })
   }
 
+  objectToArray() {
+    const data = this.props.memberList
+    const arr = []
+    Object.keys(data).map(key => {
+      arr.push({ id: key, item: data[key] })
+    })
+    arr.sort((a, b) => b["item"]["point"] - a["item"]["point"])
+    return arr
+  }
+
   displayMemberList() {
     const list = Object.keys(this.state.searchList)[0] ? this.state.searchList : this.props.memberList;
     const { cost } = this.props.navigation.state.params
-    return Object.keys(list).map(id => {
-      return (
-        <TouchableOpacity
-          style={{ marginVertical: "0.25%" }}
-          onPress={() => this.props.navigation.navigate('MemberView', { idMember: id, member: list[id], cost: cost })}>
-          <Text style={[memberStyle.fontSize]}>{list[id]["tel"]}</Text>
-        </TouchableOpacity>
-      )
-    })
+    const data = this.objectToArray()
+    return (
+      <FlatList
+        data={data}
+        renderItem={({ item }) =>
+          <TouchableOpacity
+            style={{
+              padding: 5, marginLeft: 5, marginRight: 5,
+              marginVertical: 5, height: 50, borderRadius: 5,
+              borderWidth: 1, flexDirection: 'row',
+              justifyContent: 'space-between', alignItems: 'center',
+            }}
+            onPress={() => this.props.navigation.navigate('MemberView', { idMember: item.id, member: item["item"], cost: cost })}>
+
+            <Text style={{ fontSize: 20 }}>{item["item"]["tel"]}</Text>
+            <Text style={{ fontSize: 20 }}>{item["item"]["point"]}</Text>
+
+          </TouchableOpacity>
+        }
+        keyExtractor={item => item.id}
+      />
+    )
   }
 
   render() {
     return (
-      <View >
+      <View style={{ width: "100%", height: "100%", }}>
+        <HeaderBar label="Danh sách thành viên" navigation={this.props.navigation} />
         <SearchBar
           lightTheme
-          containerStyle={{ backgroundColor: "white", }}
+          containerStyle={{ backgroundColor: "white", marginLeft: 5, marginRight: 5, borderTopWidth: 0, marginTop: -15, borderBottomColor: 'black' }}
           inputContainerStyle={{ backgroundColor: "white", }}
           placeholder="Nhập số điện thoại..."
           keyboardType="phone-pad"
@@ -56,7 +81,6 @@ class MemberList extends Component {
           value={this.state.search}
         />
         <View style={{ paddingLeft: "1.5%", paddingRight: "1.5%" }}>
-          <Text style={[orderStyle.fontSize, { textAlign: 'center' }]}>Danh sách thành viên</Text>
           {this.displayMemberList()}
         </View>
       </View>

@@ -60,34 +60,6 @@ class OrderInfoView extends Component {
     this.props.updateData(obj)
   }
 
-  addOrderIntoBill(idBill) {
-    const key = `bill/${idBill}/billInfo`; // idBillinfo , idFood, Quantity, idPrice, idBill, available
-    Object.keys(this.props.orders).forEach(idFood => {
-      var order = this.props.orders[idFood]
-      var value = {
-        "idFood": idFood,
-        "name": order["name"],
-        "quantity": order["quantity"],
-        "note": order["note"],
-        "price": order["price"],
-      }
-      this.props.updateData({ key, value })
-    })
-  }
-
-  _createAnOrder() {
-    if (this.props.tableList[this.props.idTable]["tableStatus"] == setConst.empty) {
-      this.handleNewBill()
-
-      this.changeTableStatus(this.props.idTable, setConst.ordered)//check 
-    }
-    else if (this.props.tableList[this.props.idTable]["tableStatus"] == setConst.ordered) {
-      console.log('old bill')
-    }
-    const idBill = getBillByIdTable(this.props.idTable); //check 
-    this.addOrderIntoBill(idBill)
-  }
-
   _calTotalPrice() {
     let value = 0;
     const bill = this.getBillInfo();
@@ -109,7 +81,7 @@ class OrderInfoView extends Component {
   }
 
 
-  alertForPaymen = () => {
+  alertForPayment = () => {
     const cost = this._calTotalPrice();
     this.props.navigation.navigate('Payment', { cost: cost })
   }
@@ -136,7 +108,7 @@ class OrderInfoView extends Component {
       const tableObj = changeTableStatus(this.props.idTable, setConst.empty)
       this.props.updateData(tableObj);
     }
-    this.props.navigation.navigate("Tabs")
+    this.props.navigation.navigate("Home")
   }
 
   displayOrders() {
@@ -205,11 +177,11 @@ class OrderInfoView extends Component {
           </View>
           <View style={{ flexDirection: direction, position: "absolute", bottom: 0, justifyContent: 'space-between', height: "20%", width: "100%", alignItems: "center" }}>
             <Text style={orderStyle.priceStyle}>Tổng tiền: {this._calTotalPrice()} VNĐ</Text>
-            <View style={{ width: "50%", alignItems: 'center', flexDirection: 'row', justifyContent: 'space-around', paddingBottom: "2%" }}>
+            <View style={{ width: "50%", alignItems: 'center', flexDirection: 'row', justifyContent: 'space-around', paddingBottom: "6%" }}>
               {
                 paid ?
-                  <Button title='Đã phục vụ' onPress={this.servedToCustomer.bind(this)} /> :
-                  <Button title='Thanh toán' onPress={() => this.alertForPaymen()} />
+                  <Button title='Phục vụ' onPress={this.servedToCustomer.bind(this)} /> :
+                  <Button title='Thanh toán' onPress={() => this.alertForPayment()} />
               }
             </View>
           </View>

@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, TouchableWithoutFeedback } from 'react-na
 import Button from '../components/Button';
 import HeaderBar from '../components/HeaderBar';
 import { connect } from 'react-redux';
-import { appStyle } from '../style';
+import { appStyle, appColor } from '../style';
 import { Icon, Input } from 'react-native-elements';
 import { updatePassword } from '../actions';
 
@@ -127,12 +127,14 @@ class Profile extends Component {
               {
                 this.state.edit &&
                 <Button title="Lưu"
+                  style={{ backgroundColor: appColor.focusedColor, }}
                   icon={<Icon name="check" type="font-awesome" />}
                   onPress={() => this.changePassword()} />
               }
               {
                 this.state.edit &&
                 <Button title="Huỷ"
+                  style={{ backgroundColor: appColor.unfocusedColor, }}
                   icon={<Icon name="close" type="ionicons" />}
                   onPress={() => this.resetField()} />
               }

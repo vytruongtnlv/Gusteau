@@ -14,17 +14,19 @@ class OrderDetail extends Component {
 
   render() {
     const { id, item } = this.props
-    return (
-      // <TouchableOpacity onLongPress={() => this.deleteOrder()}>
-      <View style={{ flexDirection: 'row' }}>
-        <Text style={{ width: '33.33%', textAlign: 'left', fontSize: 16 }}>{item.name} {item.note}</Text>
-        <Text style={{ width: '33.33%', textAlign: 'center', fontSize: 16 }}>x{item.quantity}</Text>
-        <Text style={{ width: '33.33%', textAlign: 'right', fontSize: 16 }}>{item.price}đ</Text>
-      </View>
+    if (item)
+      return (
+        // <TouchableOpacity onLongPress={() => this.deleteOrder()}>
+        <View style={{ flexDirection: 'row' }}>
+          <Text style={{ width: '33.33%', textAlign: 'left', fontSize: 16 }}>{item.name} {item.note}</Text>
+          <Text style={{ width: '33.33%', textAlign: 'center', fontSize: 16 }}>x{item.quantity}</Text>
+          <Text style={{ width: '33.33%', textAlign: 'right', fontSize: 16 }}>{item.price}đ</Text>
+        </View>
 
-      // </TouchableOpacity>
+        // </TouchableOpacity>
 
-    );
+      );
+    else return null
   }
 }
 const mapStateToProps = state => {

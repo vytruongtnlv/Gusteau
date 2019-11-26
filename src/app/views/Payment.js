@@ -6,6 +6,7 @@ import PaymentOptions from '../components/PaymentOptions';
 import { orderInputStyles, orderStyle } from '../style';
 import Calculator from '../components/Calculator';
 import { Input } from 'react-native-elements';
+import HeaderBar from '../components/HeaderBar';
 
 
 
@@ -42,7 +43,7 @@ export default class Payment extends Component {
     const { cost } = navigation.state.params
     return (
       <View style={{ width: "100%", height: "100%" }}>
-        <Text style={orderStyle.priceStyle}> Thanh toán </Text>
+        <HeaderBar label="Thanh toán" navigation={navigation} />
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: "100%" }}>
           <Text style={orderStyle.priceStyle}>Tổng tiền:</Text>
           <Text style={[orderStyle.priceStyle,]}>{cost}</Text>

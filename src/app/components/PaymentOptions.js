@@ -10,10 +10,10 @@ import MemberList from '../views/MemberList';
 import PaymentComponent from './PaymentComponent';
 import { appColor } from '../style';
 
-const btnNo = () => <Text>Không</Text>
-const btnQR = () => <Text>Quét mã QR</Text>
-const btnCreate = () => <Text>Tạo mã mới</Text>
-const btnEnter = () => <Text>Nhập số điện thoại</Text>
+const btnNo = () => <Text style={{ textAlign: 'center' }}>Không</Text>
+const btnQR = () => <Text style={{ textAlign: 'center' }}>Quét mã QR</Text>
+const btnCreate = () => <Text style={{ textAlign: 'center' }}>Tạo mã mới</Text>
+const btnEnter = () => <Text style={{ textAlign: 'center' }}>Nhập số điện thoại</Text>
 
 class PaymentOptions extends Component {
   constructor(props) {
@@ -81,7 +81,7 @@ class PaymentOptions extends Component {
     switch (this.state.selectedIndex) {
       case 0:
         return (
-          <PaymentComponent />
+          <PaymentComponent navigation={this.props.navigation} />
         )
       case 1:
         return this.props.navigation.navigate('ScanScreen', { cost: this.props.cost });
@@ -99,8 +99,8 @@ class PaymentOptions extends Component {
     return (
       <View style={{ width: "100%" }}>
         <ButtonGroup
-          buttonStyle={[{ justifyContent: 'center', alignItems: 'center' }]}
-          selectedButtonStyle={{ backgroundColor: appColor.blue, }}
+          buttonStyle={[{ justifyContent: 'center', alignItems: 'center', backgroundColor: appColor.unfocusedColor, }]}
+          selectedButtonStyle={{ backgroundColor: appColor.focusedColor, }}
           onPress={this.updateIndex.bind(this)}
           selectedIndex={selectedIndex}
           buttons={buttons} />

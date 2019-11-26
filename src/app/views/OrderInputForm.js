@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { orderInputChange, createOrder, deleteOrder } from '../actions';
 import Button from '../components/Button';
 import HeaderBar from '../components/HeaderBar';
-import { orderInputStyles } from '../style';
-import { Input } from 'react-native-elements';
+import { orderInputStyles, appColor } from '../style';
+import { Input, Icon } from 'react-native-elements';
 class OrderInputForm extends Component {
   constructor(props) {
     super(props);
@@ -97,9 +97,17 @@ class OrderInputForm extends Component {
           containerStyle={orderInputStyles.numericStyle}
           inputStyle={orderInputStyles.numericInputStyle}
         />
-        <View style={orderInputStyles.buttonRow}>
-          <Button style={{ marginBottom: 10 }} title="Thêm" onPress={this._orders.bind(this)} />
-          <Button style={{ marginBottom: 10 }} title="Huỷ" onPress={this.cancelOrder.bind(this)} />
+        <View style={[orderInputStyles.buttonRow, { justifyContent: 'space-around', }]}>
+          <Button
+            style={{ marginBottom: 10, marginLeft: 10, backgroundColor: appColor.focusedColor, }}
+            title="Thêm"
+            icon={<Icon name="add" type="ionicons" />}
+            onPress={this._orders.bind(this)} />
+          <Button
+            style={{ marginBottom: 10, backgroundColor: appColor.unfocusedColor, }}
+            title="Huỷ"
+            icon={<Icon name="close" type="ionicons" />}
+            onPress={this.cancelOrder.bind(this)} />
         </View>
       </View>
     );

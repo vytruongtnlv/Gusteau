@@ -12,6 +12,9 @@ export const appColor = {
   green: '#54ff60',
   red: '#ff2e2e',
   enableColor: '',
+  buttonColor: "#deebff",
+  focusedColor: "#abccff",
+  unfocusedColor: "#f7f7f7",
   disableColor: '#14637d',
 }
 
@@ -146,7 +149,7 @@ export const styles = EStyleSheet.create({
   buttonStyle: {
     width: '55rem',
     height: '25rem',
-    // backgroundColor: appColor.blue,
+    backgroundColor: appColor.buttonColor,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',

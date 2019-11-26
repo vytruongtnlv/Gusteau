@@ -14,6 +14,7 @@ class QrCreator extends Component {
     this.state = {
       busy: true,
       imageSaved: false,
+      text: '',
       qrcodeData: "",
       qrcode: "",
       created: false,
@@ -111,7 +112,7 @@ class QrCreator extends Component {
     const { cost } = this.props.navigation.state.params
     await this.getDataURL();
     const value = {
-      tel: this.props.text,
+      tel: this.state.text,
       point: 0,
     }
     const item = {
@@ -133,12 +134,12 @@ class QrCreator extends Component {
     if (length > 0) {
       for (var i = 0; i < length; i++) {
         id = arr[i];
-        if (list[id]["tel"] == this.props.text) {
+        if (list[id]["tel"] == this.state.text) {
           alert("Đã tồn tại!")
           return;
         }
       }
-      if (list[id]["tel"] != this.props.text && check) {
+      if (list[id]["tel"] != this.state.text && check) {
         this.acceptToCreate();
       }
     } else if (!Object.keys(list)[0] && check) {
@@ -151,21 +152,21 @@ class QrCreator extends Component {
       <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start', height: "100%", width: "100%" }}>
         <Input
           keyboardType="phone-pad"
-          errorMessage="Không được bỏ trống"
+          errorMessage={this.state.text == "" ? "Không được bỏ trống" : ""}
           placeholder="Số điện thoại"
-          onChangeText={text => this.props.otherInput({ field: 'text', value: text })}
+          onChangeText={text => this.setState({ text: text })}
         />
-        <View pointerEvents={this.props.text != "" ? "auto" : "none"} style={{ width: "100%", justifyContent: 'center', alignItems: 'center' }}>
+        <View pointerEvents={this.state.text != "" ? "auto" : "none"} style={{ width: "100%", marginTop: 10, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
           <Button
             title="Tạo mã QR"
             icon={<Icon name="add" type="ionicons" />}
             onPress={() => this.createNewQRCode()} />
 
         </View>
-        {this.state.created &&
+        {this.state.created && this.state.text != "" &&
           <View style={{ justifyContent: 'center', alignItems: 'center', width: "100%" }}>
             <QRCode
-              value={this.props.text != "" ? this.props.text : "Lotteria"}
+              value={this.state.text != "" ? this.state.text : "Lotteria"}
               size={200}
               backgroundColor="white"
               getRef={(c) => (this.svg = c)}
