@@ -30,8 +30,7 @@ class MemberList extends Component {
     await this.setState({ searchList: searchList })
   }
 
-  objectToArray() {
-    const data = this.props.memberList
+  objectToArray(data) {
     const arr = []
     Object.keys(data).map(key => {
       arr.push({ id: key, item: data[key] })
@@ -41,9 +40,9 @@ class MemberList extends Component {
   }
 
   displayMemberList() {
-    const list = Object.keys(this.state.searchList)[0] ? this.state.searchList : this.props.memberList;
+    const list = this.state.search != "" ? this.state.searchList : this.props.memberList;
     const { cost } = this.props.navigation.state.params
-    const data = this.objectToArray()
+    const data = this.objectToArray(list)
     return (
       <FlatList
         data={data}

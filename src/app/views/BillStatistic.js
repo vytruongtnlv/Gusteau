@@ -51,7 +51,7 @@ class BillStatistic extends React.Component {
     if (!this.state.data[0]) {
       return (
         <View style={[styles.container, styles.horizontal]}>
-          <ActivityIndicator size={64} color={appColor.blue} />
+          <ActivityIndicator size={64} color={appColor.buttonColor} />
         </View>
       )
     }
@@ -59,8 +59,11 @@ class BillStatistic extends React.Component {
       <View>
         <Text style={{ textAlign: 'center', fontSize: 20 }}>Thống kê doanh thu</Text>
         <ButtonGroup
-          buttonStyle={[{ justifyContent: 'center', alignItems: 'center' }]}
-          selectedButtonStyle={{ backgroundColor: appColor.blue, }}
+          buttonStyle={[{
+            justifyContent: 'center', alignItems: 'center', backgroundColor: appColor.ùn
+            ,
+          }]}
+          selectedButtonStyle={{ backgroundColor: appColor.focusedColor, }}
           onPress={this.updateIndex.bind(this)}
           selectedIndex={selectedIndex}
           buttons={buttons} />

@@ -104,6 +104,7 @@ export const login = ({ email, password }) => {
                 dispatch({ type: 'LOGIN_SUCCESS', payload: user })
             })
             .catch(function (error) {
+                alert("Mật khẩu hoặc tài khoản đăng nhập không đúng!")
                 console.log('Login error: ' + error)
             });
     }

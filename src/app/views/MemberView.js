@@ -59,7 +59,11 @@ class MemberView extends Component {
       }
       this.setState({ point: reset ? point : this.member["point"] + point })
       this.props.updateData(updateValue)
-      this.props.navigation.navigate("MemberView", { idMember: this.idMember, member: this.member, cost: this.cost })
+      this.props.navigation.navigate("MemberView", {
+        idMember: this.idMember,
+        member: this.member,
+        cost: this.cost
+      })
     }
     else {
       alert('Không tìm thấy mã!')

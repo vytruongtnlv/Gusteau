@@ -13,20 +13,27 @@ class Login extends Component {
     async componentDidMount() {
         firebase.initializeApp(config);
         await this.fetchPermission();
-        await this.login();
+        // await this.login();
     }
     fetchPermission() {
         this.props.retrievePermissions();
     }
     login() {
-        // const { email, password } = this.props
+        const { email, password } = this.props
+
+        if (email == "" || password == "") {
+            alert("Vui lòng nhập email và mật khẩu!")
+        } else {
+            this.props.login({ email, password })
+
+        }
         // const email = "vytruong.tnlv@gmail.com"
         // const password = "7472mRJf"
         // const email = "vyb1505869@student.ctu.edu.vn"
         // const password = "654321"
-        const email = "vytruong.520@gmail.com"
-        const password = "123456"
-        this.props.login({ email, password })
+        // const email = "vytruong.520@gmail.com"
+        // const password = "123456"
+
     }
 
     displayLogInForm() {
@@ -37,6 +44,8 @@ class Login extends Component {
                     source={logo} />
                 <Input
                     placeholder="Tài khoản"
+                    errorStyle={{ color: 'black' }}
+                    errorMessage="Vd: abc@gmail.com"
                     onChangeText={text => this.props.authInputChange({ field: 'email', value: text })} />
                 <Input
                     placeholder="Mật khẩu"
